@@ -1,0 +1,17 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 02. 05.
+ -->
+
+<!-- Multi-select Combobox with values -->
+<template>
+	<lightning-card>
+		<div class="slds-p-horizontal_small">
+			<c-multi-select label="Multi-select combobox label"
+							required
+							options={options}
+							onchange={handleChange}
+							can-toggle-all
+							value={value}></c-multi-select>
+		</div>
+	</lightning-card>
+</template>

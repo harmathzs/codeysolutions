@@ -1,0 +1,91 @@
+/**
+ * Created by Harmath Zsolt on 2025. 02. 05.
+ */
+
+:host {
+	--multi-select-drop-down-max-height: 400px;
+	--multi-select-drop-down-position: absolute;
+	display: block;
+}
+
+.options {
+	background: white;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+	border-radius: 4px;
+	position: var(--multi-select-drop-down-position, absolute);
+	top: 100%;
+	left: 0;
+	right: 0;
+	margin: 0 2px;
+	max-height: var(--multi-select-drop-down-max-height, 400px);
+	overflow-y: auto;
+	z-index: 7000;
+	background-color: var(--slds-g-color-neutral-base-100, #fff);
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	padding: 0.625rem;
+	color: var(--slds-g-color-neutral-base-10, #181818);
+}
+
+.row.selected {
+
+}
+
+.row:hover,
+.row:focus {
+	background-color: var(--slds-g-color-neutral-base-95, #f3f3f3);
+}
+
+.row:hover {
+	cursor: pointer;
+}
+
+.spinner-row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 2.5rem;
+}
+
+button {
+	all: unset;
+	height: 2rem;
+	box-sizing: border-box;
+	background: #FFFFFF;
+	border: 1px solid #CED4DA;
+	border-radius: 4px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: 100%;
+	padding: 0 12px;
+	display: flex;
+	align-items: center;
+}
+
+button.read-only {
+	background-color: #ecebea;
+	border-color: #c9c7c5;
+}
+
+button.has-error {
+	border: 1px solid #c23934;
+	-webkit-box-shadow: #c23934 0 0 0 1px inset;
+}
+
+.error-message {
+	color: #c23934;
+	font-size: .75rem;
+	margin-top: 0.125rem;
+	display: block;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+button:focus {
+	border: 1px solid #67C2DD;
+}
