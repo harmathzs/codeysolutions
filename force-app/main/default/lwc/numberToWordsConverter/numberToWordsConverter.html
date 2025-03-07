@@ -1,0 +1,15 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 02. 08.
+ -->
+
+<!-- Number To Words Converter -->
+<!-- numberToWordsConverter.html -->
+<template>
+	<lightning-card>
+		<div class="slds-p-around_medium">
+			<lightning-input type="number" label="Enter Number" value={number} onchange={handleNumberChange}></lightning-input>
+			<p if:true={wordRepresentation}>Word Representation: {wordRepresentation}</p>
+		</div>
+	</lightning-card>
+</template>
+
