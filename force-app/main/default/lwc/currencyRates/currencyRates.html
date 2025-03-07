@@ -1,0 +1,36 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 02. 09.
+ -->
+
+<!-- Currency Rates -->
+<template>
+	<lightning-card>
+		<div class="slds-p-around_medium">
+			<c-filterable-combobox
+				label="Base Currency"
+				options={symbolOptions}
+				value={base}
+				onchange={handleBaseChange}
+			>
+			</c-filterable-combobox>
+		</div>
+		<div class="slds-p-around_medium">
+			<c-multi-select label="Choose currencies"
+							options={symbolOptions}
+							can-toggle-all="true"
+							value={symbols}
+							onchange={handleMultiselectChange}
+			>
+			</c-multi-select>
+		</div>
+		<div class="slds-p-around_medium">
+			<lightning-datatable
+				key-field="abbr"
+				data={data}
+				columns={columns}
+				hide-checkbox-column="true"
+			>
+			</lightning-datatable>
+		</div>
+	</lightning-card>
+</template>
