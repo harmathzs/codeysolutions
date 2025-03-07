@@ -1,0 +1,24 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 02. 07.
+ -->
+
+<!-- Scroll Enforcer -->
+<template>
+	<div class="container">
+		<div class="contract-box">
+			<lightning-spinner if:true={spinnerActive} alternative-text="Loading"></lightning-spinner>
+			<div class="slds-p-around_medium slds-text-align_center">
+				<b>{label}</b>
+			</div>
+			<template if:true={content}>
+				<div lwc:ref="content" class="slds-col slds-scrollable slds-p-top_medium slds-p-horizontal_small" onscroll={checkScrollBar}>
+					<lightning-formatted-rich-text lwc:ref="richText" value={content}></lightning-formatted-rich-text>
+				</div>
+				<div class="button-box">
+					<button class="slds-button slds-button_neutral" onclick={handleRejectButtonClick}>{labels.I_Reject}</button>
+					<button class="slds-button slds-button_brand" onclick={handleAcceptButtonClick} disabled={isButtonDisabled}>{primaryButtonLabel}</button>
+				</div>
+			</template>
+		</div>
+	</div>
+</template>
