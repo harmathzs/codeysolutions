@@ -1,0 +1,49 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 02. 08.
+ -->
+
+<!-- IBAN Input -->
+<template>
+	<template lwc:if={showInput}>
+		<div class="slds-form-element">
+			<label class="slds-form-element__label" for="input-iban">
+				<template lwc:if={isIBANMandatory}>
+					<abbr class="slds-required" title="required">* </abbr>
+				</template>
+				IBAN
+			</label>
+			<div class="slds-form-element__control">
+				<template lwc:if={isIBANMandatory}>
+					<input
+						type="text"
+						required
+						class="slds-input iban"
+						onkeyup={addSeparatorsToIban}
+						onblur={validateIbanWithToast}
+						lwc:ref="inputIBAN"
+					/>
+				</template>
+				<template lwc:else>
+					<input
+						type="text"
+						class="slds-input iban"
+						onkeyup={addSeparatorsToIban}
+						onblur={validateIbanWithToast}
+						lwc:ref="inputIBAN"
+					/>
+				</template>
+			</div>
+			<template lwc:if={showError}>
+				<div class="slds-form-element__help slds-text-color_error">{incorrectLengthMessage}</div>
+			</template>
+		</div>
+	</template>
+
+	<div class="slds-m-top_small slds-p-horizontal_medium slds-p-vertical_small slds-text-align_right slds-border_top slds-color__border_gray-6">
+		<!--
+		<lightning-button label={labels.Cancel} variant="neutral" onclick={handleCancel} class="slds-m-right_x-small"></lightning-button>
+		<lightning-button label={labels.Next} variant="brand" onclick={jumpToNextScreen}></lightning-button>
+		-->
+		<!--<p>TEST</p>-->
+	</div>
+</template>
