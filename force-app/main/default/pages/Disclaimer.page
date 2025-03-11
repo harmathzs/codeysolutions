@@ -1,6 +1,16 @@
-<apex:page >
-  <!-- Begin Default Content REMOVE THIS -->
-  <h1>Congratulations</h1>
-  This is your new Page
-  <!-- End Default Content REMOVE THIS -->
+<apex:page id="Disclaimer" title="Disclaimer" applyHtmlTag="true" applyBodyTag="false" renderAs="pdf">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+		<style>
+			body {
+				font-family: Arial Unicode MS;
+			}
+		</style>
+	</head>
+	<h1>Disclaimer</h1>
+	<p>Please read this disclaimer ("disclaimer") carefully before using Codey Solutions website (“website”, "service") operated by Zsolt Harmath ("us", 'we", "our").</p>
+	<p>The content displayed on the website is the intellectual property of Zsolt Harmath. You may not reuse, republish, or reprint such content without our written consent.</p>
+	<p>All information posted is merely for educational and informational purposes. It is not intended as a substitute for professional advice. Should you decide to act upon any information on this website, you do so at your own risk.</p>
+	<p>While the information on this website has been verified to the best of our abilities, we cannot guarantee that there are no mistakes or errors.</p>
+	<p>We reserve the right to change this policy at any given time, of which you will be promptly updated. If you want to make sure that you are up to date with the latest changes, we advise you to frequently visit this page.</p>
 </apex:page>
