@@ -1,0 +1,59 @@
+/**
+ * Created by Harmath Zsolt on 2025. 02. 03.
+ */
+
+:host {
+	display: block;
+}
+
+input.slds-input:not(.is-opened) {
+	cursor: pointer;
+}
+
+.dropdown-container {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 100%;
+	z-index: 900;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, .12);
+	max-height: 18rem;
+	overflow: auto;
+	border: 1px solid #e2e2e2;
+	border-radius: 4px;
+	background-color: var(--slds-g-color-neutral-base-100, #fff);
+}
+
+.row,
+.info-row {
+	padding: 8px 12px;
+	height: 2.25rem;
+	color: var(--slds-g-color-neutral-base-10, #181818);
+	display: flex;
+	align-items: center;
+	font-variant-numeric: tabular-nums;
+}
+
+.info-row {
+	justify-content: center;
+}
+
+.row:hover {
+	cursor: pointer;
+	user-select: none;
+}
+
+.row.highlighted {
+	background-color: var(--slds-g-color-neutral-base-95, #f3f3f3);
+}
+
+.combobox-icon {
+	position: absolute;
+	right: 0.75rem;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+lightning-icon:hover {
+	cursor: pointer;
+}

@@ -1,0 +1,7 @@
+/**
+ * Created by Harmath Zsolt on 2024. 08. 26.
+ */
+
+.right-align lightning-input input {
+	text-align: right !important;
+}

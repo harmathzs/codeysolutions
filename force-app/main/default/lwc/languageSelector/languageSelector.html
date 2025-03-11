@@ -1,0 +1,22 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 02. 03.
+ -->
+
+<!-- Language Selector -->
+<template>
+	<lightning-card>
+		<template if:true={isProcessing}>
+			<lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+		</template>
+
+		<div if:true={showLanguageSelector} class="slds-p-around_small container">
+			<lightning-combobox
+				label=" "
+				placeholder={LWC_Select_new_language}
+				value={selectedLanguage}
+				onchange={handleLanguageChange}
+				options={languages}
+			></lightning-combobox>
+		</div>
+	</lightning-card>
+</template>

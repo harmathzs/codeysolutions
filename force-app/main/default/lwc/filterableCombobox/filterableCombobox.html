@@ -1,0 +1,50 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 02. 03.
+ -->
+
+<!-- Filterable Combobox -->
+<template>
+	<div class={computedInputContainerClass}>
+		<label lwc:if={label} for="input" class="slds-form-element__label">
+			<abbr class="slds-required" lwc:if={required}>* </abbr>
+			{label}
+		</label>
+		<div class="slds-form-element__control slds-is-relative">
+			<input lwc:ref="searchInput"
+				   required={required}
+				   disabled={disabled}
+				   id="input"
+				   type="text"
+				   class={computedInputClass}
+				   onclick={handleInputClick}
+				   onfocus={handleInputFocus}
+				   onblur={handleInputBlur}
+				   oninput={handleInputChange}
+				   onkeydown={handleInputKeyDown}
+				   value={_inputValue}
+				   placeholder={computedPlaceholder}
+			>
+			<lightning-icon icon-name="utility:down" size="x-small" class="combobox-icon" onclick={handleIconClick} onmousedown={preventDefault}></lightning-icon>
+		</div>
+		<div lwc:if={errorMessage} class="slds-form-element__help">{errorMessage}</div>
+	</div>
+	<div if:true={isDropdownOpened} onmousedown={preventDefault} class="slds-is-relative">
+		<div class="dropdown-container" lwc:ref="dropdownContainer">
+			<template lwc:if={hasResults}>
+				<div>
+					<template for:each={displayedOptions} for:item="option" for:index="index">
+						<div key={option.value}
+							 data-index={index}
+							 class="row"
+							 onmouseenter={handleRowMouseEnter}
+							 onmouseleave={handleRowMouseLeave}
+							 onclick={handleRowClick}>
+							<lightning-formatted-rich-text value={option.displayedLabel}></lightning-formatted-rich-text>
+						</div>
+					</template>
+				</div>
+			</template>
+			<p lwc:elseif={hasNoResults} class="info-row">Nincs találat</p>
+		</div>
+	</div>
+</template>

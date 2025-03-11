@@ -1,0 +1,59 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 02. 05.
+ -->
+
+<!-- Multi Select -->
+<template>
+	<div class="slds-is-relative" onmousedown={handleContainerMouseDown}>
+        <span if:true={hasLabel} class="slds-form-element__label">
+            <abbr if:true={required} class="slds-required" title="required">* </abbr>
+            {label}
+        </span>
+		<button onclick={handleButtonClick} title={computedLabel} class={computedButtonClasses} disabled={readOnly}>
+			<slot name="left-icon"></slot>
+			<span class="slds-truncate slds-has-flexi-truncate">{computedLabel}</span>
+			<lightning-icon icon-name="utility:chevrondown" size="x-small" class="slds-col_bump-left"></lightning-icon>
+		</button>
+		<div if:true={isOpened} class="options">
+			<template if:true={canToggleAll}>
+				<label lwc:if={hasOptions} class="row">
+                    <span class="slds-p-right_small">
+                        <lightning-input type="checkbox"
+										 class="slds-m-bottom_none"
+										 label=" "
+										 variant="label-hidden"
+										 checked={areAllSelected}
+										 onkeydown={handleOptionKeyDown}
+										 onchange={toggleAllRows}></lightning-input>
+                    </span>
+					<span class="slds-has-flexi-truncate slds-truncate">
+                        {computedToggleLabel}
+                    </span>
+				</label>
+			</template>
+			<template for:each={options} for:item="option" for:index="index">
+				<label key={option.value} class={option.cssClasses}>
+                    <span class="slds-p-right_small">
+                        <lightning-input type="checkbox"
+										 class="slds-m-bottom_none"
+										 label=""
+										 variant="label-hidden"
+										 checked={option.isSelected}
+										 onkeydown={handleOptionKeyDown}
+										 onchange={handleOptionToggle}
+										 data-index={index}></lightning-input>
+                    </span>
+					<span class="slds-has-flexi-truncate slds-truncate" title={option.label}>
+                        {option.label}
+                    </span>
+				</label>
+			</template>
+			<div if:true={spinnerActive} class="spinner-row">
+				<lightning-spinner alternative-text="Loading" size="x-small"></lightning-spinner>
+			</div>
+		</div>
+		<div if:true={errorMessage} class="error-message">
+			{errorMessage}
+		</div>
+	</div>
+</template>

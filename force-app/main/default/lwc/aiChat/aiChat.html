@@ -1,0 +1,56 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 02. 10.
+ -->
+
+<!-- AI Chat -->
+<template>
+	<lightning-card icon-name="utility:chat" title="AI Chat LWC">
+		<div class="slds-p-around_small">
+			<div class="upper-content-region slds-scrollable">
+				<template for:each={messages} for:item="message">
+					<div key={message.content} class="slds-p-around_small" style="text-align: right;">
+						<lightning-icon icon-name="utility:user"></lightning-icon>&nbsp;<strong>{message.role}</strong>
+					</div>
+					<div key={message.content}>
+						<lightning-icon icon-name="utility:app_web_messaging"></lightning-icon>&nbsp;
+						<c-lightndown
+							string={message.content}
+						></c-lightndown>
+					</div>
+				</template>
+			</div>
+			<div id="lower-content-region" onkeypress={handleKeyPress}>
+				<lightning-spinner if:true={isLoading} alternative-text="Loading ... " size="small"></lightning-spinner>
+				<hr />
+				<lightning-layout vertical-align="end">
+					<lightning-layout-item size="10">
+						<lightning-input
+							label="Ask new question"
+							value={question}
+							onchange={handleInputChange}
+						>
+						</lightning-input>
+					</lightning-layout-item>
+					<lightning-layout-item size="1">
+						<lightning-button-icon
+							icon-name="utility:send"
+							onclick={handleSendClick}
+							variant="bare"
+							size="large"
+						>
+						</lightning-button-icon>
+					</lightning-layout-item>
+					<lightning-layout-item size="1">
+						<lightning-button-icon
+							icon-name="action:reset_password"
+							onclick={handleResetClick}
+							variant="bare"
+							size="large"
+						>
+						</lightning-button-icon>
+					</lightning-layout-item>
+				</lightning-layout>
+			</div>
+		</div>
+	</lightning-card>
+</template>
