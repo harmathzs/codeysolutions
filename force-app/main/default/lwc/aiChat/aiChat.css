@@ -1,0 +1,8 @@
+/**
+ * Created by Harmath Zsolt on 2025. 02. 10.
+ */
+
+.upper-content-region {
+	height: 350px;
+	overflow-y: auto;
+}
