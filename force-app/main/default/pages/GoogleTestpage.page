@@ -1,0 +1,189 @@
+<!--
+ - Created by Harmath Zsolt on 2024. 08. 07.
+ -->
+
+<apex:page id="GoogleTestpage" controller="GoogleTestpageController" action="{!handleCallback}" lightningStylesheets="true">
+	<style>
+		.json-string {
+			font-family: monospace;
+		}
+	</style>
+
+	<apex:sectionHeader title="Google Test page" />
+
+	<apex:form>
+		<apex:pageBlock title="Authorization">
+			<apex:pageBlockSection title="OAuth2 authenticate" collapsible="true" showHeader="true">
+				<apex:inputText label="Username" title="Username" value="{!googleUsername}" styleClass="json-string" maxLength="200" /><br />
+				<!--
+				<apex:inputText label="Password" title="Password" value="{!googlePassword}" disabled="true" styleClass="json-string" maxLength="200" /><br />
+				-->
+				<apex:inputText label="CLIENT_ID" title="CLIENT_ID" value="{!CLIENT_ID}" styleClass="json-string" maxLength="200" /><br />
+				<!--
+				<apex:inputText label="CLIENT_SECRET" title="CLIENT_SECRET" value="{!CLIENT_SECRET}" styleClass="json-string" maxLength="200" /><br />
+				-->
+				<apex:inputText label="SCOPE" title="SCOPE" value="{!scope}" styleClass="json-string" maxLength="255" /><br />
+
+				<apex:outputText value="Password and Client Secret are stored securely in Custom Metadata and are not shown here." /><br />
+
+				<!--<apex:commandButton title="Google OAuth2 authenticate" value="Google OAuth2 authenticate" action="{!oauth2Authenticate}" /><br />-->
+				<apex:commandButton image="{!URLFOR('https://login.salesforce.com/icons/google-colored.png')}" title="Google consent OAuth2 authenticate" value="Google consent OAuth2 authenticate" action="{!forceConsent}" /><br />
+				<!--<apex:commandButton title="Offline authenticate - not working!" value="Offline authenticate - not working!" action="{!offlineAuthenticate}" /><br />-->
+				<apex:outputText rendered="{!NOT(ISBLANK(getConsentRequestString))}" value="Request: " /><br />
+				<apex:outputText value="{!getConsentRequestString}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(getConsentResponseBodyJson))}" value="Response body JSON: " /><br />
+				<apex:outputText value="{!getConsentResponseBodyJson}" styleClass="json-string" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(authorizationCode))}" value="Authorization code: " /><br />
+				<apex:outputText value="{!authorizationCode}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(accessToken))}" value="Access token: " /><br />
+				<apex:outputText value="{!accessToken}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(refreshToken))}" value="Refresh token: " /><br />
+				<apex:outputText value="{!refreshToken}" /><br />
+			</apex:pageBlockSection>
+			<apex:pageBlockSection title="New access token now" collapsible="true" showHeader="true">
+				<!--<input type="button" value="Reload Page" onclick="window.location.reload()" /><br />-->
+				<!--<apex:commandButton title="Exchange authorization code to access token" value="New access token now" action="{!newAccessTokenNow}" /><br />-->
+				<apex:outputText rendered="{!NOT(ISBLANK(accessTokenRequestString))}" value="Request: " /><br />
+				<apex:outputText value="{!accessTokenRequestString}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(accessTokenResponseBodyJson))}" value="Response body JSON: " /><br />
+				<apex:outputText value="{!accessTokenResponseBodyJson}" styleClass="json-string" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(expiresIn))}" value="Expires in: " /><br />
+				<apex:outputText value="{!expiresIn}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(tokenExpirationTime))}" value="Token expiration time: " /><br />
+				<apex:outputText value="{!tokenExpirationTime}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(accessToken))}" value="Access token: " /><br />
+				<apex:outputText value="{!accessToken}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(refreshToken))}" value="Refresh token: " /><br />
+				<apex:outputText value="{!refreshToken}" /><br />
+			</apex:pageBlockSection>
+			<apex:pageBlockSection title="Refresh token now" collapsible="true" showHeader="true">
+				<!--<input type="button" value="Reload Page" onclick="window.location.reload()" /><br />-->
+				<apex:commandButton title="Refresh access token" value="Refresh access token now" action="{!refreshAccessToken}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(refreshTokenRequestString))}" value="Request: " /><br />
+				<apex:outputText value="{!refreshTokenRequestString}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(refreshTokenResponseBodyJson))}" value="Response body JSON: " /><br />
+				<apex:outputText value="{!refreshTokenResponseBodyJson}" styleClass="json-string" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(expiresIn))}" value="Expires in: " /><br />
+				<apex:outputText value="{!expiresIn}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(tokenExpirationTime))}" value="Token expiration time: " /><br />
+				<apex:outputText value="{!tokenExpirationTime}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(accessToken))}" value="Access token: " /><br />
+				<apex:outputText value="{!accessToken}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(refreshToken))}" value="Refresh token: " /><br />
+				<apex:outputText value="{!refreshToken}" /><br />
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+		<apex:pageBlock title="Business process">
+			<apex:pageBlockSection title="GET userinfo" collapsible="true" showHeader="true">
+				<apex:commandButton title="GET userinfo" value="GET userinfo" action="{!getUserinfo}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(getUserinfoRequestString))}" value="Request: " /><br />
+				<apex:outputText value="{!getUserinfoRequestString}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(getUserinfoResponseBodyJson))}" value="Response body JSON: " /><br />
+				<apex:outputText value="{!getUserinfoResponseBodyJson}" styleClass="json-string" /><br />
+			</apex:pageBlockSection>
+			<!-- TODO - list properties nicer on UI -->
+			<apex:pageBlockSection title="GET accounts" collapsible="true" showHeader="true">
+				<apex:commandButton title="GET accounts" value="GET accounts" action="{!getAccounts}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(getAccountsRequestString))}" value="Request: " /><br />
+				<apex:outputText value="{!getAccountsRequestString}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(getAccountsResponseBodyJson))}" value="Response body JSON: " /><br />
+				<apex:outputText value="{!getAccountsResponseBodyJson}" styleClass="json-string" /><br />
+			</apex:pageBlockSection>
+			<!--
+			<apex:pageBlockSection title="GET locations" collapsible="true" showHeader="true">
+				<apex:inputText label="accountid" title="accountid" value="{!accountidForGetLocations}" styleClass="json-string" maxLength="200" /><br />
+				<apex:commandButton title="GET locations" value="GET locations" action="{!getLocations}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(getLocationsRequestString))}" value="Request: " /><br />
+				<apex:outputText value="{!getLocationsRequestString}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(getLocationsResponseBodyJson))}" value="Response body JSON: " /><br />
+				<apex:outputText value="{!getLocationsResponseBodyJson}" styleClass="json-string" /><br />
+			</apex:pageBlockSection>
+			<apex:pageBlockSection title="GET reviews" collapsible="true" showHeader="true">
+				<apex:inputText label="locationid" title="locationid" value="{!locationidForGetReviews}" styleClass="json-string" maxLength="200" /><br />
+				<apex:commandButton title="GET reviews" value="GET reviews" action="{!getReviews}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(getReviewsRequestString))}" value="Request: " /><br />
+				<apex:outputText value="{!getReviewsRequestString}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(getReviewsResponseBodyJson))}" value="Response body JSON: " /><br />
+				<apex:outputText value="{!getReviewsResponseBodyJson}" styleClass="json-string" /><br />
+			</apex:pageBlockSection>
+			<apex:pageBlockSection title="PUT reply" collapsible="true" showHeader="true">
+				<apex:inputText label="reviewid" title="reviewid" value="{!reviewidForPutReply}" styleClass="json-string" maxLength="200" /><br />
+				<apex:inputText label="comment" title="comment" value="{!commentForPutReply}" styleClass="json-string" maxLength="200" /><br />
+				<apex:commandButton title="PUT reply" value="PUT reply" action="{!putReply}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(putReplyRequestString))}" value="Request: " /><br />
+				<apex:outputText value="{!putReplyRequestString}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(putReplyResponseBodyJson))}" value="Response body JSON: " /><br />
+				<apex:outputText value="{!putReplyResponseBodyJson}" styleClass="json-string" /><br />
+			</apex:pageBlockSection>
+			-->
+
+			<!-- TODO - show datatable on UI instead of JSON -->
+
+			<apex:pageBlockSection title="GET calendars" collapsible="true" showHeader="true">
+
+					<apex:commandButton title="GET calendars" value="GET calendars" action="{!getCalendars}" /><br />
+					<!--
+					<apex:outputText rendered="{!NOT(ISBLANK(getCalendarsRequestString))}" value="Request: " /><br />
+					<apex:outputText value="{!getCalendarsRequestString}" /><br />
+					<apex:outputText rendered="{!NOT(ISBLANK(getCalendarsResponseBodyJson))}" value="Response body JSON: " /><br />
+					<apex:outputText value="{!getCalendarsResponseBodyJson}" styleClass="json-string" /><br />
+					-->
+
+
+
+					<apex:pageBlockTable value="{!calendarItems}" var="calItem" border="1">
+						<apex:column headerValue="id" value="{!calItem.id}"/>
+						<apex:column headerValue="summary" value="{!calItem.summary}"/>
+						<apex:column headerValue="description" value="{!calItem.description}"/>
+						<apex:column headerValue="timeZone" value="{!calItem.timezone}"/>
+					</apex:pageBlockTable>
+
+
+
+				<!--
+				<div>
+					<table width="100%" border="1" style="border-collapse: collapse;">
+						<tr>
+							<th>id</th>
+							<th>summary</th>
+							<th>description</th>
+							<th>timeZone</th>
+						</tr>
+						<apex:repeat value="{!calendarItems}" var="calItem">
+							<tr>
+								<td><apex:outputText value="{!calItem.id}" /></td>
+								<td><apex:outputText value="{!calItem.summary}" /></td>
+								<td><apex:outputText value="{!calItem.description}" /></td>
+								<td><apex:outputText value="{!calItem.timezone}" /></td>
+							</tr>
+						</apex:repeat>
+					</table>
+				</div>
+				-->
+			</apex:pageBlockSection>
+			<apex:pageBlockSection title="GET Drive files list" collapsible="true" showHeader="true">
+				<apex:commandButton title="GET Drive files list" value="GET Drive files list" action="{!getDriveFilesList}" /><br />
+				<!--
+				<apex:outputText rendered="{!NOT(ISBLANK(getDriveFilesListRequestString))}" value="Request: " /><br />
+				<apex:outputText value="{!getDriveFilesListRequestString}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(getDriveFilesListResponseBodyJson))}" value="Response body JSON: " /><br />
+				<apex:outputText value="{!getDriveFilesListResponseBodyJson}" styleClass="json-string" /><br />
+				-->
+
+				<apex:pageBlockTable value="{!filesMapsList}" var="fileMap" border="1">
+					<apex:column headerValue="id" value="{!fileMap['id']}"/>
+					<apex:column headerValue="name" value="{!fileMap['name']}"/>
+					<apex:column headerValue="mimeType" value="{!fileMap['mimeType']}"/>
+				</apex:pageBlockTable>
+			</apex:pageBlockSection>
+			<apex:pageBlockSection title="GET last emails" collapsible="true" showHeader="true">
+				<apex:commandButton title="GET last emails" value="GET last emails" action="{!getLastEmails}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(getLastEmailsRequestString))}" value="Request: " /><br />
+				<apex:outputText value="{!getLastEmailsRequestString}" /><br />
+				<apex:outputText rendered="{!NOT(ISBLANK(getLastEmailsResponseBodyJson))}" value="Response body JSON: " /><br />
+				<apex:outputText value="{!getLastEmailsResponseBodyJson}" styleClass="json-string" /><br />
+			</apex:pageBlockSection>
+			<!-- TODO - get the actual emails based on message id -->
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>
