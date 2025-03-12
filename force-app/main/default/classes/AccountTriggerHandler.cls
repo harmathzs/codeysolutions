@@ -16,6 +16,7 @@ public class AccountTriggerHandler implements ITriggerExecutable {
 		for (SObject record : records) {
 			Account acc = (Account)record;
 			// Handle before insert logic
+			System.debug('acc before insert: '+acc);
 		}
 	}
 
