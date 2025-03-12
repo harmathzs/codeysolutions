@@ -44,6 +44,7 @@
         <members>TriggerFeature__mdt</members>
         <members>TriggerMetric__c</members>
         <members>TriggerSettings__c</members>
+        <members>MNB_Currency_Rate__c</members>
         <name>CustomObject</name>
     </types>
     <types>
