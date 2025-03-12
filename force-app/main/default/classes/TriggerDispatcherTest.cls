@@ -289,4 +289,14 @@ public class TriggerDispatcherTest {
             Integer i = 1;
         }
     }
+
+	@IsTest static void testTriggerMetrics_2() {
+		TriggerMetric__c metric = new TriggerMetric__c(
+			TransactionId__c = '123',
+			Sequence__c = 1
+		);
+		insert metric;
+
+		String formattedExecutionTree = TriggerMetrics.getFormattedExecutionTree(metric.TransactionId__c);
+	}
 }
