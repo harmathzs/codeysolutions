@@ -6,5 +6,11 @@
 private class AccountTriggerTest {
 	@IsTest
 	static void testBehavior() {
+		Account acc = new Account(Name='Test');
+
+		insert acc;
+		update acc;
+		delete acc;
+		undelete acc;
 	}
 }
