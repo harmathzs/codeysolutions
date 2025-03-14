@@ -22,10 +22,31 @@ public with sharing class EmailMessageTriggerHandler implements ITriggerExecutab
 
 	private void handleAfterInsert(TriggerContext context) {
 		List<SObject> records = context.getRecords();
+		EmailMessage[] mails = new List<EmailMessage>();
 		for (SObject record : records) {
 			EmailMessage mail = (EmailMessage)record;
 			// Handle after insert logic
-			System.debug('mail after insert: '+mail);
+			//System.debug('mail after insert: '+mail);
+			mails.add(mail);
 		}
+
+		// Populate Case.Email Thread field from Case.EmailMessages:
+		populateCaseEmailThread(mails);
+	}
+
+	public void populateCaseEmailThread(EmailMessage[] mails) {
+		Set<String> caseIds = new Set<String>();
+		for (EmailMessage mail: mails) if (String.isNotBlank(mail.ParentId)) caseIds.add(mail.ParentId);
+
+		Case[] cases = [
+			SELECT Id
+				,CaseNumber
+				,Email_Thread__c
+				,(SELECT Id, Subject, TextBody, HtmlBody FROM EmailMessages)
+			FROM Case
+			WHERE Id IN :caseIds
+		];
+
+
 	}
 }
