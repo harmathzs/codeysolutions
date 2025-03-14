@@ -33,6 +33,9 @@ public with sharing class EmailMessageTriggerHandler implements ITriggerExecutab
 			//System.debug('mail after insert: '+mail);
 			mails.add(mail);
 		}
+
+		// Populate Case.Email Thread field from Case.EmailMessages:
+		populateCaseEmailThread(mails);
 	}
 
 	private void handleAfterUpdate(TriggerContext context) {
