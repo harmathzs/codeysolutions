@@ -6,5 +6,16 @@
 private class EmailMessageTriggerTest {
 	@IsTest
 	static void testBehavior() {
+		EmailMessage mail = new EmailMessage(
+			FromId = UserInfo.getUserId(),
+			ToAddress = 'test@testtest.tst',
+			Subject = 'Test',
+			TextBody = 'Test'
+		);
+
+		insert mail;
+		update mail;
+		delete mail;
+		undelete mail;
 	}
 }
