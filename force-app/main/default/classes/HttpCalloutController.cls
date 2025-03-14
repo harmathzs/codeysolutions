@@ -75,4 +75,9 @@ global with sharing class HttpCalloutController {
 
 		return new List<OutputParams>{result};
 	}
+
+	@AuraEnabled
+	public static List<OutputParams> httpCalloutAura(List<InputParams> inputs) {
+		return httpCallout(inputs);
+	}
 }
