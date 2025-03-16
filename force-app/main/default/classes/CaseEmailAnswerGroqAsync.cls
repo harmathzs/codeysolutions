@@ -3,6 +3,8 @@
  */
 
 public with sharing class CaseEmailAnswerGroqAsync implements Queueable, Database.AllowsCallouts {
+	public Integer threadStrLimit = 16000;
+
 	public EmailMessage[] mails {get; set;}
 
 	public CaseEmailAnswerGroqAsync(EmailMessage[] mails) {
@@ -17,6 +19,8 @@ public with sharing class CaseEmailAnswerGroqAsync implements Queueable, Databas
 			SELECT Id
 				,CaseNumber
 				,Email_Thread__c
+				,Product__c
+				,Description
 				,(SELECT Id, CreatedDate, Subject, TextBody, HtmlBody FROM EmailMessages ORDER BY CreatedDate DESC )
 			FROM Case
 			WHERE Id IN :caseIds
@@ -38,7 +42,7 @@ public with sharing class CaseEmailAnswerGroqAsync implements Queueable, Databas
 
 
 			c.Email_Thread__c = c.Email_Thread__c.replace('"', ' ').replace('\n', ' ').replace('\'', ' ').replace('\\', ' ').replace('\t', '    ');
-			String cutThreadStr = (c.Email_Thread__c.length()<2000) ? c.Email_Thread__c : c.Email_Thread__c.substring(0, 2000);
+			String cutThreadStr = (c.Email_Thread__c.length()<threadStrLimit) ? c.Email_Thread__c : c.Email_Thread__c.substring(0, threadStrLimit);
 
 			String questionStr = 'As a Salesforce service rep for Codey Solutions, check all EmailMessages for this Case. Express your excitement to discuss and work on solving and closing the case. Use a friendly and enthusiastic tone. Create an answer email for the case which can be sent out back. Some recent emails of the previous existing email feed thread is here: '+cutThreadStr+' . ';
 			//questionStr = 'What is the capital of France?'; // test question was
