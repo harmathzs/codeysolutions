@@ -35,9 +35,8 @@ export default class FoodTiles extends LightningElement {
 		console.log('foodsMap', JSON.stringify(this.foodsMap));
 		// {"01tgL000000MC6rQAG":{"Id":"01tgL000000MC6rQAG","Name":"Vegan lasagna","Family":"Food"},"01tgL000000MH6LQAW":{"Id":"01tgL000000MH6LQAW","Name":"Lentil stew with beef","Family":"Food","isMenuA":true},"01tgL000000MJyTQAW":{"Id":"01tgL000000MJyTQAW","Name":"Chili lime chicken wings","Family":"Food","isMenuB":true}}
 
-		for (let id in this.foodsMap) {
-			this.foodsList.push(this.foodsMap[id]);
-		}
+		// Populate foodsList from foodsMap
+		this.foodsList = Object.values(this.foodsMap);
 		console.log('foodsList', JSON.stringify(this.foodsList));
 	}
 }

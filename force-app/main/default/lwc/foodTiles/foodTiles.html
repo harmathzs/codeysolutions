@@ -6,7 +6,15 @@
 <template>
 	<lightning-card title="Food Tiles" >
 		<div class="slds-scrollable slds-grid slds-p-around_medium">
-			<p>TODO</p>
+			<template for:each={foodsList} for:item="food">
+				<div key={food.Id} class="slds-p-around_medium">
+					<p>Food: {food}</p>
+					<p>Id: {food.Id}</p>
+					<p>Name: {food.Name}</p>
+					<p>Menu A: {food.isMenuA}</p>
+					<p>Menu B: {food.isMenuB}</p>
+				</div>
+			</template>
 		</div>
 	</lightning-card>
 </template>
