@@ -9,12 +9,13 @@ public with sharing class RestaurantController {
 	}
 
 	@AuraEnabled
-	public static Map<Id, Product2> getProducts(Id[] productIds) {
+	public static Map<Id, Product2> getAllFoods() {
 		return new Map<Id, Product2>([
 			SELECT Id
 				,Name
+				,Family
 			FROM Product2
-			WHERE Id IN :productIds
+			WHERE Family = 'Food'
 		]);
 	}
 }
