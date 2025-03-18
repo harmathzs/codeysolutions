@@ -66,5 +66,9 @@
     <types>
         <name>RecordType</name>
     </types>
+    <types>
+        <members>restaurantChannel</members>
+        <name>LightningMessageChannel</name>
+    </types>
     <version>63.0</version>
 </Package>
