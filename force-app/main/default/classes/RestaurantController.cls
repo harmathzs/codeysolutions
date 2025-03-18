@@ -14,6 +14,7 @@ public with sharing class RestaurantController {
 			SELECT Id
 				,Name
 				,Family
+				,Rich_Image__c
 			FROM Product2
 			WHERE Family = 'Food'
 		]);

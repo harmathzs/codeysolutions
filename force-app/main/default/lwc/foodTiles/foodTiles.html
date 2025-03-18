@@ -8,7 +8,7 @@
 		<div class="slds-scrollable slds-grid slds-p-around_medium">
 			<template for:each={foodsList} for:item="food">
 				<div key={food.Id} class="slds-p-around_x-small">
-					<p>Food: {food}</p>
+					<lightning-formatted-rich-text value={food.Rich_Image__c}></lightning-formatted-rich-text>
 					<p>Id: {food.Id}</p>
 					<p>Name: {food.Name}</p>
 					<p>Menu A: {food.isMenuA}</p>
