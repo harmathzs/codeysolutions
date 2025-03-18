@@ -45,6 +45,12 @@
         <members>TriggerMetric__c</members>
         <members>TriggerSettings__c</members>
         <members>MNB_Currency_Rate__c</members>
+        <members>CodeysRestaurantMenus__c</members>
+        <members>Order</members>
+        <members>OrderItem</members>
+        <members>Pricebook2</members>
+        <members>PricebookEntry</members>
+        <members>Product2</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -56,6 +62,9 @@
     <types>
         <members>TriggerMetric__c</members>
         <name>CustomTab</name>
+    </types>
+    <types>
+        <name>RecordType</name>
     </types>
     <version>63.0</version>
 </Package>
