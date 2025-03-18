@@ -9,10 +9,9 @@
 			<template for:each={foodsList} for:item="food">
 				<div key={food.Id} class="slds-p-around_x-small">
 					<lightning-formatted-rich-text value={food.Rich_Image__c}></lightning-formatted-rich-text>
-					<p>Id: {food.Id}</p>
-					<p>Name: {food.Name}</p>
-					<p>Menu A: {food.isMenuA}</p>
-					<p>Menu B: {food.isMenuB}</p>
+					<p>{food.Name}</p>
+					<p if:true={food.isMenuA}>Menu A</p>
+					<p if:true={food.isMenuB}>Menu B</p>
 				</div>
 			</template>
 		</div>
