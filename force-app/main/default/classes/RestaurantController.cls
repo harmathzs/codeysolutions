@@ -15,6 +15,13 @@ public with sharing class RestaurantController {
 				,Name
 				,Family
 				,Rich_Image__c
+
+				,(SELECT Id
+					,Pricebook2Id
+					,Pricebook2.Name
+					,UnitPrice
+				FROM PricebookEntries)
+
 			FROM Product2
 			WHERE Family = 'Food'
 		]);
