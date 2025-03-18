@@ -39,4 +39,10 @@ export default class FoodTiles extends LightningElement {
 		this.foodsList = Object.values(this.foodsMap);
 		console.log('foodsList', JSON.stringify(this.foodsList));
 	}
+
+	handleFoodClick(event) {
+		const foodId = event.currentTarget.dataset.id;
+		// Handle the click event - maybe navigate to a detail page or show a modal
+		console.log('Food clicked:', foodId);
+	}
 }
