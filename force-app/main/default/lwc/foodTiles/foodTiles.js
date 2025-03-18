@@ -2,12 +2,17 @@
  * Created by Harmath Zsolt on 2025. 03. 17.
  */
 
-import {LightningElement} from 'lwc';
+import {LightningElement, wire} from 'lwc';
+
+import { publish, MessageContext } from 'lightning/messageService';
+import RESTAURANT_CHANNEL from '@salesforce/messageChannel/restaurantChannel__c';
 
 import getCodeysRestaurantMenus from '@salesforce/apex/RestaurantController.getCodeysRestaurantMenus';
 import getAllFoods from '@salesforce/apex/RestaurantController.getAllFoods';
 
 export default class FoodTiles extends LightningElement {
+	@wire(MessageContext) messageContext;
+
 	menusCustomSettings = {};
 	foodsMap = {};
 	foodsList = [];
@@ -44,5 +49,9 @@ export default class FoodTiles extends LightningElement {
 		const foodId = event.currentTarget.dataset.id;
 		// Handle the click event - maybe navigate to a detail page or show a modal
 		console.log('Food clicked:', foodId);
+
+		// Publish the message
+		const payload = { foodId: foodId };
+		publish(this.messageContext, RESTAURANT_CHANNEL, payload);
 	}
 }
