@@ -57,8 +57,8 @@ public with sharing class RestaurantController {
 				Product2Id = String.valueOf(basketRowMap.get('Id')),
 				PricebookEntryId = pbe.Id,
 				Quantity = Integer.valueOf(basketRowMap.get('orderedQuantity')),
-				UnitPrice = Double.valueOf(basketRowMap.get('unitPrice')),
-				ListPrice = Double.valueOf(basketRowMap.get('unitPrice'))
+				UnitPrice = pbe.UnitPrice,
+				ListPrice = pbe.UnitPrice
 			);
 			orderProducts.add(orderProduct);
 		}
@@ -67,6 +67,29 @@ public with sharing class RestaurantController {
 
 		order.Status = 'Ordered';
 		update order;
+
+		order = [SELECT Id, CreatedDate
+			,AccountId, Account.Name
+			,ContractId, Contract.ContractNumber
+			,EffectiveDate
+			,Pricebook2Id
+			,Pricebook2.Name
+			,Table_Number__c
+			,Status
+			,RecordTypeId
+			,RecordType.Name
+			,TotalAmount
+			,(SELECT Id, CreatedDate
+				,Product2Id, Product2.Name
+				,PricebookEntryId
+				,PricebookEntry.UnitPrice
+				,Quantity
+				,UnitPrice
+				,ListPrice
+			FROM OrderItems)
+		FROM Order
+		WHERE Id = :order.Id
+		];
 
 		return order;
 	}
