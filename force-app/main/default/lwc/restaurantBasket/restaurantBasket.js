@@ -79,7 +79,10 @@ export default class RestaurantBasket extends LightningElement {
 		}
 		if (!alreadyOrderedThis)
 			this.basket.push(selectedFood);
+
+		console.log('basket', this.basket);
 		this.basketJson = JSON.stringify(this.basket);
+		console.log('basketJson', this.basketJson);
 	}
 
 	disconnectedCallback() {
