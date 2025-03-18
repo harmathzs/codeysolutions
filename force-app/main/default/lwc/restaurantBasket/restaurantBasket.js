@@ -4,6 +4,7 @@
 
 import {LightningElement, wire} from 'lwc';
 
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { subscribe, unsubscribe, MessageContext } from 'lightning/messageService';
 import RESTAURANT_CHANNEL from '@salesforce/messageChannel/restaurantChannel__c';
 
@@ -124,9 +125,32 @@ export default class RestaurantBasket extends LightningElement {
 	}
 
 	async handleTakeOrder(event) {
-		let insertedOrder = await takeOrderFromBasket({basketJson: this.basketJson});
-		console.log('insertedOrder', insertedOrder);
+		try {
+			let insertedOrder = await takeOrderFromBasket({basketJson: this.basketJson});
+			console.log('insertedOrder', insertedOrder);
+
+			// Success toast
+			this.dispatchEvent(
+				new ShowToastEvent({
+					title: 'Success',
+					message: `Order created successfully! Order Id: ${insertedOrder.OrderNumber}`,
+					variant: 'success'
+				})
+			);
+
+			this.emptyBasket();
+		} catch (error) {
+			// Error toast
+			this.dispatchEvent(
+				new ShowToastEvent({
+					title: 'Error creating order',
+					message: error.body?.message || 'Unknown error',
+					variant: 'error'
+				})
+			);
+		}
 	}
+
 
 	handleResetBasket(event) {
 		this.emptyBasket();

@@ -68,7 +68,7 @@ public with sharing class RestaurantController {
 		order.Status = 'Ordered';
 		update order;
 
-		order = [SELECT Id, CreatedDate
+		order = [SELECT Id, CreatedDate, OrderNumber
 			,AccountId, Account.Name
 			,ContractId, Contract.ContractNumber
 			,EffectiveDate
