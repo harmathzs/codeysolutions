@@ -9,6 +9,7 @@ import RESTAURANT_CHANNEL from '@salesforce/messageChannel/restaurantChannel__c'
 
 import getCodeysRestaurantMenus from '@salesforce/apex/RestaurantController.getCodeysRestaurantMenus';
 import getAllFoods from '@salesforce/apex/RestaurantController.getAllFoods';
+import takeOrderFromBasket from '@salesforce/apex/RestaurantController.takeOrderFromBasket';
 
 export default class RestaurantBasket extends LightningElement {
 	subscription;
@@ -116,6 +117,18 @@ export default class RestaurantBasket extends LightningElement {
 	}
 
 	emptyBasket() {
+		this.basket = null;
 		this.basket = [];
+		this.totalQuantity = 0;
+		this.totalPrice = 0;
+	}
+
+	async handleTakeOrder(event) {
+		let insertedOrder = await takeOrderFromBasket({basketJson: this.basketJson});
+		console.log('insertedOrder', insertedOrder);
+	}
+
+	handleResetBasket(event) {
+		this.emptyBasket();
 	}
 }

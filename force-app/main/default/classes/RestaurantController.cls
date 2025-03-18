@@ -26,4 +26,12 @@ public with sharing class RestaurantController {
 			WHERE Family = 'Food'
 		]);
 	}
+
+	@AuraEnabled
+	public static Order takeOrderFromBasket(String basketJson) {
+		Order order = new Order();
+		// TODO - fill order data from basketJson
+		insert order;
+		return order;
+	}
 }
