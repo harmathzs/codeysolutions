@@ -14,7 +14,7 @@ export default class RestaurantBasket extends LightningElement {
 	subscription;
 	@wire(MessageContext) messageContext;
 
-	basket;
+	basket = [];
 	basketJson;
 
 	foodsMap = {};
@@ -32,6 +32,10 @@ export default class RestaurantBasket extends LightningElement {
 
 		for (let i in this.foodsMap) {
 			this.foodsMap[i].orderedQuantity = 0;
+			for (let pbe of this.foodsMap[i].PricebookEntries) {
+				this.foodsMap[i].unitPrice = +pbe.UnitPrice;
+			}
+			this.foodsMap[i].rowPrice = 0;
 		}
 
 		const menuA_ProductId = this.menusCustomSettings?.Menu_A_Product_Id__c;
@@ -69,6 +73,7 @@ export default class RestaurantBasket extends LightningElement {
 		console.log('Received foodId:', foodId);
 
 		this.foodsMap[foodId].orderedQuantity++;
+		this.foodsMap[foodId].rowPrice = +this.foodsMap[foodId].orderedQuantity * this.foodsMap[foodId].unitPrice;
 
 		let selectedFood = this.foodsMap[foodId];
 		console.log('selectedFood', selectedFood);
@@ -77,12 +82,19 @@ export default class RestaurantBasket extends LightningElement {
 		for (let food of this.basket) {
 			if (food.Id == foodId) alreadyOrderedThis = true;
 		}
-		if (!alreadyOrderedThis)
-			this.basket.push(selectedFood);
 
-		console.log('basket', this.basket);
+		if (!alreadyOrderedThis) {
+			// Create a new array reference to trigger reactivity
+			this.basket = [...this.basket, selectedFood];
+		} else {
+			// If updating existing item, still need to create new array reference
+			this.basket = [...this.basket];
+		}
+
+
 		this.basketJson = JSON.stringify(this.basket);
 		console.log('basketJson', this.basketJson);
+		// [{"Id":"01tgL000000MC6rQAG","Name":"Vegan lasagna","Family":"Food","Rich_Image__c":"<p><img src=\"https://codeysolutions-dev-ed.develop.file.force.com/servlet/rtaImage?eid=01tgL000000MC6r&amp;feoid=00NgL00000LZIUD&amp;refid=0EMgL0000000SxB\" alt=\"vegan-lasagna-01.png\"></img></p>","PricebookEntries":[{"Product2Id":"01tgL000000MC6rQAG","Id":"01ugL0000006mefQAA","Pricebook2Id":"01sgL0000007iacQAA","UnitPrice":8.99,"Pricebook2":{"Name":"Standard Price Book","Id":"01sgL0000007iacQAA"}},{"Product2Id":"01tgL000000MC6rQAG","Id":"01ugL0000006mgHQAQ","Pricebook2Id":"01sgL000000M04bQAC","UnitPrice":8.99,"Pricebook2":{"Name":"Codey's Restaurant Price Book 2025","Id":"01sgL000000M04bQAC"}}],"orderedQuantity":1}]
 	}
 
 	disconnectedCallback() {

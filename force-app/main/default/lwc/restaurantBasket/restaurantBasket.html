@@ -16,7 +16,14 @@
 					</tr>
 				</thead>
 				<tbody class="slds-table_body">
-
+					<template for:each={basket} for:item="basketRow">
+						<tr key={basketRow.Id}>
+							<td>{basketRow.Name}</td>
+							<td class="slds-text-align_right">{basketRow.orderedQuantity}</td>
+							<td class="slds-text-align_right">{basketRow.unitPrice}</td>
+							<td class="slds-text-align_right">{basketRow.rowPrice}</td>
+						</tr>
+					</template>
 				</tbody>
 			</table>
 		</div>
