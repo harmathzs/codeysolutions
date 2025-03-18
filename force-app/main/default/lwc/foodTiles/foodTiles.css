@@ -1,3 +1,13 @@
 /**
  * Created by Harmath Zsolt on 2025. 03. 17..
  */
+
+.food-tile {
+	width: 200px; /* fixed width */
+}
+
+.food-tile lightning-formatted-rich-text img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
