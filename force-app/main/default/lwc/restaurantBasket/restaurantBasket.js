@@ -30,6 +30,10 @@ export default class RestaurantBasket extends LightningElement {
 
 		this.foodsMap = await getAllFoods();
 
+		for (let i in this.foodsMap) {
+			this.foodsMap[i].orderedQuantity = 0;
+		}
+
 		const menuA_ProductId = this.menusCustomSettings?.Menu_A_Product_Id__c;
 		const menuB_ProductId = this.menusCustomSettings?.Menu_B_Product_Id__c;
 
@@ -64,10 +68,17 @@ export default class RestaurantBasket extends LightningElement {
 		// Handle the received foodId here
 		console.log('Received foodId:', foodId);
 
+		this.foodsMap[foodId].orderedQuantity++;
+
 		let selectedFood = this.foodsMap[foodId];
 		console.log('selectedFood', selectedFood);
 
-		this.basket.push(selectedFood);
+		let alreadyOrderedThis = false;
+		for (let food of this.basket) {
+			if (food.Id == foodId) alreadyOrderedThis = true;
+		}
+		if (!alreadyOrderedThis)
+			this.basket.push(selectedFood);
 		this.basketJson = JSON.stringify(this.basket);
 	}
 
