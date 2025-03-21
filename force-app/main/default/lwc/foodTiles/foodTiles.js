@@ -59,7 +59,11 @@ export default class FoodTiles extends LightningElement {
 	handleIncomingMessage(message) {
 		if (message?.messageType == 'FoodFilters') {
 			console.log('message', JSON.stringify(message));
-			debugger;
+
+			const checkboxAlaCarteValue = message?.payload?.checkboxes?.checkboxAlaCarteValue;
+			const checkboxMenuAValue = message?.payload?.checkboxes?.checkboxMenuAValue;
+			const checkboxMenuBValue = message?.payload?.checkboxes?.checkboxMenuBValue;
+			console.log('checkboxes', JSON.stringify([checkboxAlaCarteValue, checkboxMenuAValue, checkboxMenuBValue]));
 		}
 	}
 

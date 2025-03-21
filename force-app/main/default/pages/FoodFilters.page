@@ -31,9 +31,9 @@
 							messageType: 'FoodFilters',
 							payload: {
 								checkboxes: {
-									checkboxAlaCarteJson: JSON.stringify(checkboxAlaCarte),
-									checkboxMenuAJson: JSON.stringify(checkboxMenuA),
-									checkboxMenuBJson: JSON.stringify(checkboxMenuB),
+									checkboxAlaCarteValue: checkboxAlaCarte?.checked,
+									checkboxMenuAValue: checkboxMenuA?.checked,
+									checkboxMenuBValue: checkboxMenuB?.checked,
 								},
 								form: form,
 							},
