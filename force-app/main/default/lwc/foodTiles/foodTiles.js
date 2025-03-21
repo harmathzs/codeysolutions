@@ -64,6 +64,17 @@ export default class FoodTiles extends LightningElement {
 			const checkboxMenuAValue = message?.payload?.checkboxes?.checkboxMenuAValue;
 			const checkboxMenuBValue = message?.payload?.checkboxes?.checkboxMenuBValue;
 			console.log('checkboxes', JSON.stringify([checkboxAlaCarteValue, checkboxMenuAValue, checkboxMenuBValue]));
+
+			// filter foodList
+			let foodNewList = [];
+			for (let food of this.foodsList) {
+				if (food.isMenuA && checkboxMenuAValue) foodNewList.push(food);
+				else
+				if (food.isMenuB && checkboxMenuBValue) foodNewList.push(food);
+				else
+				if (!food.isMenuA && !food.isMenuB && checkboxAlaCarteValue) foodNewList.push(food);
+			}
+			this.foodsList = [...foodNewList];
 		}
 	}
 
