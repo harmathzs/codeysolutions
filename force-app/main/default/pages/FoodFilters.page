@@ -6,16 +6,37 @@
 	<apex:form>
 		<div class="checkbox-group">
 			<p>
-			<input type="checkbox" id="checkboxAlaCarte" name="checkboxAlaCarte"/>
+			<input type="checkbox" id="checkboxAlaCarte" name="checkboxAlaCarte" checked="checked" />
 			<label for="checkboxAlaCarte">À la carte</label>
 			</p>
 			<p>
-			<input type="checkbox" id="checkboxMenuA" name="checkboxMenuA"/>
+			<input type="checkbox" id="checkboxMenuA" name="checkboxMenuA" checked="checked" />
 			<label for="checkboxMenuA">Menu A</label>
 			</p>
 			<p>
-			<input type="checkbox" id="checkboxMenuB" name="checkboxMenuB"/>
+			<input type="checkbox" id="checkboxMenuB" name="checkboxMenuB" checked="checked" />
 			<label for="checkboxMenuB">Menu B</label>
+			</p>
+		</div>
+		<div>
+			<p>
+				<apex:commandButton title="Filter" value="Filter" />
+				<script language="JavaScript">
+					function handleFilterButtonClick() {
+						var form = document.forms[0];
+						var checkboxAlaCarte = document.getElementById('checkboxAlaCarte');
+						var checkboxMenuA = document.getElementById('checkboxMenuA');
+						var checkboxMenuB = document.getElementById('checkboxMenuB');
+						var foodFilterPayload = {
+							messageType: 'FoodFilters',
+							message: {
+								checkboxes: [checkboxAlaCarte, checkboxMenuA, checkboxMenuB,],
+								form: form,
+							},
+						};
+						console.log('foodFilterPayload', foodFilterPayload);
+					}
+				</script>
 			</p>
 		</div>
 	</apex:form>
