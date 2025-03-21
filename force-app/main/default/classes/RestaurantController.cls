@@ -48,6 +48,7 @@ public with sharing class RestaurantController {
 			RecordTypeId = Schema.SObjectType.Order.getRecordTypeInfosByName().get('Food').getRecordTypeId()
 		);
 		insert order;
+		System.debug('takeOrderFromBasket inserted order: '+order);
 
 		// Parse basketJson and populate Order Products
 		OrderItem[] orderProducts = new List<OrderItem>();
@@ -74,6 +75,10 @@ public with sharing class RestaurantController {
 
 		order.Status = 'Ordered';
 		update order;
+		System.debug('takeOrderFromBasket updated order: '+order);
+
+		Id orderId = order.Id;
+		System.debug('takeOrderFromBasket orderId: '+orderId);
 
 		order = [SELECT Id, CreatedDate, OrderNumber
 			,AccountId, Account.Name
@@ -95,7 +100,7 @@ public with sharing class RestaurantController {
 				,ListPrice
 			FROM OrderItems)
 		FROM Order
-		WHERE Id = :order.Id
+		WHERE Id = :orderId
 		];
 		System.debug('takeOrderFromBasket order: '+order);
 
