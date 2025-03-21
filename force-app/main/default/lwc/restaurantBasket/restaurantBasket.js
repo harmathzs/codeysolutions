@@ -73,7 +73,7 @@ export default class RestaurantBasket extends LightningElement {
 	}
 
 	handleIncomingMessage(message) {
-		const foodId = message.foodId;
+		const foodId = message?.payload?.foodId;
 		// Handle the received foodId here
 		console.log('Received foodId:', foodId);
 

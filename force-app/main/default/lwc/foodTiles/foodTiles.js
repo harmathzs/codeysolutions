@@ -51,7 +51,12 @@ export default class FoodTiles extends LightningElement {
 		console.log('Food clicked:', foodId);
 
 		// Publish the message
-		const payload = { foodId: foodId };
-		publish(this.messageContext, RESTAURANT_CHANNEL, payload);
+		let message = {
+			messageType: 'FoodTiles',
+			payload: {
+				foodId: foodId
+			}
+		};
+		publish(this.messageContext, RESTAURANT_CHANNEL, message);
 	}
 }
