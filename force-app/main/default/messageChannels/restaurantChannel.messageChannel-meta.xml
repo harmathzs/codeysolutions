@@ -4,7 +4,11 @@
 	<isExposed>true</isExposed>
 	<description>Message Channel for restaurant communications</description>
 	<lightningMessageFields>
-		<fieldName>foodId</fieldName>
-		<description>Food Product Record Id</description>
+		<fieldName>messageType</fieldName>
+		<description>Type of message being sent</description>
+	</lightningMessageFields>
+	<lightningMessageFields>
+		<fieldName>payload</fieldName>
+		<description>Message content</description>
 	</lightningMessageFields>
 </LightningMessageChannel>
