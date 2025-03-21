@@ -4,13 +4,14 @@
 
 import {LightningElement, wire} from 'lwc';
 
-import { publish, MessageContext } from 'lightning/messageService';
+import {publish, MessageContext, subscribe} from 'lightning/messageService';
 import RESTAURANT_CHANNEL from '@salesforce/messageChannel/restaurantChannel__c';
 
 import getCodeysRestaurantMenus from '@salesforce/apex/RestaurantController.getCodeysRestaurantMenus';
 import getAllFoods from '@salesforce/apex/RestaurantController.getAllFoods';
 
 export default class FoodTiles extends LightningElement {
+	subscription;
 	@wire(MessageContext) messageContext;
 
 	menusCustomSettings = {};
@@ -19,6 +20,8 @@ export default class FoodTiles extends LightningElement {
 	menus = {};
 
 	async connectedCallback() {
+		this.subscribeToMessageChannel();
+
 		this.menusCustomSettings = await getCodeysRestaurantMenus();
 		console.log('menusCustomSettings', this.menusCustomSettings);
 
@@ -43,6 +46,20 @@ export default class FoodTiles extends LightningElement {
 		// Populate foodsList from foodsMap
 		this.foodsList = Object.values(this.foodsMap);
 		console.log('foodsList', JSON.stringify(this.foodsList));
+	}
+
+	subscribeToMessageChannel() {
+		this.subscription = subscribe(
+			this.messageContext,
+			RESTAURANT_CHANNEL,
+			(message) => this.handleIncomingMessage(message)
+		);
+	}
+
+	handleIncomingMessage(message) {
+		if (message?.messageType == 'FoodFilters') {
+			console.log('message', message);
+		}
 	}
 
 	handleFoodClick(event) {
