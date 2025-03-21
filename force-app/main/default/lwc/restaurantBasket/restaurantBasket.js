@@ -122,6 +122,7 @@ export default class RestaurantBasket extends LightningElement {
 	emptyBasket() {
 		this.basket = null;
 		this.basket = [];
+		this.basketJson = '{}';
 		this.totalQuantity = 0;
 		this.totalPrice = 0;
 	}
