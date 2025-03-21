@@ -3,6 +3,21 @@
  -->
 
 <apex:page id="FoodFilters" lightningStylesheets="true">
+	<style>
+		.my-button {
+			background-color: #0070d2;
+			color: white;
+			padding: 8px 16px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 14px;
+		}
+		.my-button:hover {
+			background-color: #005fb2;
+		}
+	</style>
+
 	<apex:form>
 		<div class="checkbox-group">
 			<p>
@@ -20,7 +35,7 @@
 		</div>
 		<div>
 			<p>
-				<input type="button" title="Filter" value="Filter" name="Filter" onclick="handleFilterButtonClick()" />
+				<input type="button" title="Filter" value="Filter" name="Filter" onclick="handleFilterButtonClick()" class="my-button" />
 				<script language="JavaScript">
 					function handleFilterButtonClick() {
 						var form = document.forms[0];
