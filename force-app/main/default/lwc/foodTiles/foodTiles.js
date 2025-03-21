@@ -27,6 +27,10 @@ export default class FoodTiles extends LightningElement {
 
 		this.foodsMap = await getAllFoods();
 
+		this.populateFoodListFromFoodMap();
+	}
+
+	populateFoodListFromFoodMap() {
 		const menuA_ProductId = this.menusCustomSettings?.Menu_A_Product_Id__c;
 		const menuB_ProductId = this.menusCustomSettings?.Menu_B_Product_Id__c;
 
@@ -64,6 +68,8 @@ export default class FoodTiles extends LightningElement {
 			const checkboxMenuAValue = message?.payload?.checkboxes?.checkboxMenuAValue;
 			const checkboxMenuBValue = message?.payload?.checkboxes?.checkboxMenuBValue;
 			console.log('checkboxes', JSON.stringify([checkboxAlaCarteValue, checkboxMenuAValue, checkboxMenuBValue]));
+
+			this.populateFoodListFromFoodMap();
 
 			// filter foodList
 			let foodNewList = [];
