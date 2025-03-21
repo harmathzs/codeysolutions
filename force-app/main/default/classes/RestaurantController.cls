@@ -29,6 +29,8 @@ public with sharing class RestaurantController {
 
 	@AuraEnabled
 	public static Order takeOrderFromBasket(String basketJson) {
+		System.debug('takeOrderFromBasket basketJson: '+basketJson);
+
 		Account account = [SELECT Id, Name FROM Account WHERE Name LIKE '%Codey Solutions%' LIMIT 1];
 		Contract contract = [SELECT Id, ContractNumber FROM Contract WHERE ContractNumber LIKE '%0100%' LIMIT 1];
 		Pricebook2 pb = [SELECT Id, Name
@@ -50,8 +52,11 @@ public with sharing class RestaurantController {
 		// Parse basketJson and populate Order Products
 		OrderItem[] orderProducts = new List<OrderItem>();
 		Object[] basketList = (List<Object>)JSON.deserializeUntyped(basketJson);
+		System.debug('takeOrderFromBasket basketList: '+basketList);
 		for (Object basketRowMapObj: basketList) {
+			System.debug('takeOrderFromBasket basketRowMapObj: '+basketRowMapObj);
 			Map<String, Object> basketRowMap = (Map<String, Object>)basketRowMapObj;
+			System.debug('takeOrderFromBasket basketRowMap: '+basketRowMap);
 			OrderItem orderProduct = new OrderItem(
 				OrderId = order.Id,
 				Product2Id = String.valueOf(basketRowMap.get('Id')),
@@ -60,10 +65,12 @@ public with sharing class RestaurantController {
 				UnitPrice = pbe.UnitPrice,
 				ListPrice = pbe.UnitPrice
 			);
+			System.debug('takeOrderFromBasket orderProduct: '+orderProduct);
 			orderProducts.add(orderProduct);
 		}
 		// Insert Order Products
 		insert orderProducts;
+		System.debug('takeOrderFromBasket orderProducts: '+orderProducts);
 
 		order.Status = 'Ordered';
 		update order;
@@ -90,6 +97,7 @@ public with sharing class RestaurantController {
 		FROM Order
 		WHERE Id = :order.Id
 		];
+		System.debug('takeOrderFromBasket order: '+order);
 
 		return order;
 	}
