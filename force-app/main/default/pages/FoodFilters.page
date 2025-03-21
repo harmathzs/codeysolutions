@@ -27,14 +27,15 @@
 						var checkboxAlaCarte = document.getElementById('checkboxAlaCarte');
 						var checkboxMenuA = document.getElementById('checkboxMenuA');
 						var checkboxMenuB = document.getElementById('checkboxMenuB');
-						var foodFilterPayload = {
+						var message = {
 							messageType: 'FoodFilters',
-							message: {
+							payload: {
 								checkboxes: [checkboxAlaCarte, checkboxMenuA, checkboxMenuB,],
 								form: form,
 							},
 						};
-						console.log('foodFilterPayload', foodFilterPayload);
+						console.log('foodFilterPayload', message);
+
 					}
 				</script>
 			</p>
