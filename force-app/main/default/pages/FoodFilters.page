@@ -2,5 +2,21 @@
  - Created by Harmath Zsolt on 2025. 03. 21..
  -->
 
-<apex:page id="FoodFilters">
+<apex:page id="FoodFilters" lightningStylesheets="true">
+	<apex:form>
+		<div class="checkbox-group">
+			<p>
+			<input type="checkbox" id="checkboxAlaCarte" name="checkboxAlaCarte"/>
+			<label for="checkboxAlaCarte">À la carte</label>
+			</p>
+			<p>
+			<input type="checkbox" id="checkboxMenuA" name="checkboxMenuA"/>
+			<label for="checkboxMenuA">Menu A</label>
+			</p>
+			<p>
+			<input type="checkbox" id="checkboxMenuB" name="checkboxMenuB"/>
+			<label for="checkboxMenuB">Menu B</label>
+			</p>
+		</div>
+	</apex:form>
 </apex:page>
