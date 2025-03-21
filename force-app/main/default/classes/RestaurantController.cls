@@ -34,9 +34,13 @@ public with sharing class RestaurantController {
 		Account account = [SELECT Id, Name FROM Account WHERE Name LIKE '%Codey Solutions%' LIMIT 1];
 		Contract contract = [SELECT Id, ContractNumber FROM Contract WHERE ContractNumber LIKE '%0100%' LIMIT 1];
 		Pricebook2 pb = [SELECT Id, Name
-				,(SELECT Id, UnitPrice FROM PricebookEntries WHERE UnitPrice>0)
+				,(SELECT Id, UnitPrice, Product2Id FROM PricebookEntries WHERE UnitPrice>0)
 			FROM Pricebook2 WHERE Name LIKE '%Restaurant Price Book 2025%' LIMIT 1];
-		PricebookEntry pbe = pb.PricebookEntries[0];
+
+		Map<String, PricebookEntry> pbesByProductids = new Map<String, PricebookEntry>();
+		for (PricebookEntry pbe: pb.PricebookEntries) {
+			pbesByProductids.put(pbe.Product2Id, pbe);
+		}
 
 		Order order = new Order(
 			AccountId = account.Id,
@@ -58,13 +62,15 @@ public with sharing class RestaurantController {
 			System.debug('takeOrderFromBasket basketRowMapObj: '+basketRowMapObj);
 			Map<String, Object> basketRowMap = (Map<String, Object>)basketRowMapObj;
 			System.debug('takeOrderFromBasket basketRowMap: '+basketRowMap);
+
+			Id productId = String.valueOf(basketRowMap.get('Id'));
 			OrderItem orderProduct = new OrderItem(
 				OrderId = order.Id,
-				Product2Id = String.valueOf(basketRowMap.get('Id')),
-				PricebookEntryId = pbe.Id,
+				Product2Id = productId,
+				PricebookEntryId = pbesByProductids.get(productId).Id,
 				Quantity = Integer.valueOf(basketRowMap.get('orderedQuantity')),
-				UnitPrice = pbe.UnitPrice,
-				ListPrice = pbe.UnitPrice
+				UnitPrice = pbesByProductids.get(productId).UnitPrice,
+				ListPrice = pbesByProductids.get(productId).UnitPrice
 			);
 			System.debug('takeOrderFromBasket orderProduct: '+orderProduct);
 			orderProducts.add(orderProduct);

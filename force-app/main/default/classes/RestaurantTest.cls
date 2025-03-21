@@ -52,7 +52,7 @@ private class RestaurantTest {
 //		PricebookEntry[] pbes = new List<PricebookEntry>{pbe0, pbe};
 //		insert pbes;
 
-		String basketJson = '[{"Id":"01tgL000000MC6rQAG","Name":"Vegan lasagna","Family":"Food","Rich_Image__c":"<p><img src=\\"https://codeysolutions-dev-ed.develop.file.force.com/servlet/rtaImage?eid=01tgL000000MC6r&amp;feoid=00NgL00000LZIUD&amp;refid=0EMgL0000000SxB\\" alt=\\"vegan-lasagna-01.png\\"></img></p>","PricebookEntries":[{"Product2Id":"01tgL000000MC6rQAG","Id":"01ugL0000006mefQAA","Pricebook2Id":"01sgL0000007iacQAA","UnitPrice":8.99,"Pricebook2":{"Name":"Standard Price Book","Id":"01sgL0000007iacQAA"}},{"Product2Id":"01tgL000000MC6rQAG","Id":"01ugL0000006mgHQAQ","Pricebook2Id":"01sgL000000M04bQAC","UnitPrice":8.99,"Pricebook2":{"Name":"Codey\'s Restaurant Price Book 2025","Id":"01sgL000000M04bQAC"}}],"orderedQuantity":1}]';
+		String basketJson = '[{"Id":"'+product.Id+'","Name":"Vegan lasagna","Family":"Food","Rich_Image__c":"<p><img src=\\"https://codeysolutions-dev-ed.develop.file.force.com/servlet/rtaImage?eid=01tgL000000MC6r&amp;feoid=00NgL00000LZIUD&amp;refid=0EMgL0000000SxB\\" alt=\\"vegan-lasagna-01.png\\"></img></p>","PricebookEntries":[{"Product2Id":"01tgL000000MC6rQAG","Id":"01ugL0000006mefQAA","Pricebook2Id":"01sgL0000007iacQAA","UnitPrice":1,"Pricebook2":{"Name":"Standard Price Book","Id":"01sgL0000007iacQAA"}},{"Product2Id":"01tgL000000MC6rQAG","Id":"01ugL0000006mgHQAQ","Pricebook2Id":"01sgL000000M04bQAC","UnitPrice":1,"Pricebook2":{"Name":"Codey\'s Restaurant Price Book 2025","Id":"01sgL000000M04bQAC"}}],"orderedQuantity":1}]';
 		RestaurantController.takeOrderFromBasket(basketJson);
 	}
 }
