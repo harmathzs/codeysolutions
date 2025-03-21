@@ -20,7 +20,7 @@
 		</div>
 		<div>
 			<p>
-				<apex:commandButton title="Filter" value="Filter" onClick="handleFilterButtonClick()" />
+				<input type="button" title="Filter" value="Filter" name="Filter" onclick="handleFilterButtonClick()" />
 				<script language="JavaScript">
 					function handleFilterButtonClick() {
 						var form = document.forms[0];
