@@ -36,6 +36,11 @@
 						};
 						console.log('foodFilterPayload', message);
 
+						var CHANNEL = "{!$MessageChannel.restaurantChannel__c}";
+						console.log('CHANNEL', CHANNEL);
+						var result = sforce.one.publish(CHANNEL, message);
+						// console.log('result', result);
+						// debugger;
 					}
 				</script>
 			</p>
