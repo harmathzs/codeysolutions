@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+	<masterLabel>RestaurantChannel</masterLabel>
+	<isExposed>true</isExposed>
+	<description>Message Channel for restaurant communications</description>
+	<lightningMessageFields>
+		<fieldName>messageType</fieldName>
+		<description>Type of message being sent</description>
+	</lightningMessageFields>
+	<lightningMessageFields>
+		<fieldName>payload</fieldName>
+		<description>Message content</description>
+	</lightningMessageFields>
+</LightningMessageChannel>

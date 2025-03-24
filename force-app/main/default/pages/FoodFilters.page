@@ -1,0 +1,68 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 03. 21..
+ -->
+
+<apex:page id="FoodFilters" lightningStylesheets="true">
+	<style>
+		.my-button {
+			background-color: #0070d2;
+			color: white;
+			padding: 8px 16px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 14px;
+		}
+		.my-button:hover {
+			background-color: #005fb2;
+		}
+	</style>
+
+	<apex:form>
+		<div class="checkbox-group">
+			<p>
+			<input type="checkbox" id="checkboxAlaCarte" name="checkboxAlaCarte" checked="checked" />
+			<label for="checkboxAlaCarte">À la carte</label>
+			</p>
+			<p>
+			<input type="checkbox" id="checkboxMenuA" name="checkboxMenuA" checked="checked" />
+			<label for="checkboxMenuA">Menu A</label>
+			</p>
+			<p>
+			<input type="checkbox" id="checkboxMenuB" name="checkboxMenuB" checked="checked" />
+			<label for="checkboxMenuB">Menu B</label>
+			</p>
+		</div>
+		<div>
+			<p>
+				<input type="button" title="Filter" value="Filter" name="Filter" onclick="handleFilterButtonClick()" class="my-button" />
+				<script language="JavaScript">
+					function handleFilterButtonClick() {
+						var form = document.forms[0];
+						var checkboxAlaCarte = document.getElementById('checkboxAlaCarte');
+						var checkboxMenuA = document.getElementById('checkboxMenuA');
+						var checkboxMenuB = document.getElementById('checkboxMenuB');
+						var message = {
+							messageType: 'FoodFilters',
+							payload: {
+								checkboxes: {
+									checkboxAlaCarteValue: checkboxAlaCarte?.checked,
+									checkboxMenuAValue: checkboxMenuA?.checked,
+									checkboxMenuBValue: checkboxMenuB?.checked,
+								},
+								form: form,
+							},
+						};
+						console.log('foodFilterPayload', message);
+
+						var CHANNEL = "{!$MessageChannel.restaurantChannel__c}";
+						console.log('CHANNEL', CHANNEL);
+						var result = sforce.one.publish(CHANNEL, message);
+						// console.log('result', result);
+						// debugger;
+					}
+				</script>
+			</p>
+		</div>
+	</apex:form>
+</apex:page>

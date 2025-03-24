@@ -1,0 +1,52 @@
+/**
+ * Created by Harmath Zsolt on 2025. 03. 17..
+ */
+
+.food-tile {
+	width: 200px;
+	cursor: pointer;
+	transition: transform 0.2s ease;
+}
+
+.food-tile:hover {
+	transform: scale(1.05);
+}
+
+.image-container {
+	position: relative;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.image-container lightning-formatted-rich-text img {
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+}
+
+.food-info {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.7);
+	padding: 8px;
+	color: white;
+}
+
+.food-name {
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+
+.menu-label {
+	font-size: 0.8em;
+	color: #fff;
+	background: rgba(255, 255, 255, 0.2);
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 12px;
+	margin: 2px;
+}
+

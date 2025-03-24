@@ -1,0 +1,41 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 03. 18..
+ -->
+
+<!-- Restaurant Basket -->
+<template>
+	<lightning-card title="Basket for New food Order">
+		<div class="slds-p-around_medium">
+			<table class="slds-table slds-table--bordered slds-is-collapsed">
+				<thead class="slds-table_head">
+					<tr class="slds-text-title">
+						<th class="slds-text-align--center slds-truncate">Food Name</th>
+						<th class="slds-text-align--center slds-truncate">Quantity</th>
+						<th class="slds-text-align--center slds-truncate">Unit Price</th>
+						<th class="slds-text-align--center slds-truncate">Row Price</th>
+					</tr>
+				</thead>
+				<tbody class="slds-table_body">
+					<template for:each={basket} for:item="basketRow">
+						<tr key={basketRow.Id}>
+							<td>{basketRow.Name}</td>
+							<td class="slds-text-align_right">{basketRow.orderedQuantity}</td>
+							<td class="slds-text-align_right">{basketRow.unitPrice}</td>
+							<td class="slds-text-align_right">{basketRow.rowPrice}</td>
+						</tr>
+					</template>
+						<tr>
+							<td style="border-top: 3px; border-top-color: black; border-top-style: solid;">Total Order SUMs</td>
+							<td class="slds-text-align_right" style="border-top: 3px; border-top-color: black; border-top-style: solid;">{totalQuantity}</td>
+							<td class="slds-text-align_right" style="border-top: 3px; border-top-color: black; border-top-style: solid;"> - </td>
+							<td class="slds-text-align_right" style="border-top: 3px; border-top-color: black; border-top-style: solid;">{totalPrice}</td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="slds-p-around_medium slds-grid">
+			<lightning-button-icon icon-name="utility:fulfillment_order" title="Make the new Order now" onclick={handleTakeOrder}></lightning-button-icon>
+			<lightning-button-icon icon-name="action:reset_password" title="Reset basket to empty" onclick={handleResetBasket}></lightning-button-icon>
+		</div>
+	</lightning-card>
+</template>

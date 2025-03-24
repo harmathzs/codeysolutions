@@ -1,0 +1,24 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 03. 17..
+ -->
+
+<!-- Food Tiles -->
+<template>
+	<lightning-card title="Food Tiles">
+		<div class="slds-scrollable slds-grid slds-p-around_medium">
+			<template for:each={foodsList} for:item="food">
+				<div key={food.Id} class="slds-p-around_x-small food-tile" onclick={handleFoodClick} data-id={food.Id}>
+					<div class="image-container">
+						<lightning-formatted-rich-text value={food.Rich_Image__c}></lightning-formatted-rich-text>
+						<div class="food-info">
+							<p class="food-name">{food.Name}</p>
+							<p if:true={food.isMenuA} class="menu-label">Menu A</p>
+							<p if:true={food.isMenuB} class="menu-label">Menu B</p>
+						</div>
+					</div>
+				</div>
+			</template>
+		</div>
+	</lightning-card>
+</template>
+
