@@ -4,4 +4,12 @@
 	<description>Screen Flow to VF Navigator</description>
 	<isExposed>true</isExposed>
 	<masterLabel>Screen Flow to VF Navigator</masterLabel>
+	<targets>
+		<target>lightning__FlowScreen</target>
+	</targets>
+	<targetConfigs>
+		<targetConfig targets="lightning__FlowScreen">
+			<property name="ids" type="String" label="SObject Ids" description="ID of the SObjects"/>
+		</targetConfig>
+	</targetConfigs>
 </LightningComponentBundle>
