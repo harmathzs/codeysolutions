@@ -34,10 +34,9 @@ public without sharing class AccountFlowLauncherBatch implements Database.Batcha
 			};
 			flowOutputsList.add(flowOutputs);
 		}
+		System.debug('executed flowOutputsList:');
+		System.debug(flowOutputsList); // ({flowFaultMessage=null, recordId=001gL000000lzw6QAA}, {flowFaultMessage=null, recordId=001gL000000m3ZuQAI})
 	}
 
-	public void finish(Database.BatchableContext context) {
-		System.debug('flowOutputsList:');
-		System.debug(flowOutputsList);
-	}
+	public void finish(Database.BatchableContext context) {}
 }
