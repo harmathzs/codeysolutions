@@ -7,7 +7,7 @@
 	<div class="slds-grid slds-grid_align-center">
 		<lightning-layout>
 			<lightning-layout-item padding="around-small">
-				<lightning-button
+				<lightning-button if:true={showPrevious}
 					label="Previous"
 					onclick={handlePrevious}
 					variant="neutral"
@@ -15,8 +15,8 @@
 				></lightning-button>
 			</lightning-layout-item>
 			<lightning-layout-item padding="around-small">
-				<lightning-button
-					label="Finish"
+				<lightning-button if:true={showFinish}
+					label="Next"
 					onclick={handleFinish}
 					variant="brand"
 					class="slds-p-around_medium"

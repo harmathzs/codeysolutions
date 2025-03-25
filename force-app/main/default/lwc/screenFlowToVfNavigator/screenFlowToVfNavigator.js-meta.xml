@@ -12,6 +12,8 @@
 			<property name="ids" type="String" label="SObject Ids" description="ID of the SObjects"/>
 			<property name="recordId" type="String" label="SObject Id" description="ID of the SObject"/>
 			<property name="vfpagename" type="String" label="Visualforce page name" description="Redirect to this Visualforce page"/>
+			<property name="showPrevious" type="Boolean" label="Show Previous button?" description="Show Previous button?"/>
+			<property name="showFinish" type="Boolean" label="Show Finish button?" description="Show Finish button?"/>
 		</targetConfig>
 	</targetConfigs>
 </LightningComponentBundle>

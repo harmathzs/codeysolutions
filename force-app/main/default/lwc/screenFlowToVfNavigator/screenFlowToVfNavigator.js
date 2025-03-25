@@ -13,6 +13,9 @@ export default class ScreenFlowToVfNavigator extends NavigationMixin(LightningEl
 	@api recordId;
 	@api vfpagename;
 
+	@api showPrevious;
+	@api showFinish;
+
 	handlePrevious() {
 		// Check if previous is allowed
 		if (this.availableActions.find(action => action === 'BACK')) {
