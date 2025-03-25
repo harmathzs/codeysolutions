@@ -23,6 +23,8 @@ public with sharing class FoodsController {
 	}
 
 	public PageReference finishClick() {
-		return null;
+		PageReference pageRef = new PageReference('/01t/o');
+		pageRef.setRedirect(true);
+		return pageRef;
 	}
 }
