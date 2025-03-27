@@ -12,6 +12,7 @@ export default class ScreenFlowToVfNavigator extends NavigationMixin(LightningEl
 	@api ids;
 	@api recordId;
 	@api vfpagename;
+	@api windowTarget;
 
 	@api showPrevious;
 	@api showFinish;
@@ -29,7 +30,7 @@ export default class ScreenFlowToVfNavigator extends NavigationMixin(LightningEl
 		// Open Visualforce page in new tab
 		window.open(
 			`/apex/${this.vfpagename}?recordId=${this.recordId}&ids=${JSON.stringify(this.ids)}`,
-			'_blank' // This specifies to open in new tab
+			this.windowTarget ? this.windowTarget : '_blank' // This specifies to open in where
 		);
 
 		// Finish the flow
