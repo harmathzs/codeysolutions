@@ -26,7 +26,7 @@ private class FoodsTest {
 		String joinedIds = String.join(ids, ',');
 
 		PageReference foodPage = Page.Foods;
-		foodPage.getParameters().put('ids', joinedIds);
+		foodPage.getParameters().put('ids', JSON.serialize(joinedIds));
 		Test.setCurrentPage(foodPage);
 
 		FoodsController controller = new FoodsController();
