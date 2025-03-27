@@ -1,0 +1,18 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 03. 25..
+ -->
+
+<apex:page id="Foods" title="Foods" controller="FoodsController" lightningStylesheets="true">
+	<apex:form>
+		<apex:pageBlock title="Foods">
+			<apex:pageBlockTable value="{!foods}" var="food" title="Foods" border="1">
+				<apex:column title="Id" value="{!food.Id}" />
+				<apex:column title="Name" value="{!food.Name}" />
+				<apex:column title="Description" value="{!food.Description}" />
+			</apex:pageBlockTable>
+		</apex:pageBlock>
+		<apex:pageBlock>
+			<apex:commandButton title="Finish" value="Finish" action="{!finishClick}" />
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<apiVersion>63.0</apiVersion>
+	<description>Screen Flow to VF Navigator</description>
+	<isExposed>true</isExposed>
+	<masterLabel>Screen Flow to VF Navigator</masterLabel>
+	<targets>
+		<target>lightning__FlowScreen</target>
+	</targets>
+	<targetConfigs>
+		<targetConfig targets="lightning__FlowScreen">
+			<property name="ids" type="String" label="SObject Ids" description="ID of the SObjects"/>
+			<property name="recordId" type="String" label="SObject Id" description="ID of the SObject"/>
+			<property name="vfpagename" type="String" label="Visualforce page name" description="Redirect to this Visualforce page"/>
+			<property name="windowTarget" type="String" label="Flow window target like _blank or _self" description="Flow window target like _blank or _self"/>
+			<property name="showPrevious" type="Boolean" label="Show Previous button?" description="Show Previous button?"/>
+			<property name="showFinish" type="Boolean" label="Show Finish button?" description="Show Finish button?"/>
+		</targetConfig>
+	</targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,27 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 03. 25..
+ -->
+
+<!-- Screen Flow to VF Navigator -->
+<template>
+	<div class="slds-grid slds-grid_align-center">
+		<lightning-layout>
+			<lightning-layout-item padding="around-small">
+				<lightning-button if:true={showPrevious}
+					label="Previous"
+					onclick={handlePrevious}
+					variant="neutral"
+					class="slds-p-around_medium"
+				></lightning-button>
+			</lightning-layout-item>
+			<lightning-layout-item padding="around-small">
+				<lightning-button if:true={showFinish}
+					label="Next"
+					onclick={handleFinish}
+					variant="brand"
+					class="slds-p-around_medium"
+				></lightning-button>
+			</lightning-layout-item>
+		</lightning-layout>
+	</div>
+</template>
