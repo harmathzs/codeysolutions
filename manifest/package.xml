@@ -36,6 +36,39 @@
         <members>DeferredQueueableJob__c-Deferred Queueable Job Layout</members>
         <members>TriggerFeature__mdt-Trigger Feature Layout</members>
         <members>TriggerMetric__c-Trigger Metric Layout</members>
+        <members>hed__Academic_Certification__c-hed__EDA Academic Certification Layout</members>
+        <members>hed__Address__c-hed__HEDA Address Layout</members>
+        <members>hed__Affiliation__c-hed__HEDA Affiliation Layout</members>
+        <members>hed__Application__c-hed__EDA Application Layout</members>
+        <members>hed__Attendance_Event__c-hed__EDA Attendance Event Layout</members>
+        <members>hed__Attribute__c-hed__EDA Credential Layout</members>
+        <members>hed__Attribute__c-hed__EDA Student Characteristic Layout</members>
+        <members>hed__Behavior_Involvement__c-hed__EDA Behavior Involvement Layout</members>
+        <members>hed__Behavior_Response__c-hed__EDA Behavior Response Layout</members>
+        <members>hed__Contact_Language__c-hed__HEDA Contact Language Layout</members>
+        <members>hed__Course_Enrollment__c-hed__HEDA Course Enrollment Layout</members>
+        <members>hed__Course_Offering_Schedule__c-hed__EDA Course Offering Schedule Layout</members>
+        <members>hed__Course_Offering__c-hed__HEDA Course Offering Layout</members>
+        <members>hed__Course__c-hed__HEDA Course Layout</members>
+        <members>hed__Credential__c-hed__Credential Layout</members>
+        <members>hed__Credential__c-hed__EDA Credential Layout</members>
+        <members>hed__Education_History__c-hed__EDA Education History Layout</members>
+        <members>hed__Error__c-hed__HEDA Error Layout</members>
+        <members>hed__Facility__c-hed__HEDA Facility Layout</members>
+        <members>hed__Language__c-hed__HEDA Language Layout</members>
+        <members>hed__Plan_Requirement__c-hed__HEDA Plan Requirement Layout</members>
+        <members>hed__Product_Registry__mdt-hed__Product Registry Layout</members>
+        <members>hed__Program_Enrollment__c-hed__HEDA Program Enrollment Layout</members>
+        <members>hed__Program_Plan__c-hed__HEDA Program Plan Layout</members>
+        <members>hed__Relationship__c-hed__HEDA Relationship Layout</members>
+        <members>hed__Term_Grade__c-hed__HEDA Term Grade Layout</members>
+        <members>hed__Term__c-hed__HEDA Term Layout</members>
+        <members>hed__Test_Definition__mdt-hed__EDA Test Definition Layout</members>
+        <members>hed__Test_Score_Definition__mdt-hed__EDA Test Score Definition Layout</members>
+        <members>hed__Test_Score__c-hed__EDA Test Score Layout</members>
+        <members>hed__Test__c-hed__EDA Test Layout</members>
+        <members>hed__Time_Block__c-hed__EDA Time Block Layout</members>
+        <members>hed__Trigger_Handler__c-hed__HEDA Trigger Handler Layout</members>
         <name>Layout</name>
     </types>
     <types>
@@ -51,6 +84,41 @@
         <members>Pricebook2</members>
         <members>PricebookEntry</members>
         <members>Product2</members>
+        <members>hed__Academic_Certification__c</members>
+        <members>hed__Address__c</members>
+        <members>hed__Affiliation__c</members>
+        <members>hed__Affl_Mappings__c</members>
+        <members>hed__Application__c</members>
+        <members>hed__Attendance_Event__c</members>
+        <members>hed__Attribute__c</members>
+        <members>hed__Behavior_Involvement__c</members>
+        <members>hed__Behavior_Response__c</members>
+        <members>hed__Contact_Language__c</members>
+        <members>hed__Course_Enrollment__c</members>
+        <members>hed__Course_Offering_Schedule__c</members>
+        <members>hed__Course_Offering__c</members>
+        <members>hed__Course__c</members>
+        <members>hed__Credential__c</members>
+        <members>hed__Education_History__c</members>
+        <members>hed__Error__c</members>
+        <members>hed__Facility__c</members>
+        <members>hed__Hierarchy_Settings__c</members>
+        <members>hed__Language__c</members>
+        <members>hed__Plan_Requirement__c</members>
+        <members>hed__Product_Registry__mdt</members>
+        <members>hed__Program_Enrollment__c</members>
+        <members>hed__Program_Plan__c</members>
+        <members>hed__Relationship_Auto_Create__c</members>
+        <members>hed__Relationship_Lookup__c</members>
+        <members>hed__Relationship__c</members>
+        <members>hed__Term_Grade__c</members>
+        <members>hed__Term__c</members>
+        <members>hed__Test_Definition__mdt</members>
+        <members>hed__Test_Score_Definition__mdt</members>
+        <members>hed__Test_Score__c</members>
+        <members>hed__Test__c</members>
+        <members>hed__Time_Block__c</members>
+        <members>hed__Trigger_Handler__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -61,6 +129,35 @@
     </types>
     <types>
         <members>TriggerMetric__c</members>
+        <members>hed__Academic_Certification__c</members>
+        <members>hed__Address__c</members>
+        <members>hed__Affiliation__c</members>
+        <members>hed__Application__c</members>
+        <members>hed__Attendance_Event__c</members>
+        <members>hed__Attribute__c</members>
+        <members>hed__Behavior_Involvement__c</members>
+        <members>hed__Behavior_Response__c</members>
+        <members>hed__Contact_Language__c</members>
+        <members>hed__Course_Enrollment__c</members>
+        <members>hed__Course_Offering_Schedule__c</members>
+        <members>hed__Course_Offering__c</members>
+        <members>hed__Course__c</members>
+        <members>hed__Credential__c</members>
+        <members>hed__Education_Cloud_Settings</members>
+        <members>hed__Education_History__c</members>
+        <members>hed__Facility__c</members>
+        <members>hed__HEDA_Settings</members>
+        <members>hed__Language__c</members>
+        <members>hed__Plan_Requirement__c</members>
+        <members>hed__Program_Enrollment__c</members>
+        <members>hed__Program_Plan__c</members>
+        <members>hed__Relationship__c</members>
+        <members>hed__Term_Grade__c</members>
+        <members>hed__Term__c</members>
+        <members>hed__Test_Score__c</members>
+        <members>hed__Test__c</members>
+        <members>hed__Time_Block__c</members>
+        <members>hed__Trigger_Handler__c</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -69,6 +166,23 @@
     <types>
         <members>restaurantChannel</members>
         <name>LightningMessageChannel</name>
+    </types>
+    <types>
+        <name>CompactLayout</name>
+    </types>
+    <types>
+        <members>hed__HEDA</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>hed</members>
+        <name>InstalledPackage</name>
+    </types>
+    <types>
+        <name>ValidationRule</name>
+    </types>
+    <types>
+        <name>WebLink</name>
     </types>
     <version>63.0</version>
 </Package>

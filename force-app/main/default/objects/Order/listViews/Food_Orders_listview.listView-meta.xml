@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Food_Orders_listview</fullName>
+    <columns>ORDERS.CREATED_DATE</columns>
     <columns>ORDERS.ORDER_NUMBER</columns>
     <columns>ORDERS.EFFECTIVE_DATE</columns>
     <columns>Table_Number__c</columns>
@@ -11,6 +12,11 @@
         <field>ORDER.RECORDTYPE</field>
         <operation>equals</operation>
         <value>Order.FoodOrder</value>
+    </filters>
+    <filters>
+        <field>ORDERS.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed</value>
     </filters>
     <label>Food Orders</label>
 </ListView>
