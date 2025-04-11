@@ -2,5 +2,21 @@
  - Created by Harmath Zsolt on 2025. 04. 11..
  -->
 
-<apex:page id="InflationDashboard">
+<apex:page id="InflationDashboard" title="Inflation Dashboard Page">
+	<div>
+		<p>
+			<apex:image value="{!URLFOR($Resource.InflationPowerBIdataQR)}" width="200" height="200"/>
+		</p>
+	</div>
+
+	<div>
+		<p>
+			<a href="https://app.powerbi.com/groups/me/reports/f76e0f0f-d58f-4fa8-a468-7f4e5077281c/4b8c0413a830cfc57676?experience=power-bi">Link to PowerBI published dashboard ... </a>
+		</p>
+	</div>
+
+	<div>
+		<iframe src="https://app.powerbi.com/groups/me/reports/f76e0f0f-d58f-4fa8-a468-7f4e5077281c/4b8c0413a830cfc57676?experience=power-bi"
+				width="100%" height="800px" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+	</div>
 </apex:page>
