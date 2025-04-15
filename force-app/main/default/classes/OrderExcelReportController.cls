@@ -45,6 +45,7 @@ public with sharing class OrderExcelReportController {
 	@AuraEnabled
 	public static String getTableData(String orderId) {
 		Order order = queryOrder(orderId);
+		System.debug('getTableData order: '+order);
 
 		List<List<String>> excelData = new List<List<String>>();
 		excelData.add(new List<String>{
@@ -61,6 +62,7 @@ public with sharing class OrderExcelReportController {
 					orderItem.Product2.Name
 				});
 			}
+		System.debug('getTableData excelData: '+excelData);
 
 		return EncodingUtil.base64Encode(Blob.valueOf(JSON.serialize(excelData)));
 	}

@@ -10,7 +10,21 @@ import getTableData from '@salesforce/apex/OrderExcelReportController.getTableDa
 import createContentVersion from '@salesforce/apex/OrderExcelReportController.createContentVersion';
 
 export default class OrderExcelReportPreview extends LightningElement {
-	@api recordId;
+	_recordId;
+	@api get recordId() {
+		return this._recordId;
+	}
+	set recordId(value) {
+		this._recordId = value;
+		console.log('set recordId', this.recordId);
+		if (this.recordId) {
+			this.showSpinner = true;
+			this.fillPreviewTableData()
+				.finally(()=>{
+					this.showSpinner = false;
+				})
+		}
+	}
 
 	showSpinner = false;
 
@@ -20,10 +34,8 @@ export default class OrderExcelReportPreview extends LightningElement {
 	cdlId;
 	urlToCD;
 
-	async connectedCallback() {
-		this.showSpinner = true;
-
-		console.log('recordId', this.recordId);
+	async fillPreviewTableData() {
+		console.log('fillPreviewTableData recordId', this.recordId);
 
 		//await loadScript(this, sheetjs);
 
@@ -37,18 +49,16 @@ export default class OrderExcelReportPreview extends LightningElement {
 		);
 		console.log('decodedString', decodedString);
 		const jsonData = JSON.parse(decodedString);
-		console.log('jsonData', jsonData);
+		console.log('jsonData', JSON.stringify(jsonData));
 		// First row is headers
 		this.headers = jsonData[0];
-		console.log('headers', this.headers);
+		console.log('headers', JSON.stringify(this.headers));
 		// Rest is data
 		this.data = jsonData.slice(1).map((row, index) => ({
 			id: index,
 			cells: row
 		}));
-		console.log('data', this.data);
-
-		this.showSpinner = false;
+		console.log('data', JSON.stringify(this.data));
 	}
 
 	async handleCreateFile(event) {
