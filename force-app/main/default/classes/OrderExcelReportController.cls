@@ -25,15 +25,15 @@ public with sharing class OrderExcelReportController {
 
 		if (String.isNotBlank(orderId)) {
 			order = [
-				SELECT Id, CreatedDate
-					,Name
-					,(SELECT Id, CreatedDate
+
+					SELECT Id, CreatedDate
 					,EffectiveDate
+						,Name
 					,(SELECT Id, CreatedDate
 					,Product2Id, Product2.Name
 					,Quantity
 				FROM OrderItems ORDER BY CreatedDate ASC)
-				FROM Orders)
+
 				FROM Order
 				WHERE Id = :orderId
 			];
