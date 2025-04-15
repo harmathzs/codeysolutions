@@ -6,8 +6,8 @@ import {LightningElement, api} from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
 import { CloseActionScreenEvent } from 'lightning/actions';
 
-// import getTableData from '@salesforce/apex/AccountOrderReportController.getTableData';
-// import createContentVersion from '@salesforce/apex/AccountOrderReportController.createContentVersion';
+import getTableData from '@salesforce/apex/OrderExcelReportController.getTableData';
+import createContentVersion from '@salesforce/apex/OrderExcelReportController.createContentVersion';
 
 export default class OrderExcelReportPreview extends LightningElement {
 	@api recordId;
@@ -26,7 +26,7 @@ export default class OrderExcelReportPreview extends LightningElement {
 		//await loadScript(this, sheetjs);
 
 		// Get the base64 encoded data
-		//const base64Data = await getTableData({accountId: this.recordId});
+		const base64Data = await getTableData({orderId: this.recordId});
 		console.log('base64Data', base64Data);
 		// Decode base64 to string
 		// Use TextDecoder for UTF-8 decoding
@@ -53,7 +53,7 @@ export default class OrderExcelReportPreview extends LightningElement {
 		this.showSpinner = true;
 
 		//console.log('handleCreateFile event', event);
-		//this.cdlId = await createContentVersion({accountId: this.recordId});
+		this.cdlId = await createContentVersion({orderId: this.recordId});
 		this.urlToCD = '/'+this.cdlId;
 
 		this.showSpinner = false;
