@@ -23,6 +23,8 @@ export default class OrderExcelReportPreview extends LightningElement {
 	async connectedCallback() {
 		this.showSpinner = true;
 
+		console.log('recordId', this.recordId);
+
 		//await loadScript(this, sheetjs);
 
 		// Get the base64 encoded data

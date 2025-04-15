@@ -53,14 +53,14 @@ public with sharing class OrderExcelReportController {
 			'Product Name'
 		});
 
-
-		for (OrderItem orderItem: order.OrderItems) {
-			excelData.add(new List<String>{
-				order.Name,
-				String.valueOf(order.EffectiveDate),
-				orderItem.Product2.Name
-			});
-		}
+		if (order!=null && order.OrderItems!=null && !order.OrderItems.isEmpty())
+			for (OrderItem orderItem: order.OrderItems) {
+				excelData.add(new List<String>{
+					order.Name,
+					String.valueOf(order.EffectiveDate),
+					orderItem.Product2.Name
+				});
+			}
 
 		return EncodingUtil.base64Encode(Blob.valueOf(JSON.serialize(excelData)));
 	}
