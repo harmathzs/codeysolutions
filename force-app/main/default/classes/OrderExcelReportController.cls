@@ -25,15 +25,16 @@ public with sharing class OrderExcelReportController {
 
 		if (String.isNotBlank(orderId)) {
 			order = [
-
 					SELECT Id, CreatedDate
-					,EffectiveDate
+						,EffectiveDate
 						,Name
+						,OrderNumber
+						,Status
 					,(SELECT Id, CreatedDate
-					,Product2Id, Product2.Name
-					,Quantity
-				FROM OrderItems ORDER BY CreatedDate ASC)
-
+						,Product2Id, Product2.Name
+						,Quantity
+						,UnitPrice
+					FROM OrderItems ORDER BY CreatedDate ASC)
 				FROM Order
 				WHERE Id = :orderId
 			];
@@ -49,7 +50,7 @@ public with sharing class OrderExcelReportController {
 
 		List<List<String>> excelData = new List<List<String>>();
 		excelData.add(new List<String>{
-			'Order Name',
+			'Order Number',
 			'Order Start Date',
 			'Product Name'
 		});
