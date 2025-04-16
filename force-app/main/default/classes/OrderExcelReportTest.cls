@@ -4,7 +4,14 @@
 
 @IsTest
 private class OrderExcelReportTest {
+	@TestSetup static void testFactory() {
+
+	}
+
 	@IsTest
-	static void testBehavior() {
+	static void testStaticNull() {
+		OrderExcelReportController.queryOrder(null);
+		OrderExcelReportController.createContentVersion(null);
+		OrderExcelReportController.getTableData(null);
 	}
 }
