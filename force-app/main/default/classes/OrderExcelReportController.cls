@@ -6,6 +6,8 @@ public with sharing class OrderExcelReportController {
 	public String orderId {get; set;}
 	public Order order {get; set;}
 
+	public Map<String, String> effectivedateStrByOrderid {get; set;}
+
 	public OrderExcelReportController(ApexPages.StandardController controller) {
 		orderId = controller.getId();
 		System.debug('OrderExcelReportController orderId: '+orderId);
@@ -16,6 +18,10 @@ public with sharing class OrderExcelReportController {
 			String jsonOrder = JSON.serializePretty(order);
 			System.debug('OrderExcelReportController order json: ');
 			System.debug(jsonOrder);
+
+			effectivedateStrByOrderid = new Map<String, String>{
+				orderId => String.valueOf(order.EffectiveDate)
+			};
 		}
 	}
 

@@ -22,7 +22,7 @@
 			<tr>
 				<td>{!order.OrderNumber}</td>
 				<td>{!order.Status}</td>
-				<td>{!order.EffectiveDate}</td>
+				<td>{!effectivedateStrByOrderid[orderId]}</td>
 				<td>{!orderitem.Product2.Name}</td>
 				<td>{!orderitem.Quantity}</td>
 				<td>{!orderitem.UnitPrice}</td>
