@@ -68,6 +68,8 @@ public with sharing class OrderExcelReportController {
 	}
 
 	public List<List<String>> populateExcelData(String orderId) {
+		Order order = OrderExcelReportController.queryOrder(orderId);
+
 		excelData = new List<List<String>>();
 		excelData.add(new List<String>{
 			'Order Number',
