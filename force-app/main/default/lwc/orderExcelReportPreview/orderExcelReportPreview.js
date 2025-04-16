@@ -5,6 +5,7 @@
 import {LightningElement, api} from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
 import { CloseActionScreenEvent } from 'lightning/actions';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 import getTableData from '@salesforce/apex/OrderExcelReportController.getTableData';
 import createContentVersion from '@salesforce/apex/OrderExcelReportController.createContentVersion';
@@ -64,12 +65,27 @@ export default class OrderExcelReportPreview extends LightningElement {
 	async handleCreateFile(event) {
 		this.showSpinner = true;
 
-		//console.log('handleCreateFile event', event);
 		this.cdlId = await createContentVersion({orderId: this.recordId});
-		this.urlToCD = '/'+this.cdlId;
+		this.urlToCD = '/' + this.cdlId;
 
 		this.showSpinner = false;
+
+		// Show toast message
+		const toastEvent = new ShowToastEvent({
+			title: 'Success',
+			message: `XLSX file created! ContentDocument Id: ${this.cdlId}`,
+			messageData: {
+				url: this.urlToCD,
+				label: 'This is a clickable link to the new Excel file ...',
+				target: '_blank'
+			},
+			variant: 'success',
+			mode: 'dismissable'
+		});
+		this.dispatchEvent(toastEvent);
+
 	}
+
 
 	handleShowTable(event) {
 		//console.log('handleShowTable event', event);
