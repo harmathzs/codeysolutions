@@ -75,7 +75,7 @@ export default class OrderExcelReportPreview extends LightningElement {
 		//console.log('handleShowTable event', event);
 
 		// Create the URL for the Visualforce page with the record ID
-		let vfPageUrl = '/apex/AccountOrderReport?id=' + this.recordId;
+		let vfPageUrl = '/apex/OrderExcelReport?id=' + this.recordId;
 
 		// Open the URL in a new window/tab which will trigger the Excel download
 		window.open(vfPageUrl, '_blank');

@@ -77,16 +77,16 @@ public with sharing class OrderExcelReportController {
 	@AuraEnabled
 	public static String createContentVersion(String orderId) {
 		try {
-			String orderName = orderId;
+			String orderNumber = orderId;
 			if (String.isNotBlank(orderId)) {
-				Order[] orders = [SELECT Id, Name FROM Order WHERE Id =:orderId];
+				Order[] orders = [SELECT Id, Name, OrderNumber FROM Order WHERE Id =:orderId];
 				if (orders!=null && !orders.isEmpty()) {
-					orderName = orders[0].Name;
+					orderNumber = orders[0].OrderNumber;
 				}
 			}
 
 			// Get the page content as blob
-			PageReference pageRef; // TODO = Page.AccountOrderReport;
+			PageReference pageRef = Page.OrderExcelReport;
 			pageRef.getParameters().put('id', orderId);
 			Blob excelBlob;
 			if (!Test.isRunningTest())
@@ -96,7 +96,7 @@ public with sharing class OrderExcelReportController {
 
 			// Create ContentVersion
 			ContentVersion cv = new ContentVersion();
-			cv.Title = 'OrderExcelReport - ' + orderName + ' - ' + String.valueOf(System.now());
+			cv.Title = 'OrderExcelReport - ' + orderNumber + ' - ' + String.valueOf(System.now());
 			cv.PathOnClient = cv.Title + '.xlsx';
 			cv.VersionData = excelBlob;
 			cv.IsMajorVersion = true;
