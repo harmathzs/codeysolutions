@@ -51,16 +51,22 @@ public with sharing class OrderExcelReportController {
 		List<List<String>> excelData = new List<List<String>>();
 		excelData.add(new List<String>{
 			'Order Number',
+			'Status',
 			'Order Start Date',
-			'Product Name'
+			'Product Name',
+			'Quantity',
+			'Unit Price'
 		});
 
 		if (order!=null && order.OrderItems!=null && !order.OrderItems.isEmpty())
 			for (OrderItem orderItem: order.OrderItems) {
 				excelData.add(new List<String>{
-					order.Name,
+					order.OrderNumber,
+					order.Status,
 					String.valueOf(order.EffectiveDate),
-					orderItem.Product2.Name
+					orderItem.Product2.Name,
+					String.valueOf(orderItem.Quantity),
+					String.valueOf(orderItem.UnitPrice)
 				});
 			}
 		System.debug('getTableData excelData: '+excelData);
