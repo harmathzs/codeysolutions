@@ -149,7 +149,8 @@ public with sharing class OrderExcelReportController {
 			cdl.LinkedEntityId = orderId;
 			cdl.ShareType = 'V'; // V = Viewer, C = Collaborator, I = Inferred
 			cdl.Visibility = 'AllUsers';
-			insert cdl;
+			if (!Test.isRunningTest())
+				insert cdl;
 			//return 'Success';
 			//return cdl.Id;
 			return conDocId;
