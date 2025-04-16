@@ -18,15 +18,13 @@
 			<th>Unit Price</th>
 		</tr>
 
-		<apex:repeat var="orderitem" value="{!order.OrderItems}">
+		<apex:repeat var="row" value="{!excelData}">
 			<tr>
-				<td>{!order.OrderNumber}</td>
-				<td>{!order.Status}</td>
-				<td>{!effectivedateStrByOrderid[orderId]}</td>
-				<td>{!orderitem.Product2.Name}</td>
-				<td>{!orderitem.Quantity}</td>
-				<td>{!orderitem.UnitPrice}</td>
+				<apex:repeat var="cell" value="{!row}">
+					<td>{!cell}</td>
+				</apex:repeat>
 			</tr>
 		</apex:repeat>
+
 	</table>
 </apex:page>

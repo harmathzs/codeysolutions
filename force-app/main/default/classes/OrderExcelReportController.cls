@@ -8,7 +8,7 @@ public with sharing class OrderExcelReportController {
 
 	public Map<String, String> effectivedateStrByOrderid {get; set;}
 
-	List<List<String>> excelData {get; set;}
+	public List<List<String>> excelData {get; set;}
 
 	public OrderExcelReportController() {
 		if (ApexPages.currentPage()!=null && ApexPages.currentPage().getParameters().containsKey('id'))
@@ -23,6 +23,8 @@ public with sharing class OrderExcelReportController {
 			effectivedateStrByOrderid = new Map<String, String>{
 				orderId => String.valueOf(order.EffectiveDate)
 			};
+
+			excelData = populateExcelData(orderId);
 		}
 	}
 
@@ -40,6 +42,8 @@ public with sharing class OrderExcelReportController {
 			effectivedateStrByOrderid = new Map<String, String>{
 				orderId => String.valueOf(order.EffectiveDate)
 			};
+
+			excelData = populateExcelData(orderId);
 		}
 	}
 
