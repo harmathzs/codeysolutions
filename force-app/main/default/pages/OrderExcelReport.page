@@ -2,5 +2,20 @@
  - Created by Harmath Zsolt on 2025. 04. 16..
  -->
 
-<apex:page id="OrderExcelReport">
+<apex:page
+	id="OrderExcelReport"
+	standardController="Order"
+	extensions="OrderExcelReportController"
+	contentType="application/vnd.ms-excel"
+>
+	<table border="1" style="border-collapse: collapse;">
+		<tr>
+			<th>Order Number</th>
+			<th>Status</th>
+			<th>Order Start Date</th>
+			<th>Product Name</th>
+			<th>Quantity</th>
+			<th>Unit Price</th>
+		</tr>
+	</table>
 </apex:page>
