@@ -10,12 +10,9 @@
 >
 	<table border="1" style="border-collapse: collapse;">
 		<tr>
-			<th>Order Number</th>
-			<th>Status</th>
-			<th>Order Start Date</th>
-			<th>Product Name</th>
-			<th>Quantity</th>
-			<th>Unit Price</th>
+			<apex:repeat var="header" value="{!excelData[0]}">
+				<th>{!header}</th>
+			</apex:repeat>
 		</tr>
 
 		<apex:repeat var="row" value="{!excelData}">
@@ -25,6 +22,5 @@
 				</apex:repeat>
 			</tr>
 		</apex:repeat>
-
 	</table>
 </apex:page>
