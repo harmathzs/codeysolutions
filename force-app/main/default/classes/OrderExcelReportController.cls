@@ -8,6 +8,24 @@ public with sharing class OrderExcelReportController {
 
 	public Map<String, String> effectivedateStrByOrderid {get; set;}
 
+	List<List<String>> excelData {get; set;}
+
+	public OrderExcelReportController() {
+		if (ApexPages.currentPage()!=null && ApexPages.currentPage().getParameters().containsKey('id'))
+			orderId = ApexPages.currentPage().getParameters().get('id');
+		if (String.isNotBlank(orderId))
+			order = OrderExcelReportController.queryOrder(orderId);
+		if (order!=null) {
+			String jsonOrder = JSON.serializePretty(order);
+			System.debug('OrderExcelReportController order json: ');
+			System.debug(jsonOrder);
+
+			effectivedateStrByOrderid = new Map<String, String>{
+				orderId => String.valueOf(order.EffectiveDate)
+			};
+		}
+	}
+
 	public OrderExcelReportController(ApexPages.StandardController controller) {
 		orderId = controller.getId();
 		System.debug('OrderExcelReportController orderId: '+orderId);
@@ -49,12 +67,8 @@ public with sharing class OrderExcelReportController {
 		return order;
 	}
 
-	@AuraEnabled
-	public static String getTableData(String orderId) {
-		Order order = queryOrder(orderId);
-		System.debug('getTableData order: '+order);
-
-		List<List<String>> excelData = new List<List<String>>();
+	public List<List<String>> populateExcelData(String orderId) {
+		excelData = new List<List<String>>();
 		excelData.add(new List<String>{
 			'Order Number',
 			'Status',
@@ -75,6 +89,18 @@ public with sharing class OrderExcelReportController {
 					String.valueOf(orderItem.UnitPrice)
 				});
 			}
+		return excelData;
+	}
+
+	@AuraEnabled
+	public static String getTableData(String orderId) {
+		Order order = queryOrder(orderId);
+		System.debug('getTableData order: '+order);
+
+		OrderExcelReportController instance = new OrderExcelReportController();
+		instance.orderId = orderId;
+		List<List<String>> excelData = instance.populateExcelData(orderId);
+
 		System.debug('getTableData excelData: '+excelData);
 
 		return EncodingUtil.base64Encode(Blob.valueOf(JSON.serialize(excelData)));
