@@ -2,15 +2,20 @@
  * Created by Harmath Zsolt on 2025. 04. 16..
  */
 
-@RestResource(UrlMapping='/typeformwebhook')
+@RestResource(urlMapping='/typeformwebhook')
 global with sharing class TypeformWebhookListener {
 	@HttpPost
 	global static void handleWebhook() {
 		RestRequest req = RestContext.request;
-		String requestBody;
-		if (req!=null) requestBody = req.requestBody.toString();
-		// TODO - process Typeform payload, insert new incoming lead
-		System.debug('handleWebhook requestBody: '+requestBody);
+		System.debug('TypeformWebhookListener handleWebhook req: '+req);
+		if (req!=null) {
+			String requestBody = req.requestBody.toString();
+			System.debug('TypeformWebhookListener handleWebhook requestBody: '+requestBody);
+		}
+		RestResponse res = RestContext.response;
+		res.responseBody = Blob.valueOf('{"success": true}');
+		res.statusCode = 200;
 	}
 }
+
 
