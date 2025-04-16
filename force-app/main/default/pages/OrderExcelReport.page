@@ -17,5 +17,16 @@
 			<th>Quantity</th>
 			<th>Unit Price</th>
 		</tr>
+
+		<apex:repeat var="orderitem" value="{!order.OrderItems}">
+			<tr>
+				<td>{!order.OrderNumber}</td>
+				<td>{!order.Status}</td>
+				<td>{!order.EffectiveDate}</td>
+				<td>{!orderitem.Product2.Name}</td>
+				<td>{!orderitem.Quantity}</td>
+				<td>{!orderitem.UnitPrice}</td>
+			</tr>
+		</apex:repeat>
 	</table>
 </apex:page>
