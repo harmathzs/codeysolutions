@@ -8,6 +8,7 @@ global with sharing class TypeformWebhookListener {
 	global static void handleWebhook() {
 		RestRequest req = RestContext.request;
 		System.debug('TypeformWebhookListener handleWebhook req: '+req);
+		Lead lead = new Lead(LastName='Noleadcreated', Company='Noleadcreated');
 		if (req!=null) {
 			String requestBody = req.requestBody.toString();
 			System.debug('TypeformWebhookListener handleWebhook requestBody: ' + requestBody);
@@ -291,11 +292,36 @@ global with sharing class TypeformWebhookListener {
 
 			}
 			System.debug('questionids: '+questionids);
+			// {In which country are you located?=SiSwcuE6aXMa, What is the name of your company?=9QmKI5zFZPGm, What is your email address?=X1lJ8iinKvjH, What is your name?=dpN7FpUkEdVc, What is your phone number? (Optional)=NWURJERnyf7o}
+
 			System.debug('answerToQuestionidMap: '+answerToQuestionidMap);
+			// {9QmKI5zFZPGm=Ax Corp, NWURJERnyf7o=+36302657841, SiSwcuE6aXMa=Hungary, X1lJ8iinKvjH=a@b.hu, dpN7FpUkEdVc=Jolán}
+
+
+			for (String questionidKey: questionids.keySet()) {
+				switch on questionidKey {
+					when 'What is your name?' {
+						lead.LastName = answerToQuestionidMap.get(questionids.get(questionidKey));
+					}
+					when 'What is your email address?' {
+						lead.Email = answerToQuestionidMap.get(questionids.get(questionidKey));
+					}
+					when 'What is the name of your company?' {
+						lead.Company = answerToQuestionidMap.get(questionids.get(questionidKey));
+					}
+					when 'What is your phone number? (Optional)' {
+						lead.Phone = answerToQuestionidMap.get(questionids.get(questionidKey));
+					}
+					when 'In which country are you located?' {
+						lead.Country = answerToQuestionidMap.get(questionids.get(questionidKey));
+					}
+				}
+			}
+			insert lead;
 		}
 
 		RestResponse res = RestContext.response;
-		res.responseBody = Blob.valueOf('{"success": true}');
+		res.responseBody = Blob.valueOf(JSON.serialize(lead));
 		res.statusCode = 200;
 	}
 }
