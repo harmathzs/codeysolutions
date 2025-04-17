@@ -237,7 +237,7 @@ global with sharing class TypeformWebhookListener {
 			if (payloadMap!=null && payloadMap.containsKey('form_response')) {
 				Map<String, Object> formResponseMap = (Map<String, Object>) payloadMap.get('form_response');
 				if (formResponseMap!=null && formResponseMap.containsKey('definition')) {
-					Map<String, Object> definitionMap = (Map<String, Object>) payloadMap.get('definition');
+					Map<String, Object> definitionMap = (Map<String, Object>) formResponseMap.get('definition');
 					if (definitionMap!=null && definitionMap.containsKey('fields')) {
 						Object[] fieldsList = (List<Object>) definitionMap.get('fields');
 						if (fieldsList!=null && !fieldsList.isEmpty()) {
