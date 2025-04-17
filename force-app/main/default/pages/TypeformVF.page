@@ -15,4 +15,12 @@
 	</div>
 
 	<!--<div data-tf-live="01JRZ9BEXRKFBHHKHWE9M1X01E"></div><script src="//embed.typeform.com/next/embed.js"></script>-->
+
+	<div>
+		<p>
+			<apex:form title="Reload form">
+				<apex:commandButton title="Reload form" value="Reload form" onclick="location.reload(); return false;" />
+			</apex:form>
+		</p>
+	</div>
 </apex:page>
