@@ -257,8 +257,30 @@ global with sharing class TypeformWebhookListener {
 					if (answersList!=null && !answersList.isEmpty()) {
 						for (Object answerObj: answersList) {
 							Map<String, Object> answerMap = (Map<String, Object>) answerObj;
-							if (answerMap!=null && answerMap.containsKey('text') && answerMap.containsKey('field')) {
-								String answerStr = answerMap.get('text').toString();
+							if (answerMap!=null && answerMap.containsKey('type') && answerMap.containsKey('field')) {
+								String typeStr = answerMap.get('type').toString();
+								String answerStr = '';
+								switch on typeStr {
+									when 'text' {
+										if (answerMap.containsKey('text'))
+											answerStr = answerMap.get('text').toString();
+									}
+									when 'email' {
+										if (answerMap.containsKey('email'))
+											answerStr = answerMap.get('email').toString();
+									}
+									when 'phone_number' {
+										if (answerMap.containsKey('phone_number'))
+											answerStr = answerMap.get('phone_number').toString();
+									}
+									when 'choice' {
+										if (answerMap.containsKey('choice')) {
+											Map<String, Object> choiceMap = (Map<String, Object>) answerMap.get('choice');
+											answerStr = choiceMap.get('label').toString();
+										}
+									}
+								}
+
 								Map<String, Object> answerFieldMap = (Map<String, Object>) answerMap.get('field');
 								String questionidStr = answerFieldMap.get('id').toString();
 								answerToQuestionidMap.put(questionidStr, answerStr);
