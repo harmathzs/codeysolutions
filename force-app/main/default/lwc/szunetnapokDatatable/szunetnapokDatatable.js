@@ -15,7 +15,7 @@ export default class SzunetnapokDatatable extends LightningElement {
 		console.log('set inputJson value', value);
 		this._inputJson = value;
 		this.inputObj = JSON.parse(value);
-		this.data = this.inputObj.days;
+		this.data = [...this.inputObj.days];
 	}
 
 	columns = [
