@@ -73,8 +73,8 @@ public with sharing class OrdersReportOnAccountController {
 		return acc;
 	}
 
-	public List<List<String>> populateExcelData(String orderId) {
-		Order order = OrderExcelReportController.queryOrder(orderId);
+	public List<List<String>> populateExcelData(String accountId) {
+		Account acc = OrdersReportOnAccountController.queryAccount(accountId);
 
 		excelData = new List<List<String>>();
 		excelData.add(new List<String>{
@@ -86,34 +86,32 @@ public with sharing class OrdersReportOnAccountController {
 			'Unit Price'
 		});
 
-		if (order!=null && order.OrderItems!=null && !order.OrderItems.isEmpty())
-			for (OrderItem orderItem: order.OrderItems) {
-				excelData.add(new List<String>{
-					order.OrderNumber,
-					order.Status,
-					String.valueOf(order.EffectiveDate),
-					orderItem.Product2.Name,
-					String.valueOf(orderItem.Quantity),
-					String.valueOf(orderItem.UnitPrice)
-				});
-			}
+		if (acc!=null && acc.Orders!=null && !acc.Orders.isEmpty())
+			for (Order order: acc.Orders)
+				for (OrderItem orderItem: order.OrderItems) {
+					excelData.add(new List<String>{
+						order.OrderNumber,
+						order.Status,
+						String.valueOf(order.EffectiveDate),
+						orderItem.Product2.Name,
+						String.valueOf(orderItem.Quantity),
+						String.valueOf(orderItem.UnitPrice)
+					});
+				}
 		return excelData;
 	}
 
-//	@AuraEnabled
-//	public static String getTableData(String orderId) {
-//		Order order = queryOrder(orderId);
-//		System.debug('getTableData order: '+order);
-//
-//		OrderExcelReportController instance = new OrderExcelReportController();
-//		instance.orderId = orderId;
-//		List<List<String>> excelData = instance.populateExcelData(orderId);
-//
-//		System.debug('getTableData excelData: '+excelData);
-//
-//		return EncodingUtil.base64Encode(Blob.valueOf(JSON.serialize(excelData)));
-//	}
-//
+	@AuraEnabled
+	public static String getTableData(String accountId) {
+		Account acc = queryAccount(accountId);
+
+		OrdersReportOnAccountController instance = new OrdersReportOnAccountController();
+		instance.accountId = accountId;
+		List<List<String>> excelData = instance.populateExcelData(accountId);
+
+		return EncodingUtil.base64Encode(Blob.valueOf(JSON.serialize(excelData)));
+	}
+
 //	@AuraEnabled
 //	public static String createContentVersion(String orderId) {
 //		try {
