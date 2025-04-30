@@ -1,0 +1,30 @@
+<!--
+ - Created by Harmath Zsolt on 2025. 04. 30..
+ -->
+
+<apex:page
+	id="OrdersReportOnAccount"
+	standardController="Account"
+	extensions="OrdersReportOnAccountController"
+	contentType="application/vnd.ms-excel"
+>
+	<table border="1" style="border-collapse: collapse;">
+		<tr>
+			<apex:repeat var="header" value="{!excelData[0]}">
+				<th>{!header}</th>
+			</apex:repeat>
+		</tr>
+
+		<apex:variable var="index" value="{!0}" />
+		<apex:repeat var="row" value="{!excelData}">
+			<apex:outputText rendered="{!index > 0}">
+				<tr>
+					<apex:repeat var="cell" value="{!row}">
+						<td>{!cell}</td>
+					</apex:repeat>
+				</tr>
+			</apex:outputText>
+			<apex:variable var="index" value="{!index + 1}" />
+		</apex:repeat>
+	</table>
+</apex:page>
