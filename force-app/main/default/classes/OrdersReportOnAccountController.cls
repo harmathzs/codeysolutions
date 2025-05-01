@@ -38,6 +38,7 @@ public with sharing class OrdersReportOnAccountController {
 					,Description
 					,(SELECT Id
 						,OrderNumber
+						,Status
 						,EffectiveDate
 						,ActivatedDate
 						,EndDate
