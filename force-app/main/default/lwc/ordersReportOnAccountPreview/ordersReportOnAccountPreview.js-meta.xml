@@ -4,4 +4,15 @@
 	<description>Orders Report On Account Preview</description>
 	<isExposed>true</isExposed>
 	<masterLabel>Orders Report On Account Preview</masterLabel>
+	<targets>
+		<target>lightning__AppPage</target>
+		<target>lightning__RecordPage</target>
+		<target>lightning__RecordAction</target>
+		<target>lightning__HomePage</target>
+	</targets>
+	<targetConfigs>
+		<targetConfig targets="lightning__RecordPage">
+			<property name="recordId" type="String" description="recordId" />
+		</targetConfig>
+	</targetConfigs>
 </LightningComponentBundle>
