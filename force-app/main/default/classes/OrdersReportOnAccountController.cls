@@ -65,8 +65,11 @@ public with sharing class OrdersReportOnAccountController {
 							,PricebookEntry.Pricebook2Id
 							,PricebookEntry.Pricebook2.Name
 						FROM OrderItems)
-					FROM Orders)
+					FROM Orders
+					LIMIT 100
+					)
 				FROM Account
+				WHERE Id = :accountId
 			];
 		}
 
