@@ -64,9 +64,9 @@ private class OrdersReportOnAccountTest {
 		Account queriedAccount = OrdersReportOnAccountController.queryAccount(testAccount.Id);
 
 		// Test getTableData method
-		OrdersReportOnAccountController.getTableData(testOrder.Id);
+		OrdersReportOnAccountController.getTableData(testAccount.Id);
 
 		// Test createContentVersion method
-		OrdersReportOnAccountController.createContentVersion(testOrder.Id);
+		OrdersReportOnAccountController.createContentVersion(testAccount.Id);
 	}
 }
