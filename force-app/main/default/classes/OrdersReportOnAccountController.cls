@@ -135,11 +135,11 @@ public with sharing class OrdersReportOnAccountController {
 			}
 
 			// Get the page content as blob
-			//PageReference pageRef = Page.OrderExcelReport;
-			//pageRef.getParameters().put('id', orderId);
+			PageReference pageRef = Page.OrdersReportOnAccount;
+			pageRef.getParameters().put('id', accountId);
 			Blob excelBlob;
 			if (!Test.isRunningTest()) {
-				//excelBlob = pageRef.getContent();
+				excelBlob = pageRef.getContent();
 			}
 			else
 				excelBlob = Blob.valueOf('Test');
