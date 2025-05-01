@@ -6,6 +6,7 @@ public with sharing class OrdersReportOnAccountController {
 	public String accountId {get; set;}
 	public Account acc {get; set;}
 
+	public List<String> excelHeader {get; set;}
 	public List<List<String>> excelData {get; set;}
 
 	public OrdersReportOnAccountController() {
@@ -80,15 +81,19 @@ public with sharing class OrdersReportOnAccountController {
 	public List<List<String>> populateExcelData(String accountId) {
 		Account acc = OrdersReportOnAccountController.queryAccount(accountId);
 
-		excelData = new List<List<String>>();
-		excelData.add(new List<String>{
+		excelHeader = new List<String>{
 			'Order Number',
 			'Status',
 			'Order Start Date',
+			'Activated Date',
+			'Product Record type Name',
 			'Product Name',
 			'Quantity',
 			'Unit Price'
-		});
+		};
+
+		excelData = new List<List<String>>();
+		excelData.add(excelHeader);
 
 		if (acc!=null && acc.Orders!=null && !acc.Orders.isEmpty())
 			for (Order order: acc.Orders)
@@ -97,6 +102,8 @@ public with sharing class OrdersReportOnAccountController {
 						order.OrderNumber,
 						order.Status,
 						String.valueOf(order.EffectiveDate),
+						String.valueOf(order.ActivatedDate),
+						orderItem.Product2.RecordType.Name,
 						orderItem.Product2.Name,
 						String.valueOf(orderItem.Quantity),
 						String.valueOf(orderItem.UnitPrice)
