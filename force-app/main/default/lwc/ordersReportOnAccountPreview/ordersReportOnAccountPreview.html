@@ -4,4 +4,45 @@
 
 <!-- Orders Report On Account Preview -->
 <template>
+	<lightning-card title="Table Preview">
+		<lightning-spinner if:true={showSpinner}></lightning-spinner>
+
+		<div class="slds-p-around_medium slds-scrollable" style="height: 400px;">
+			<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+				<thead>
+				<tr class="slds-line-height_reset">
+					<template for:each={headers} for:item="header">
+						<th key={header}>{header}</th>
+					</template>
+				</tr>
+				</thead>
+				<tbody>
+				<template for:each={data} for:item="row">
+					<tr key={row.id} class="slds-hint-parent">
+						<template for:each={row.cells} for:item="cell">
+							<td key={cell}>{cell}</td>
+						</template>
+					</tr>
+				</template>
+				</tbody>
+			</table>
+		</div>
+		<div class="slds-p-around_medium">
+			<lightning-layout horizontal-align="space">
+				<lightning-layout-item size="3" class="slds-p-around_medium">
+					<lightning-button icon-name="doctype:excel" label="Create File" onclick={handleCreateFile}></lightning-button>
+				</lightning-layout-item>
+				<lightning-layout-item size="2" class="slds-p-around_medium">
+					<lightning-button icon-name="action:download" label="Download" onclick={handleShowTable}></lightning-button>
+				</lightning-layout-item>
+				<lightning-layout-item size="2" class="slds-p-around_medium">
+					<lightning-button icon-name="action:close" label="Close" variant="brand" onclick={handleCloseWindow}></lightning-button>
+				</lightning-layout-item>
+			</lightning-layout>
+		</div>
+		<div if:true={cdlId} class="slds-p-around_medium">
+			<p>XLSX file created! ContentDocument Id: {cdlId}</p>
+			<p><a href={urlToCD} target="_blank">This is a clickable link to the new Excel file ... </a></p>
+		</div>
+	</lightning-card>
 </template>
