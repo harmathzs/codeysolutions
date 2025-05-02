@@ -45,18 +45,18 @@ public with sharing class OrdersReportOnAccountController {
 						,EndDate
 						,TotalAmount
 						,Description
-						,RecordTypeId
+						/*,RecordTypeId
 						,RecordType.Name
-						,RecordType.DeveloperName
+						,RecordType.DeveloperName*/
 						,Pricebook2Id
 						,Pricebook2.Name
 						,(SELECT Id
 							,Product2Id
 							,Product2.Name
 							,Product2.Description
-							,Product2.RecordTypeId
+							/*,Product2.RecordTypeId
 							,Product2.RecordType.Name
-							,Product2.RecordType.DeveloperName
+							,Product2.RecordType.DeveloperName*/
 							,Description
 							,Quantity
 							,UnitPrice
@@ -86,8 +86,8 @@ public with sharing class OrdersReportOnAccountController {
 			'Status',
 			'Order Start Date',
 			'Activated Date',
-			'Product Record type Name',
 			'Product Name',
+			'Product Description',
 			'Quantity',
 			'Unit Price'
 		};
@@ -103,8 +103,8 @@ public with sharing class OrdersReportOnAccountController {
 						order.Status,
 						String.valueOf(order.EffectiveDate),
 						String.valueOf(order.ActivatedDate),
-						orderItem.Product2.RecordType.Name,
-						orderItem.Product2.Name,
+						String.isNotBlank(orderItem.Product2.Name) ? orderItem.Product2.Name : '-',
+						String.isNotBlank(orderItem.Product2.Description) ? orderItem.Product2.Description : '-',
 						String.valueOf(orderItem.Quantity),
 						String.valueOf(orderItem.UnitPrice)
 					});
