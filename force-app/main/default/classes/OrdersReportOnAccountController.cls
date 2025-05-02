@@ -100,9 +100,9 @@ public with sharing class OrdersReportOnAccountController {
 				for (OrderItem orderItem: order.OrderItems) {
 					excelData.add(new List<String>{
 						order.OrderNumber,
-						order.Status,
-						String.valueOf(order.EffectiveDate),
-						String.valueOf(order.ActivatedDate),
+						String.isNotBlank(order.Status) ? order.Status : '-',
+						order.EffectiveDate!=null ? String.valueOf(order.EffectiveDate) : '-',
+						order.ActivatedDate!=null ? String.valueOf(order.ActivatedDate) : '-',
 						String.isNotBlank(orderItem.Product2.Name) ? orderItem.Product2.Name : '-',
 						String.isNotBlank(orderItem.Product2.Description) ? orderItem.Product2.Description : '-',
 						String.valueOf(orderItem.Quantity),
