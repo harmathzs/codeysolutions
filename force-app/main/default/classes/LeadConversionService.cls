@@ -1,4 +1,5 @@
 public with sharing class LeadConversionService {
+	@AuraEnabled
 	public static Map<String, Object> customConvertLead(Lead lead) {
 		Map<String, Object> resultMap = new Map<String, SObject>{
 			'Account' => null,
@@ -9,6 +10,9 @@ public with sharing class LeadConversionService {
 
 		Database.LeadConvert lc = new Database.LeadConvert();
 		lc.setLeadId(lead.Id);
+
+		LeadStatus convertStatus = [SELECT Id, ApiName FROM LeadStatus WHERE IsConverted=TRUE LIMIT 1];
+		lc.setConvertedStatus(convertStatus.ApiName);
 
 		Database.LeadConvertResult lcr = Database.convertLead(lc);
 		if (lcr.isSuccess()) {
