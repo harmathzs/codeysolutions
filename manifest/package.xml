@@ -119,6 +119,7 @@
         <members>hed__Test__c</members>
         <members>hed__Time_Block__c</members>
         <members>hed__Trigger_Handler__c</members>
+        <members>Dog__c</members>
         <name>CustomObject</name>
     </types>
     <types>
