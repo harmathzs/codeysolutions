@@ -3,7 +3,7 @@
  */
 
 public with sharing class SharingService {
-	public static void manualShareDog(Id recordToShareId, Id shareWithId) {
+	public static Dog__Share manualShareDog(Id recordToShareId, Id shareWithId) {
 		// Create a new sharing object
 		Dog__Share dogShare = new Dog__Share();
 
@@ -20,5 +20,6 @@ public with sharing class SharingService {
 
 		// Activate the defined access to the record
 		insert dogShare;
+		return dogShare;
 	}
 }
