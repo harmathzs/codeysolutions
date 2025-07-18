@@ -6,16 +6,27 @@ export default class StarWarsApiLwc extends LightningElement {
 
 	filmsColumns = [
 		{ label: 'Title', fieldName: 'title' },
-		{ label: 'Created', fieldName: 'created', type: 'date' },
+		//{ label: 'Created', fieldName: 'created', type: 'date' },
 		{ label: 'Director', fieldName: 'director' },
-		{ label: 'Edited', fieldName: 'edited', type: 'date' },
+		//{ label: 'Edited', fieldName: 'edited', type: 'date' },
 		{ label: 'Episode ID', fieldName: 'episodeId' },
 		{ label: 'Opening Crawl', fieldName: 'openingCrawl' },
 		{ label: 'Producer', fieldName: 'producer' },
 		{ label: 'Release Date', fieldName: 'releaseDate', type: 'date' },
 		{ label: 'URL', fieldName: 'url', type: 'url' },
 	];
-	peopleColumns;
+	peopleColumns= [
+		{ label: 'Name', fieldName: 'name' },
+		{ label: 'Birth Year', fieldName: 'birth_year' },
+		{ label: 'Eye Color', fieldName: 'eye_color' },
+		{ label: 'Gender', fieldName: 'gender' },
+		{ label: 'Hair Color', fieldName: 'hair_color' },
+		{ label: 'Height', fieldName: 'height' },
+		{ label: 'Homeworld', fieldName: 'homeworld', type: 'url' },
+		{ label: 'Mass', fieldName: 'mass' },
+		{ label: 'Skin Color', fieldName: 'skin_color' },
+		{ label: 'URL', fieldName: 'url', type: 'url' },
+	];
 	planetsColumns;
 	speciesColumns;
 	vehiclesColumns;
@@ -58,6 +69,7 @@ export default class StarWarsApiLwc extends LightningElement {
 				this.people=data;
 				console.log('people', this.people);
 				this.peopleJSON = JSON.stringify(this.people);
+				this.peopleTableData = [...this.people];
 			})
 			.catch(console.warn);
 

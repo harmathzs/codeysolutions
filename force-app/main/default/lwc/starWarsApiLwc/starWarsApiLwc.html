@@ -15,7 +15,12 @@
 				></lightning-datatable>
 			</lightning-tab>
 			<lightning-tab label="People">
-				<p>{peopleJSON}</p>
+				<lightning-datatable
+					key-field="url"
+					data={peopleTableData}
+					columns={peopleColumns}
+					title="People"
+				></lightning-datatable>
 			</lightning-tab>
 			<lightning-tab label="Planets">
 				<p>{planetsJSON}</p>
