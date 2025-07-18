@@ -9,4 +9,9 @@ public with sharing class BibleController {
 		System.debug('BibleController.getBibleComCustomSettings() result: '+result);
 		return result;
 	}
+
+	@AuraEnabled
+	public static Map<String, Bible_com_Metadata__mdt> getBibleComCustomMetadata() {
+		return Bible_com_Metadata__mdt.getAll();
+	}
 }

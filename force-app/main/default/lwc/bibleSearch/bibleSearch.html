@@ -4,5 +4,18 @@
 
 <!-- Bible Search -->
 <template>
-	<h1>Bible Search</h1>
+	<div>
+		<p><strong>Example passages:</strong></p>
+		<p>Luke23.13-25</p>
+		<p>1 Kings 19</p>
+		<p>Genesis 1</p>
+		<p>Isaiah.9.1-3</p>
+		<p>Mark</p>
+	</div>
+	<div>
+		<lightning-input type="text" value={passage} label="Passage" onchange={handlePassageChange}></lightning-input>
+	</div>
+	<div>
+		<lightning-formatted-rich-text value={BibleContent}></lightning-formatted-rich-text>
+	</div>
 </template>
