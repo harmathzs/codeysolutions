@@ -23,16 +23,36 @@
 				></lightning-datatable>
 			</lightning-tab>
 			<lightning-tab label="Planets">
-				<p>{planetsJSON}</p>
+				<lightning-datatable
+					key-field="url"
+					data={planets}
+					columns={planetsColumns}
+					title="Planets"
+				></lightning-datatable>
 			</lightning-tab>
 			<lightning-tab label="Species">
-				<p>{speciesJSON}</p>
+				<lightning-datatable
+					key-field="url"
+					data={species}
+					columns={speciesColumns}
+					title="Species"
+				></lightning-datatable>
 			</lightning-tab>
 			<lightning-tab label="Vehicles">
-				<p>{vehiclesJSON}</p>
+				<lightning-datatable
+					key-field="url"
+					data={vehicles}
+					columns={vehiclesColumns}
+					title="Vehicles"
+				></lightning-datatable>
 			</lightning-tab>
 			<lightning-tab label="Starships">
-				<p>{starshipsJSON}</p>
+				<lightning-datatable
+					key-field="url"
+					data={starships}
+					columns={starshipsColumns}
+					title="Starships"
+				></lightning-datatable>
 			</lightning-tab>
 		</lightning-tabset>
 	</lightning-card>
