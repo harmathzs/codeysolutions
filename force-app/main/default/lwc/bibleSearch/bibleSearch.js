@@ -37,4 +37,25 @@ export default class BibleSearch extends LightningElement {
 			.then(res => res.text()).then(text => this.BibleContent = text)
 			.catch(error => this.BibleContent = error);
 	}
+
+	handleLuke23_13_25_ButtonClick() {
+		this.passage = 'Luke23.13-25';
+		this.showBibleContent('kjv', this.passage, this.BibleComApiKey);
+	}
+	handle_1_Kings_19_ButtonClick() {
+		this.passage = '1 Kings 19';
+		this.showBibleContent('kjv', this.passage, this.BibleComApiKey);
+	}
+	handleGenesis_1_ButtonClick() {
+		this.passage = 'Genesis 1';
+		this.showBibleContent('kjv', this.passage, this.BibleComApiKey);
+	}
+	handleIsaiah_9_1_3_ButtonClick() {
+		this.passage = 'Isaiah.9.1-3';
+		this.showBibleContent('kjv', this.passage, this.BibleComApiKey);
+	}
+	handleMarkButtonClick() {
+		this.passage = 'Mark';
+		this.showBibleContent('kjv', this.passage, this.BibleComApiKey);
+	}
 }
