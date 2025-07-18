@@ -7,7 +7,12 @@
 	<lightning-card title="Star Wars API">
 		<lightning-tabset>
 			<lightning-tab label="Films">
-				<p>{filmsJSON}</p>
+				<lightning-datatable
+					key-field="id"
+					data={filmsTableData}
+					columns={filmsColumns}
+					title="Films"
+				></lightning-datatable>
 			</lightning-tab>
 			<lightning-tab label="People">
 				<p>{peopleJSON}</p>
