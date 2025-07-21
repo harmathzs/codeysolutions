@@ -1,0 +1,17 @@
+<!-- Bible Search -->
+<template>
+	<div>
+		<p><strong>Example passages:</strong></p>
+		<button onclick={handleLuke23_13_25_ButtonClick}>Luke23.13-25</button>
+		<button onclick={handle_1_Kings_19_ButtonClick}>1 Kings 19</button>
+		<button onclick={handleGenesis_1_ButtonClick}>Genesis 1</button>
+		<button onclick={handleIsaiah_9_1_3_ButtonClick}>Isaiah.9.1-3</button>
+		<button onclick={handleMarkButtonClick}>Mark</button>
+	</div>
+	<div>
+		<lightning-input type="text" value={passage} label="Passage" onchange={handlePassageChange}></lightning-input>
+	</div>
+	<div>
+		<lightning-formatted-rich-text value={BibleContent}></lightning-formatted-rich-text>
+	</div>
+</template>

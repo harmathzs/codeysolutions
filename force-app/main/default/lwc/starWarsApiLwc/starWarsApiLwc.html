@@ -1,0 +1,59 @@
+<!--
+ - Created by User on 2025. 07. 18..
+ -->
+
+<!-- Star Wars API LWC -->
+<template>
+	<lightning-card title="Star Wars API">
+		<lightning-tabset>
+			<lightning-tab label="Films">
+				<lightning-datatable
+					key-field="id"
+					data={filmsTableData}
+					columns={filmsColumns}
+					title="Films"
+				></lightning-datatable>
+			</lightning-tab>
+			<lightning-tab label="People">
+				<lightning-datatable
+					key-field="url"
+					data={peopleTableData}
+					columns={peopleColumns}
+					title="People"
+				></lightning-datatable>
+			</lightning-tab>
+			<lightning-tab label="Planets">
+				<lightning-datatable
+					key-field="url"
+					data={planets}
+					columns={planetsColumns}
+					title="Planets"
+				></lightning-datatable>
+			</lightning-tab>
+			<lightning-tab label="Species">
+				<lightning-datatable
+					key-field="url"
+					data={species}
+					columns={speciesColumns}
+					title="Species"
+				></lightning-datatable>
+			</lightning-tab>
+			<lightning-tab label="Vehicles">
+				<lightning-datatable
+					key-field="url"
+					data={vehicles}
+					columns={vehiclesColumns}
+					title="Vehicles"
+				></lightning-datatable>
+			</lightning-tab>
+			<lightning-tab label="Starships">
+				<lightning-datatable
+					key-field="url"
+					data={starships}
+					columns={starshipsColumns}
+					title="Starships"
+				></lightning-datatable>
+			</lightning-tab>
+		</lightning-tabset>
+	</lightning-card>
+</template>

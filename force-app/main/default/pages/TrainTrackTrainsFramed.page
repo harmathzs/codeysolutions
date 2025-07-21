@@ -1,0 +1,68 @@
+<apex:page id="TrainTrackTrainsFramed" controller="TrainTrackController" lightningStylesheets="true" title="Trains data">
+	<apex:includeScript value="/resource/fflate_lib" /> <!-- fflate.min.js static resource-ként -->
+	<h1>Train Info (from Snapshot): {!numberStr}</h1>
+
+	<pre id="output">Betöltés...</pre>
+
+	<script>
+		(function() {
+			// Base64-encoded gzip string from Apex
+			const base64Gzipped = "{!JSENCODE(getTrainInfoContent)}";
+
+			const binaryString = atob(base64Gzipped);
+			const bytes = new Uint8Array(binaryString.length);
+			for (let i = 0; i < binaryString.length; i++) {
+				bytes[i] = binaryString.charCodeAt(i);
+			}
+
+			window.fflate.gunzip(bytes, (err, decompressed) => {
+				if (err) return document.getElementById('output').textContent = "Decompress error: " + err.message;
+
+				const jsonStr = new TextDecoder().decode(decompressed);
+				try {
+					const obj = JSON.parse(jsonStr);
+					let html = '';
+
+					if (Array.isArray(obj.v)) {
+						html += '<h2>Active trains: ' + obj.v.length + '</h2>';
+						html += '<table border="1" cellspacing="0" cellpadding="5">';
+						html += '<tr><th>Vonat</th><th>Állomás</th><th>Cél</th><th>Sebesség</th><th>Késés</th></tr>';
+
+						obj.v.forEach((train) => {
+							// Késés keresése a jelenlegi állomás alapján
+							let delayMin = '-';
+
+							if (Array.isArray(train.st)) {
+								const currentStation = train.n;
+								const matchingStop = train.st.find(stop => stop[1] === currentStation);
+
+								if (matchingStop) {
+									let delaySec = matchingStop[4]; // 5. mező: késés másodpercben
+									if (delaySec<0) delaySec=0;
+									delayMin = (delaySec / 60).toFixed(0) + ' perc';
+								}
+							}
+
+							html += `<tr>
+										 <td>${train.sn || '-'}</td>
+										 <td>${train.n || '-'}</td>
+										 <td>${train.hd || '-'}</td>
+										 <td>${train.s} km/h</td>
+										 <td>${delayMin}</td>
+									   </tr>`;
+						});
+
+						html += '</table>';
+					} else {
+						html = '❌ Nincs érvényes vonatlista';
+					}
+
+					document.getElementById('output').innerHTML = html;
+
+				} catch (e) {
+					document.getElementById('output').textContent = "JSON parse error: " + e.message;
+				}
+			});
+		})();
+	</script>
+</apex:page>
