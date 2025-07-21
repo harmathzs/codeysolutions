@@ -1,9 +1,11 @@
 <!-- Train Track HU -->
 <template>
 	<lightning-card title="Train Track HU">
+		<lightning-spinner if:true={isLoading}></lightning-spinner>
+
 		<lightning-accordion>
 			<lightning-accordion-section label="Status">
-				<p>{status}</p>
+				<lightning-formatted-rich-text value={status}></lightning-formatted-rich-text>
 			</lightning-accordion-section>
 			<lightning-accordion-section label="Stats">
 				<p>{stats}</p>
