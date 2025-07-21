@@ -1,4 +1,10 @@
 public without sharing class TrainTrackController {
+	public String getTrainInfoContent {
+		get {
+			return 'TODO - VF train info';
+		}
+	}
+
 	@AuraEnabled
 	public static String fetchTrainGzip(String url) {
 		HttpRequest req = new HttpRequest();
