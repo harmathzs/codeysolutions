@@ -6,5 +6,5 @@
 
 	<!-- display the response in the component below -->
 	<p>Result will be displayed below:</p>
-	<apex:outputText value="{!myResult}" />
+	<apex:outputText id="result" value="{!myResult}" />
 </apex:page>
