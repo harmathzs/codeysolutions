@@ -9,7 +9,9 @@ public without sharing class TrainTrackController {
 
 	public String getTrainInfoContent {
 		get {
-			return 'TODO - VF train info';
+			String fileUrl = 'https://bucket.traintrack.hu/trainstore/'+numberStr+'.json.gz';
+			String fetchedTrainGzip = TrainTrackController.fetchTrainGzip(fileUrl);
+			return fetchedTrainGzip; // H4sIAAAAAAACA8S9z28bSbYu+K8IGmBWkhG/I7J...
 		}
 	}
 
