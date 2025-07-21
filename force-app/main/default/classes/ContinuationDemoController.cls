@@ -27,7 +27,7 @@ public with sharing class ContinuationDemoController {
 	public Object myCallbackMethod() {
 		// get response by using the unique label
 		HttpResponse response = Continuation.getResponse(this.myUniqueLabel);
-		this.myResult = response.getBody();
+		this.myResult = response?.getBody();
 		System.debug('myResult: '+myResult);
 
 		// return null to re-render page
