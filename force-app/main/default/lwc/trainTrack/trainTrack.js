@@ -21,6 +21,9 @@ export default class TrainTrack extends LightningElement {
 		const resObjStats = await fetch('https://api.traintrack.hu/v1/stats');
 		const resStats = await resObjStats.json();
 		console.log('resStats', resStats);
+		this.stats = '';
+		this.stats += `<p><strong>total_snapshots</strong>: ${resStats?.stats?.total_snapshots}</p>`;
+		this.stats += `<p><strong>avg_age_days</strong>: ${resStats?.stats?.avg_age_days}</p>`;
 
 		const resObjTrains = await fetch('https://api.traintrack.hu/v1/trains');
 		const resTrains = await resObjTrains.json();
