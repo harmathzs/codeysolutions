@@ -15,6 +15,9 @@ export default class TrainTrack extends LightningElement {
 	fflate;
 	fflateLoaded = false;
 
+	filenameAsNumber = 0;
+	iframeSrc;
+
 	async connectedCallback() {
 		this.isLoading = true;
 
@@ -39,6 +42,23 @@ export default class TrainTrack extends LightningElement {
 		this.stats += `<p><strong>total_snapshots</strong>: ${resStats?.stats?.total_snapshots}</p>`;
 		this.stats += `<p><strong>avg_age_days</strong>: ${resStats?.stats?.avg_age_days}</p>`;
 
+		const resObjTrains = await fetch('https://api.traintrack.hu/v1/trains');
+		const resTrains = await resObjTrains.json();
+		console.log('resTrains', resTrains);
+
+		if (resTrains.r2_url) {
+			// "https://bucket.traintrack.hu/trainstore/1752068756.json.gz"
+
+			const url = resTrains.r2_url;
+			const fileName = url.split('/').pop(); // "1752068756.json.gz"
+			const numberStr = fileName.split('.')[0]; // "1752068756"
+			const number = parseInt(numberStr, 10);
+			console.log('Szám:', number);
+
+			this.filenameAsNumber = number;
+
+			this.iframeSrc = '/apex/TrainTrackTrainsFramed?number='+number;
+		}
 
 		this.isLoading = false;
 	}

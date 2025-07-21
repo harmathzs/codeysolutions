@@ -1,4 +1,12 @@
 public without sharing class TrainTrackController {
+	public String numberStr {get; set;}
+
+	public TrainTrackController() {
+		if (ApexPages.currentPage().getParameters().containsKey('number')) {
+			numberStr = ApexPages.currentPage().getParameters().get('number');
+		}
+	}
+
 	public String getTrainInfoContent {
 		get {
 			return 'TODO - VF train info';
