@@ -26,15 +26,30 @@
 					if (Array.isArray(obj.v)) {
 						html += '<h2>Active trains: ' + obj.v.length + '</h2>';
 						html += '<table border="1" cellspacing="0" cellpadding="5">';
-						html += '<tr><th>Vonal</th><th>Állomás</th><th>Cél</th><th>Sebesség</th></tr>';
+						html += '<tr><th>Vonat</th><th>Állomás</th><th>Cél</th><th>Sebesség</th><th>Késés</th></tr>';
 
 						obj.v.forEach((train) => {
+							// Késés keresése a jelenlegi állomás alapján
+							let delayMin = '-';
+
+							if (Array.isArray(train.st)) {
+								const currentStation = train.n;
+								const matchingStop = train.st.find(stop => stop[1] === currentStation);
+
+								if (matchingStop) {
+									let delaySec = matchingStop[4]; // 5. mező: késés másodpercben
+									if (delaySec<0) delaySec=0;
+									delayMin = (delaySec / 60).toFixed(0) + ' perc';
+								}
+							}
+
 							html += `<tr>
-										<td>${train.sn || '-'}</td>
-										<td>${train.n || '-'}</td>
-										<td>${train.hd || '-'}</td>
-										<td>${train.s} km/h</td>
-									  </tr>`;
+										 <td>${train.sn || '-'}</td>
+										 <td>${train.n || '-'}</td>
+										 <td>${train.hd || '-'}</td>
+										 <td>${train.s} km/h</td>
+										 <td>${delayMin}</td>
+									   </tr>`;
 						});
 
 						html += '</table>';
