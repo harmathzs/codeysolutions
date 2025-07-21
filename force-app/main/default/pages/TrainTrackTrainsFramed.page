@@ -1,0 +1,3 @@
+<apex:page id="TrainTrackTrainsFramed" controller="TrainTrackController" lightningStylesheets="true" title="Trains data">
+	<p>{!getTrainInfoContent}</p>
+</apex:page>
