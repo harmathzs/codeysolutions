@@ -1,0 +1,10 @@
+<apex:page id="ContinuationDemoPage" controller="ContinuationDemoController" sideBar="false" showHeader="false">
+	<apex:form>
+		<!-- invoke the request here -->
+		<apex:commandButton action="{!myAction}" value="Submit Request" reRender="result" />
+	</apex:form>
+
+	<!-- display the response in the component below -->
+	<p>Result will be displayed below:</p>
+	<apex:outputText value="{!myResult}" />
+</apex:page>
