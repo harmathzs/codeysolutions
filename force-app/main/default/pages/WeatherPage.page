@@ -1,3 +1,6 @@
 <apex:page id="WeatherPage" title="Weather and forecast" controller="WeatherController" lightningStylesheets="true">
-	<p>{!weatherJson}</p>
+	<!-- <p>{!weatherJson}</p> -->
+	<apex:repeat value="{!getWeatherMap}" var="weatherKey">
+		<p><strong>{!weatherKey}</strong>: {!getWeatherMap[weatherKey]}</p>
+	</apex:repeat>
 </apex:page>
