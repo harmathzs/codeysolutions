@@ -86,4 +86,15 @@ private class DynamicApexTest {
 			}
 		}
 	}
+
+	@IsTest
+	static void testDynamicSoql() {
+		Map<String, Object> params = new Map<String, Object>{
+			'profileName' => 'System Administrator'
+		};
+		String query = 'SELECT Id, Name FROM Profile WHERE Name =:profileName';
+		Profile[] profiles = Database.queryWithBinds(query, params, AccessLevel.USER_MODE);
+		System.debug('profiles: '+profiles);
+		// DEBUG|profiles: (Profile:{Id=00egL0000008uMnQAI, Name=System Administrator})
+	}
 }
