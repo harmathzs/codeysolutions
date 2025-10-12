@@ -14,6 +14,11 @@
 	</style>
 
 	<apex:pageBlock title="Quote Products Inline">
+		<apex:pageBlockSection title="User information">
+			<apex:outputText label="User: " value="{!$User.FirstName} {!$User.LastName}" />
+			<apex:outputText label="Profile: " value="{!$Profile.Name}" />
+			<apex:outputText label="Org: " value="{!$Organization.Name}" />
+		</apex:pageBlockSection>
 		<apex:pageBlockSection title="Quote information">
 			<apex:outputField label="Name: " value="{!quote.Name}" />
 		</apex:pageBlockSection>
