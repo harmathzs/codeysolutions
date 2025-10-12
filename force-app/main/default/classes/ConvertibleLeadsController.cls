@@ -16,6 +16,8 @@ public with sharing class ConvertibleLeadsController {
 					Lead
 				WHERE
 					NOT Status LIKE '%Converted%'
+				ORDER BY
+					CreatedDate DESC
 				LIMIT 100
 			];
 		}

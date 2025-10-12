@@ -3,22 +3,52 @@
  -->
 
 <apex:page title="Convertible Leads" id="ConvertibleLeadsVF" controller="ConvertibleLeadsController">
+	<style>
+		.tableClass {
+			border: 1px solid black;
+		}
+		.rowOdd {
+			background-color: #ddd;
+		}
+		.rowEven {
+			background-color: #eee;
+		}
+		td, th {
+			padding: 5px;
+		}
+	</style>
+
 	<apex:pageBlock title="Page block">
 		<apex:pageBlockSection title="Page block section">
-			<apex:dataTable value="{!convertibleLeads}" var="lead">
+			<apex:dataTable value="{!convertibleLeads}" var="lead"
+							rowClasses="rowOdd,rowEven" styleClass="tableClass">
+				<apex:facet name="caption">table caption</apex:facet>
+				<apex:facet name="header">table header</apex:facet>
+				<apex:facet name="footer">table footer</apex:facet>
+
 				<apex:column>
+					<apex:facet name="header">Id</apex:facet>
+					<apex:facet name="footer">Id column footer</apex:facet>
 					<apex:outputText value="{!lead.Id}" />
 				</apex:column>
 				<apex:column>
+					<apex:facet name="header">Name</apex:facet>
+					<apex:facet name="footer">Name column footer</apex:facet>
 					<apex:outputText value="{!lead.Name}" />
 				</apex:column>
 				<apex:column>
+					<apex:facet name="header">Email</apex:facet>
+					<apex:facet name="footer">Email column footer</apex:facet>
 					<apex:outputText value="{!lead.Email}" />
 				</apex:column>
 				<apex:column>
+					<apex:facet name="header">Company</apex:facet>
+					<apex:facet name="footer">Company column footer</apex:facet>
 					<apex:outputText value="{!lead.Company}" />
 				</apex:column>
 				<apex:column>
+					<apex:facet name="header">Status</apex:facet>
+					<apex:facet name="footer">Status column footer</apex:facet>
 					<apex:outputText value="{!lead.Status}" />
 				</apex:column>
 			</apex:dataTable>
