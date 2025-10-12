@@ -1,0 +1,27 @@
+<!--
+ - Created by User on 2025. 10. 12.
+ -->
+
+<apex:page title="Convertible Leads" id="ConvertibleLeadsVF" controller="ConvertibleLeadsController">
+	<apex:pageBlock title="Page block">
+		<apex:pageBlockSection title="Page block section">
+			<apex:dataTable value="{!convertibleLeads}" var="lead">
+				<apex:column>
+					<apex:outputText value="{!lead.Id}" />
+				</apex:column>
+				<apex:column>
+					<apex:outputText value="{!lead.Name}" />
+				</apex:column>
+				<apex:column>
+					<apex:outputText value="{!lead.Email}" />
+				</apex:column>
+				<apex:column>
+					<apex:outputText value="{!lead.Company}" />
+				</apex:column>
+				<apex:column>
+					<apex:outputText value="{!lead.Status}" />
+				</apex:column>
+			</apex:dataTable>
+		</apex:pageBlockSection>
+	</apex:pageBlock>
+</apex:page>
