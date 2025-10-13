@@ -48,6 +48,8 @@ private class QuoteProductsTest {
 
 		ApexPages.StandardController stdController = new ApexPages.StandardController(quote);
 		QuoteProductsService controller = new QuoteProductsService(stdController);
+
+		System.assertEquals(quote.Id, controller.quote.Id);
 	}
 
 	@IsTest
@@ -58,5 +60,7 @@ private class QuoteProductsTest {
 		ApexPages.StandardController stdController = new ApexPages.StandardController(quote);
 		ApexPages.currentPage().getParameters().put('qliid', qli.Id);
 		QuoteProductsService controller = new QuoteProductsService(stdController);
+
+		System.assertEquals(qli.Id, controller.qliId);
 	}
 }
