@@ -1,0 +1,32 @@
+<!--
+ - Created by User on 2025. 10. 13.
+ -->
+
+<apex:page title="Quote Products Standalone" id="QuoteProductsStandalone" standardController="Quote" extensions="QuoteProductsService">
+	<apex:pageBlock title="Quote Products Inline">
+		<apex:pageBlockSection title="User information">
+			<apex:outputText label="User: " value="{!$User.FirstName} {!$User.LastName}" />
+			<apex:outputText label="Profile: " value="{!$Profile.Name}" />
+			<apex:outputText label="Org: " value="{!$Organization.Name}" />
+		</apex:pageBlockSection>
+		<apex:pageBlockSection title="Quote information">
+			<apex:outputField label="Name: " value="{!quote.Name}" />
+		</apex:pageBlockSection>
+		<apex:pageBlockSection title="Quote Products">
+			<apex:dataTable value="{!quote.QuoteLineItems}" var="qli" styleClass="my-table" border="1" cellpadding="4" cellspacing="0">
+				<apex:column headerValue="Product Id">
+					{!qli.Product2Id}
+				</apex:column>
+				<apex:column headerValue="Product Name">
+					{!qli.Product2.Name}
+				</apex:column>
+				<apex:column headerValue="Quantity">
+					{!qli.Quantity}
+				</apex:column>
+				<apex:column headerValue="Unit Price">
+					{!qli.UnitPrice}
+				</apex:column>
+			</apex:dataTable>
+		</apex:pageBlockSection>
+	</apex:pageBlock>
+</apex:page>

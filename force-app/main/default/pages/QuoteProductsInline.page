@@ -26,6 +26,7 @@
 			<table class="my-table">
 				<thead>
 					<tr>
+						<th>#</th>
 						<th>Product Id</th>
 						<th>Product Name</th>
 						<th>Quantity</th>
@@ -33,13 +34,16 @@
 					</tr>
 				</thead>
 				<tbody>
+					<apex:variable var="idx" value="1"/>
 					<apex:repeat value="{!quote.QuoteLineItems}" var="qli">
 						<tr>
+							<td>{!idx}</td>
 							<td>{!qli.Product2Id}</td>
 							<td>{!qli.Product2.Name}</td>
 							<td>{!qli.Quantity}</td>
 							<td>{!qli.UnitPrice}</td>
 						</tr>
+						<apex:variable var="idx" value="{!VALUE(idx) + 1}"/>
 					</apex:repeat>
 				</tbody>
 			</table>
