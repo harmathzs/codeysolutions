@@ -18,7 +18,15 @@ public with sharing class QuoteProductsService {
 				Quote[] quotes = [SELECT
 					Id
 					,Name
-					,(SELECT Id, Product2Id, Product2.Name, Quantity, UnitPrice FROM QuoteLineItems)
+					,Status
+					,Opportunity.Name
+					,(SELECT
+						Id
+						,Product2Id
+						,Product2.Name
+						,Quantity
+						,UnitPrice
+					FROM QuoteLineItems)
 				FROM Quote
 				WHERE Id=:qli.QuoteId];
 				if (!quotes.isEmpty()) quote = quotes[0];

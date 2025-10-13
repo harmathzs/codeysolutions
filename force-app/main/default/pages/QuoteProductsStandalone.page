@@ -29,4 +29,24 @@
 			</apex:dataTable>
 		</apex:pageBlockSection>
 	</apex:pageBlock>
+	<apex:form>
+		<apex:pageBlock title="Quote Record">
+			<apex:pageBlockButtons>
+				<!-- Edit button -->
+				<apex:commandButton action="{!edit}" value="Edit" rerender="quoteBlock"/>
+				<!-- Delete button -->
+				<apex:commandButton action="{!delete}" value="Delete" />
+			</apex:pageBlockButtons>
+
+			<apex:pageBlockSection id="quoteBlock" columns="1">
+				<apex:outputField value="{!Quote.Name}" />
+				<apex:outputField value="{!Quote.Status}" />
+				<apex:outputField value="{!Quote.Opportunity.Name}" />
+			</apex:pageBlockSection>
+
+			<apex:actionStatus id="status">
+				<apex:facet name="start">Saving...</apex:facet>
+			</apex:actionStatus>
+		</apex:pageBlock>
+	</apex:form>
 </apex:page>
