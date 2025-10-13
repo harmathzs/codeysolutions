@@ -3,16 +3,6 @@
  -->
 
 <apex:page title="Quote Products Standalone" id="QuoteProductsStandalone" standardController="Quote" extensions="QuoteProductsService">
-	<style>
-		.my-table, .my-table th, .my-table td {
-			border: 1px solid black;
-			border-collapse: collapse;
-		}
-		.my-table th, .my-table td {
-			margin: 5px;
-		}
-	</style>
-
 	<apex:pageBlock title="Quote Products Inline">
 		<apex:pageBlockSection title="User information">
 			<apex:outputText label="User: " value="{!$User.FirstName} {!$User.LastName}" />
@@ -23,26 +13,20 @@
 			<apex:outputField label="Name: " value="{!quote.Name}" />
 		</apex:pageBlockSection>
 		<apex:pageBlockSection title="Quote Products">
-			<table class="my-table">
-				<thead>
-				<tr>
-					<th>Product Id</th>
-					<th>Product Name</th>
-					<th>Quantity</th>
-					<th>Unit Price</th>
-				</tr>
-				</thead>
-				<tbody>
-				<apex:repeat value="{!quote.QuoteLineItems}" var="qli">
-					<tr>
-						<td>{!qli.Product2Id}</td>
-						<td>{!qli.Product2.Name}</td>
-						<td>{!qli.Quantity}</td>
-						<td>{!qli.UnitPrice}</td>
-					</tr>
-				</apex:repeat>
-				</tbody>
-			</table>
+			<apex:dataTable value="{!quote.QuoteLineItems}" var="qli" styleClass="my-table" border="1" cellpadding="4" cellspacing="0">
+				<apex:column headerValue="Product Id">
+					{!qli.Product2Id}
+				</apex:column>
+				<apex:column headerValue="Product Name">
+					{!qli.Product2.Name}
+				</apex:column>
+				<apex:column headerValue="Quantity">
+					{!qli.Quantity}
+				</apex:column>
+				<apex:column headerValue="Unit Price">
+					{!qli.UnitPrice}
+				</apex:column>
+			</apex:dataTable>
 		</apex:pageBlockSection>
 	</apex:pageBlock>
 </apex:page>
