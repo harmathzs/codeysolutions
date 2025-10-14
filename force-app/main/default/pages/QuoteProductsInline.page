@@ -3,6 +3,7 @@
  -->
 
 <apex:page title="Quote Products Inline" id="QuoteProductsInline" standardController="Quote">
+	<!--
 	<style>
 		.my-table, .my-table th, .my-table td {
 			border: 1px solid black;
@@ -12,6 +13,9 @@
 			margin: 5px;
 		}
 	</style>
+	-->
+
+	<apex:stylesheet value="{!$Resource.QuoteProductsInlineCSS}" />
 
 	<apex:pageBlock title="Quote Products Inline">
 		<apex:pageBlockSection title="User information">
