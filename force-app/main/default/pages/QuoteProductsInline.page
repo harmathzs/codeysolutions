@@ -27,6 +27,7 @@
 			<apex:outputField label="Name: " value="{!quote.Name}" />
 		</apex:pageBlockSection>
 		<apex:pageBlockSection title="Quote Products">
+			<img src="{!$Resource.ProductBasketJPG}"  alt="Product Basket JPG here" height="64"/>
 			<table class="my-table">
 				<thead>
 					<tr>
