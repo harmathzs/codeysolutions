@@ -1,5 +1,6 @@
 <apex:page id="OrderPDF" renderAs="{!renderAs}"
-		   showHeader="false" applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false" standardController="Order" extensions="OrderService">
+		   showHeader="false" applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false"
+		   standardController="Order" extensions="OrderService">
 	<html lang="en">
 		<head>
 			<style>
@@ -80,7 +81,7 @@
 		</head>
 
 		<body>
-			<div class="watermark">WATERMARK</div>
+			<div class="watermark" style="{!IF(order.Status=='DRAFT', '', 'display:none')}">WATERMARK</div>
 
 			<div class="page-break">
 				<h1>First Page</h1>
