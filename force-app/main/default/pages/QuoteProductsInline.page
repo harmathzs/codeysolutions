@@ -1,8 +1,10 @@
 <!--
+ - QuoteProductsInline Visualforce page
  - Created by User on 2025. 10. 12.
  -->
 
 <apex:page title="Quote Products Inline" id="QuoteProductsInline" standardController="Quote">
+	<!--
 	<style>
 		.my-table, .my-table th, .my-table td {
 			border: 1px solid black;
@@ -12,6 +14,9 @@
 			margin: 5px;
 		}
 	</style>
+	-->
+
+	<apex:stylesheet value="{!$Resource.QuoteProductsInlineCSS}" />
 
 	<apex:pageBlock title="Quote Products Inline">
 		<apex:pageBlockSection title="User information">
@@ -23,6 +28,7 @@
 			<apex:outputField label="Name: " value="{!quote.Name}" />
 		</apex:pageBlockSection>
 		<apex:pageBlockSection title="Quote Products">
+			<img src="{!$Resource.ProductBasketJPG}"  alt="Product Basket JPG here" height="64"/>
 			<table class="my-table">
 				<thead>
 					<tr>
