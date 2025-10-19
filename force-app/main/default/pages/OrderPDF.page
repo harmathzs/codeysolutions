@@ -1,5 +1,5 @@
-<apex:page id="OrderPDF" renderAs="pdf"
-		   showHeader="false" applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false">
+<apex:page id="OrderPDF" renderAs="{!renderAs}"
+		   showHeader="false" applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false" standardController="Order" extensions="OrderService">
 	<html lang="en">
 		<head>
 			<style>
