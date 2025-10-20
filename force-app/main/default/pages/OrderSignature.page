@@ -1,0 +1,35 @@
+<!--
+ - Created by User on 2025. 10. 20..
+ -->
+
+<apex:page id="OrderSignature"
+		   showHeader="false" applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false">
+	<head>
+		<style>
+			body {
+				font-family: "Arial Unicode MS";
+				font-size: 14pt;
+			}
+			td {
+				text-align: center;
+			}
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td>
+					<p><strong>Seller:</strong></p>
+					<p>..........................................</p>
+					<p>Head of Sales Operations</p>
+				</td>
+				<td>
+					<p><strong>Buyer:</strong></p>
+					<p>..........................................</p>
+					<p>Sales Representative</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</apex:page>
