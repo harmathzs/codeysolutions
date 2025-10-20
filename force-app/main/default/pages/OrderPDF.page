@@ -140,6 +140,8 @@
 				<p class="serif-text">Suspendisse sed placerat massa. Pellentesque eget neque risus. Integer sodales ante lorem, sed egestas ante tincidunt sit amet. Proin ornare purus ligula, ac convallis nisl tincidunt nec. Nam venenatis magna sed mauris placerat, a placerat felis posuere. Aliquam non augue nec neque viverra faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut tempor dignissim nulla non ultrices. Nulla sit amet porta enim, et tincidunt nunc. Vestibulum gravida elit vehicula lectus vestibulum volutpat. Ut pharetra lectus purus, hendrerit ullamcorper est ultrices ut. Sed tristique sagittis nisi, varius malesuada tortor. Nullam fermentum vehicula justo, ut commodo tortor consectetur a. Suspendisse pharetra quis mauris eu viverra.</p>
 
 				<p class="serif-text">Ut hendrerit ante ut mi suscipit dapibus. Phasellus magna libero, porttitor vitae justo vel, egestas facilisis lorem. Vivamus varius in dolor non iaculis. Donec id congue magna. Etiam et tincidunt odio, a aliquam sapien. Integer bibendum quis est nec eleifend. Suspendisse porttitor ultrices gravida. Etiam porta arcu id turpis mollis, vel rutrum risus sollicitudin. Duis eget ornare purus, sed fringilla ex.</p>
+
+				<apex:include pageName="OrderSignature" />
 			</div>
 
 			<div class="last-page">

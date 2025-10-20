@@ -1,35 +1,19 @@
-<!--
- - Created by User on 2025. 10. 20..
- -->
-
 <apex:page id="OrderSignature"
 		   showHeader="false" applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false">
-	<head>
-		<style>
-			body {
-				font-family: "Arial Unicode MS";
-				font-size: 14pt;
-			}
-			td {
-				text-align: center;
-			}
-		</style>
-		<title></title>
-	</head>
-	<body>
-		<table>
+	<div style="width: 100%;">
+		<table style="display: inline-table;">
 			<tr>
-				<td>
-					<p><strong>Seller:</strong></p>
-					<p>..........................................</p>
-					<p>Head of Sales Operations</p>
+				<td style="width: 10cm; height: 4cm; font-size: 10pt;">
+					<p style="margin: 0.2cm 0;"><strong>Seller:</strong></p>
+					<p style="margin: 0.2cm 0;">..........................................</p>
+					<p style="margin: 0.2cm 0;">Head of Sales Operations</p>
 				</td>
-				<td>
-					<p><strong>Buyer:</strong></p>
-					<p>..........................................</p>
-					<p>Sales Representative</p>
+				<td style="width: 10cm; height: 4cm; font-size: 10pt;">
+					<p style="margin: 0.2cm 0;"><strong>Buyer:</strong></p>
+					<p style="margin: 0.2cm 0;">..........................................</p>
+					<p style="margin: 0.2cm 0;">Sales Representative</p>
 				</td>
 			</tr>
 		</table>
-	</body>
+	</div>
 </apex:page>
