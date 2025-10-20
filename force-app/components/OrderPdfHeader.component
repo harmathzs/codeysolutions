@@ -1,0 +1,21 @@
+<apex:component >
+	<apex:outputPanel layout="block" styleClass="header">
+		<!-- Content for your header goes here -->
+		<table>
+			<tr>
+				<td>
+					<div style=
+						 "height: 50px; width: 100px; background-color: black; color: white; border-radius: 8px; font-style: italic;"
+					>Sales</div>
+					<div style=
+						 "height: 50px; width: 100px; background-color: black; color: orange; border-radius: 8px; font-style: italic;"
+					>force</div>
+				</td>
+				<td>
+					<div class="header-title">PDF</div>
+					<div class="header-text">header</div>
+				</td>
+			</tr>
+		</table>
+	</apex:outputPanel>
+</apex:component>
