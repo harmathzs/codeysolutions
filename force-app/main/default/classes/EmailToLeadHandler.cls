@@ -39,7 +39,32 @@ public with sharing class EmailToLeadHandler implements Messaging.InboundEmailHa
 				}
 
 				insert newLead;
-				System.debug('Created new lead: ' + newLead);
+
+				// Process and save attachments
+				List<Attachment> attachmentsToInsert = new List<Attachment>();
+				if (email.binaryAttachments != null && email.binaryAttachments.size() > 0) {
+					for (Messaging.InboundEmail.BinaryAttachment bAttachment : email.binaryAttachments) {
+						Attachment att = new Attachment();
+						att.ParentId = newLead.Id;
+						att.Name = bAttachment.fileName;
+						att.Body = bAttachment.body;
+						attachmentsToInsert.add(att);
+					}
+				}
+				if (email.textAttachments != null && email.textAttachments.size() > 0) {
+					for (Messaging.InboundEmail.TextAttachment tAttachment : email.textAttachments) {
+						Attachment att = new Attachment();
+						att.ParentId = newLead.Id;
+						att.Name = tAttachment.fileName;
+						att.Body = Blob.valueOf(tAttachment.body);
+						attachmentsToInsert.add(att);
+					}
+				}
+				if (!attachmentsToInsert.isEmpty()) {
+					insert attachmentsToInsert;
+				}
+
+				System.debug('Created new lead and saved attachments: ' + newLead);
 			} else {
 				System.debug('Duplicate lead found for email: ' + email.fromAddress);
 			}
