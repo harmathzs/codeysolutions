@@ -187,5 +187,13 @@
     <types>
         <name>WebLink</name>
     </types>
+    <types>
+        <members>Send_out_activated_Order</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>Send_out_activated_Order</members>
+        <name>FlowDefinition</name>
+    </types>
     <version>63.0</version>
 </Package>
