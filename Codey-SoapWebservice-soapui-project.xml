@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="4007db24-6872-443e-b1e2-525fe2e40a09" activeEnvironment="Default" name="Codey_SoapWebservice" resourceRoot="" soapui-version="5.9.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="00d185fb-2862-4df7-a245-1f9733badce7" wsaVersion="NONE" name="SoapWebserviceBinding" type="wsdl" bindingName="{http://soap.sforce.com/schemas/class/SoapWebservice}SoapWebserviceBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/User/Documents/Salesforce-projects/Codey-Solutions/SoapWebservice-wsdl.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\Users\User\Documents\Salesforce-projects\Codey-Solutions\SoapWebservice-wsdl.xml"><con:part><con:url>file:\C:\Users\User\Documents\Salesforce-projects\Codey-Solutions\SoapWebservice-wsdl.xml</con:url><con:content><![CDATA[<!--Web Services API : SoapWebservice-->
+<definitions targetNamespace="http://soap.sforce.com/schemas/class/SoapWebservice" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://soap.sforce.com/schemas/class/SoapWebservice">
+  <types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://soap.sforce.com/schemas/class/SoapWebservice">
+      <xsd:element name="AllowFieldTruncationHeader">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="allowFieldTruncation" type="xsd:boolean"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CallOptions">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="client" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DebuggingHeader">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="categories" minOccurs="0" maxOccurs="unbounded" type="tns:LogInfo"/>
+            <xsd:element name="debugLevel" type="tns:LogType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="LogInfo">
+        <xsd:sequence>
+          <xsd:element name="category" type="tns:LogCategory"/>
+          <xsd:element name="level" type="tns:LogCategoryLevel"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="LogCategory">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Db"/>
+          <xsd:enumeration value="Workflow"/>
+          <xsd:enumeration value="Validation"/>
+          <xsd:enumeration value="Callout"/>
+          <xsd:enumeration value="Apex_code"/>
+          <xsd:enumeration value="Apex_profiling"/>
+          <xsd:enumeration value="Visualforce"/>
+          <xsd:enumeration value="System"/>
+          <xsd:enumeration value="Wave"/>
+          <xsd:enumeration value="Nba"/>
+          <xsd:enumeration value="Data_access"/>
+          <xsd:enumeration value="All"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="LogCategoryLevel">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="None"/>
+          <xsd:enumeration value="Finest"/>
+          <xsd:enumeration value="Finer"/>
+          <xsd:enumeration value="Fine"/>
+          <xsd:enumeration value="Debug"/>
+          <xsd:enumeration value="Info"/>
+          <xsd:enumeration value="Warn"/>
+          <xsd:enumeration value="Error"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="LogType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="None"/>
+          <xsd:enumeration value="Debugonly"/>
+          <xsd:enumeration value="Db"/>
+          <xsd:enumeration value="Profiling"/>
+          <xsd:enumeration value="Callout"/>
+          <xsd:enumeration value="Detail"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="DebuggingInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="debugLog" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SessionHeader">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="sessionId" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="ID">
+        <xsd:restriction base="xsd:string">
+          <xsd:length value="18"/>
+          <xsd:pattern value="[a-zA-Z0-9]{18}"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="address">
+        <xsd:complexContent>
+          <xsd:extension base="tns:location">
+            <xsd:sequence>
+              <xsd:element name="city" type="xsd:string"/>
+              <xsd:element name="country" type="xsd:string"/>
+              <xsd:element name="countryCode" type="xsd:string"/>
+              <xsd:element name="geocodeAccuracy" type="xsd:string"/>
+              <xsd:element name="postalCode" type="xsd:string"/>
+              <xsd:element name="state" type="xsd:string"/>
+              <xsd:element name="stateCode" type="xsd:string"/>
+              <xsd:element name="street" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="location">
+        <xsd:sequence>
+          <xsd:element name="latitude" type="xsd:double"/>
+          <xsd:element name="longitude" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getAllAccountNames">
+        <xsd:complexType>
+          <xsd:sequence/>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAllAccountNamesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" minOccurs="0" maxOccurs="unbounded" type="xsd:string" nillable="true"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="insertNewLead">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="firstName" type="xsd:string" nillable="true"/>
+            <xsd:element name="lastName" type="xsd:string" nillable="true"/>
+            <xsd:element name="email" type="xsd:string" nillable="true"/>
+            <xsd:element name="phone" type="xsd:string" nillable="true"/>
+            <xsd:element name="company" type="xsd:string" nillable="true"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="insertNewLeadResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:string" nillable="true"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+  <!--Message for the header parts-->
+  <message name="Header">
+    <part name="AllowFieldTruncationHeader" element="tns:AllowFieldTruncationHeader"/>
+    <part name="CallOptions" element="tns:CallOptions"/>
+    <part name="DebuggingHeader" element="tns:DebuggingHeader"/>
+    <part name="DebuggingInfo" element="tns:DebuggingInfo"/>
+    <part name="SessionHeader" element="tns:SessionHeader"/>
+  </message>
+  <!--Operation Messages-->
+  <message name="getAllAccountNamesRequest">
+    <part element="tns:getAllAccountNames" name="parameters"/>
+  </message>
+  <message name="getAllAccountNamesResponse">
+    <part element="tns:getAllAccountNamesResponse" name="parameters"/>
+  </message>
+  <message name="insertNewLeadRequest">
+    <part element="tns:insertNewLead" name="parameters"/>
+  </message>
+  <message name="insertNewLeadResponse">
+    <part element="tns:insertNewLeadResponse" name="parameters"/>
+  </message>
+  <portType name="SoapWebservicePortType">
+    <operation name="getAllAccountNames">
+      <input message="tns:getAllAccountNamesRequest"/>
+      <output message="tns:getAllAccountNamesResponse"/>
+    </operation>
+    <operation name="insertNewLead">
+      <input message="tns:insertNewLeadRequest"/>
+      <output message="tns:insertNewLeadResponse"/>
+    </operation>
+  </portType>
+  <binding name="SoapWebserviceBinding" type="tns:SoapWebservicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getAllAccountNames">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:header use="literal" part="SessionHeader" message="tns:Header"/>
+        <soap:header use="literal" part="CallOptions" message="tns:Header"/>
+        <soap:header use="literal" part="DebuggingHeader" message="tns:Header"/>
+        <soap:header use="literal" part="AllowFieldTruncationHeader" message="tns:Header"/>
+        <soap:body use="literal" parts="parameters"/>
+      </input>
+      <output>
+        <soap:header use="literal" part="DebuggingInfo" message="tns:Header"/>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="insertNewLead">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:header use="literal" part="SessionHeader" message="tns:Header"/>
+        <soap:header use="literal" part="CallOptions" message="tns:Header"/>
+        <soap:header use="literal" part="DebuggingHeader" message="tns:Header"/>
+        <soap:header use="literal" part="AllowFieldTruncationHeader" message="tns:Header"/>
+        <soap:body use="literal" parts="parameters"/>
+      </input>
+      <output>
+        <soap:header use="literal" part="DebuggingInfo" message="tns:Header"/>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="SoapWebserviceService">
+    <documentation/>
+    <port binding="tns:SoapWebserviceBinding" name="SoapWebservice">
+      <soap:address location="https://codeysolutions-dev-ed.develop.my.salesforce.com/services/Soap/class/SoapWebservice"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://codeysolutions-dev-ed.develop.my.salesforce.com/services/Soap/class/SoapWebservice</con:endpoint></con:endpoints><con:operation id="8a022797-a539-4cb9-bd94-9d62e8d2d253" isOneWay="false" action="" name="getAllAccountNames" bindingOperationName="getAllAccountNames" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0dac700b-4eab-4ba8-94c5-333ab28702e0" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://codeysolutions-dev-ed.develop.my.salesforce.com/services/Soap/class/SoapWebservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.sforce.com/schemas/class/SoapWebservice">\r
+   <soapenv:Header>\r
+      <soap:AllowFieldTruncationHeader>\r
+         <soap:allowFieldTruncation>?</soap:allowFieldTruncation>\r
+      </soap:AllowFieldTruncationHeader>\r
+      <soap:DebuggingHeader>\r
+         <!--Zero or more repetitions:-->\r
+         <soap:categories>\r
+            <soap:category>?</soap:category>\r
+            <soap:level>?</soap:level>\r
+         </soap:categories>\r
+         <soap:debugLevel>?</soap:debugLevel>\r
+      </soap:DebuggingHeader>\r
+      <soap:CallOptions>\r
+         <soap:client>?</soap:client>\r
+      </soap:CallOptions>\r
+      <soap:SessionHeader>\r
+         <soap:sessionId>?</soap:sessionId>\r
+      </soap:SessionHeader>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <soap:getAllAccountNames/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://soap.sforce.com/schemas/class/SoapWebservice/SoapWebservicePortType/getAllAccountNamesRequest"/></con:call></con:operation><con:operation id="b11e24ed-3f1a-444b-96fc-d977e18e6b72" isOneWay="false" action="" name="insertNewLead" bindingOperationName="insertNewLead" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="dcbf93a0-8947-406f-affd-02b9f8ada2a2" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://codeysolutions-dev-ed.develop.my.salesforce.com/services/Soap/class/SoapWebservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.sforce.com/schemas/class/SoapWebservice">\r
+   <soapenv:Header>\r
+      <soap:AllowFieldTruncationHeader>\r
+         <soap:allowFieldTruncation>?</soap:allowFieldTruncation>\r
+      </soap:AllowFieldTruncationHeader>\r
+      <soap:DebuggingHeader>\r
+         <!--Zero or more repetitions:-->\r
+         <soap:categories>\r
+            <soap:category>?</soap:category>\r
+            <soap:level>?</soap:level>\r
+         </soap:categories>\r
+         <soap:debugLevel>?</soap:debugLevel>\r
+      </soap:DebuggingHeader>\r
+      <soap:CallOptions>\r
+         <soap:client>?</soap:client>\r
+      </soap:CallOptions>\r
+      <soap:SessionHeader>\r
+         <soap:sessionId>?</soap:sessionId>\r
+      </soap:SessionHeader>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <soap:insertNewLead>\r
+         <soap:firstName>?</soap:firstName>\r
+         <soap:lastName>?</soap:lastName>\r
+         <soap:email>?</soap:email>\r
+         <soap:phone>?</soap:phone>\r
+         <soap:company>?</soap:company>\r
+      </soap:insertNewLead>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://soap.sforce.com/schemas/class/SoapWebservice/SoapWebservicePortType/insertNewLeadRequest"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
