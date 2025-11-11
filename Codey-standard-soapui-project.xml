@@ -63725,7 +63725,20 @@ All Rights Reserved-->
          <urn:password>?</urn:password>\r
       </urn:login>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:enterprise.soap.sforce.com/Soap/loginRequest"/></con:call></con:operation><con:operation id="800434e4-ae61-4375-a6a8-9ce245177654" isOneWay="false" action="" name="logout" bindingOperationName="logout" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="53364d38-68b4-4776-b37d-b7f59bdb4d2a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://login.salesforce.com/services/Soap/c/65.0/0DFgL000001QYS5</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:enterprise.soap.sforce.com">\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:enterprise.soap.sforce.com/Soap/loginRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="ec331e17-6cee-4251-9e0e-fb01507534ee" name="Login Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://login.salesforce.com/services/Soap/c/65.0/0DFgL000001QYS5</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:enterprise.soap.sforce.com">\r
+   <soapenv:Header>\r
+      <urn:LoginScopeHeader>\r
+
+      </urn:LoginScopeHeader>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <urn:login>\r
+         <urn:username>harmath.zsolt.ceo@agentforce.com</urn:username>\r
+         <!-- yourPasswordYourSecurityToken -->
+         <urn:password>Edocica1p6qVEPeN4GVrAcAzjGMVgWJi</urn:password>\r
+      </urn:login>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:enterprise.soap.sforce.com/Soap/loginRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="800434e4-ae61-4375-a6a8-9ce245177654" isOneWay="false" action="" name="logout" bindingOperationName="logout" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="53364d38-68b4-4776-b37d-b7f59bdb4d2a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://login.salesforce.com/services/Soap/c/65.0/0DFgL000001QYS5</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:enterprise.soap.sforce.com">\r
    <soapenv:Header>\r
       <urn:SessionHeader>\r
          <urn:sessionId>?</urn:sessionId>\r
