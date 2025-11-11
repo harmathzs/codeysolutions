@@ -5,10 +5,15 @@
  * @date 2025-11-11
  */
 global class SoapWebservice {
-	webService static Account[] getAllAccounts() {
-		return [SELECT Id ,Name	,Phone FROM Account];
+	webService static List<String> getAllAccountNames() {
+		String[] result = new List<String>();
+		for (Account acc: [SELECT Name FROM Account]) {
+			result.add(acc.Name);
+		}
+		return result;
 	}
-	webService static Id insertNewLead(
+
+	webService static String insertNewLead(
 		String firstName, String lastName,
 		String email, String phone,
 		String company
