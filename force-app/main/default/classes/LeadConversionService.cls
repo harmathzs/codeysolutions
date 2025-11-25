@@ -47,6 +47,26 @@ public with sharing class LeadConversionService {
 		// Convert leads in bulk, allow partial success
 		List<Database.LeadConvertResult> results = Database.convertLead(leadConverts, false);
 
+// After conversion
+		Set<Id> accountIds = new Set<Id>();
+		Set<Id> contactIds = new Set<Id>();
+		Set<Id> opportunityIds = new Set<Id>();
+
+		for (Integer i = 0; i < results.size(); i++) {
+			Database.LeadConvertResult lcr = results[i];
+			if (lcr.isSuccess()) {
+				accountIds.add(lcr.getAccountId());
+				contactIds.add(lcr.getContactId());
+				opportunityIds.add(lcr.getOpportunityId());
+			}
+		}
+
+// Bulk query each object once
+		Map<Id, Account> accounts = new Map<Id, Account>([SELECT Id FROM Account WHERE Id IN :accountIds]);
+		Map<Id, Contact> contacts = new Map<Id, Contact>([SELECT Id FROM Contact WHERE Id IN :contactIds]);
+		Map<Id, Opportunity> opportunities = new Map<Id, Opportunity>([SELECT Id FROM Opportunity WHERE Id IN :opportunityIds]);
+
+		// Now build the resultsMap using the maps above instead of querying inside loop
 		for (Integer i = 0; i < results.size(); i++) {
 			Database.LeadConvertResult lcr = results[i];
 			Id leadId = leadIds[i];
@@ -59,14 +79,15 @@ public with sharing class LeadConversionService {
 			};
 
 			if (lcr.isSuccess()) {
-				resultMap.put('Account', [SELECT Id FROM Account WHERE Id = :lcr.getAccountId()]);
-				resultMap.put('Contact', [SELECT Id FROM Contact WHERE Id = :lcr.getContactId()]);
-				resultMap.put('Opportunity', [SELECT Id FROM Opportunity WHERE Id = :lcr.getOpportunityId()]);
+				resultMap.put('Account', accounts.get(lcr.getAccountId()));
+				resultMap.put('Contact', contacts.get(lcr.getContactId()));
+				resultMap.put('Opportunity', opportunities.get(lcr.getOpportunityId()));
 			} else {
 				resultMap.put('Errors', lcr.getErrors());
 			}
 			resultsMap.put(leadId, resultMap);
 		}
+
 		return resultsMap;
 	}
 }
