@@ -5,6 +5,19 @@
 import {LightningElement, api} from 'lwc';
 
 export default class LeadConverterLwc extends LightningElement {
-	@api recordId;
+	_recordId;
+	@api get recordId() {
+		return this._recordId
+	}
+	async handleRecordIdSet() {
+		console.log('LeadConverterLwc recordId', this.recordId)
+	}
+	set recordId(value) {
+		this._recordId = value
+		this.handleRecordIdSet().catch(console.warn)
+	}
+
 	@api ids;
+
+	showCard = true;
 }
