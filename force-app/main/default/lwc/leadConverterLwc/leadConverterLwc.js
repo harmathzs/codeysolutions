@@ -20,4 +20,14 @@ export default class LeadConverterLwc extends LightningElement {
 	@api ids;
 
 	showCard = true;
+
+	displayInfo = {
+		primaryField: "Name",
+		additionalFields: ["Company"],
+	};
+
+	handleLeadPick(e) {
+		//console.log('handleLeadPick e', e)
+		this.recordId = e?.detail?.recordId
+	}
 }
