@@ -30,4 +30,8 @@ export default class LeadConverterLwc extends LightningElement {
 		//console.log('handleLeadPick e', e)
 		this.recordId = e?.detail?.recordId
 	}
+
+	handleButtonClick() {
+
+	}
 }

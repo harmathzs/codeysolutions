@@ -10,8 +10,15 @@
 					display-info={displayInfo}
 					placeholder="Pick a lead ... "
 					onchange={handleLeadPick}
-				>
-				</lightning-record-picker>
+				></lightning-record-picker>
+			</div>
+			<div class="slds-p-around_medium">
+				<lightning-button
+					variant="brand"
+					icon-name="action:lead_convert"
+					label="Convert"
+					onclick={handleButtonClick}
+				></lightning-button>
 			</div>
 		</lightning-card>
 	</template>
