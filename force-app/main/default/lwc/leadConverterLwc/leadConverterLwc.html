@@ -1,0 +1,25 @@
+<!-- Lead Converter LWC -->
+<template>
+	<template lwc:if={showCard}>
+		<lightning-card title="Single Lead Converter">
+			<div class="slds-p-around_medium">
+				<lightning-record-picker
+					label="Lead to convert: "
+					value={recordId}
+					object-api-name="Lead"
+					display-info={displayInfo}
+					placeholder="Pick a lead ... "
+					onchange={handleLeadPick}
+				></lightning-record-picker>
+			</div>
+			<div class="slds-p-around_medium">
+				<lightning-button
+					variant="brand"
+					icon-name="action:lead_convert"
+					label="Convert"
+					onclick={handleButtonClick}
+				></lightning-button>
+			</div>
+		</lightning-card>
+	</template>
+</template>

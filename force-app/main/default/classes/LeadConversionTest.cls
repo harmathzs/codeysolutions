@@ -16,9 +16,15 @@ private class LeadConversionTest {
 	}
 
 	@IsTest
-	static void testBehavior() {
+	static void testBehavior1() {
 		Lead lead = [SELECT Id, Name, Email FROM Lead WHERE Email = 'test@joe.com'];
 		Map<String, Object> conversionResults = LeadConversionService.customConvertLead(lead);
 		System.debug('conversionResults: '+conversionResults);
+	}
+	@IsTest
+	static void testBehavior2() {
+		Lead lead = [SELECT Id, Name, Email FROM Lead WHERE Email = 'test@joe.com'];
+		LeadConversionService.customConvertLeads(new List<Id>{lead.Id});
+
 	}
 }
