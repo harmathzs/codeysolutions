@@ -53,7 +53,10 @@ public with sharing class EmailMessageTriggerHandler implements ITriggerExecutab
 	}
 
 	public void populateCaseEmailThread(EmailMessage[] mails) {
+		/* TODO - fix AI callout
 		CaseEmailAnswerGroqAsync queueable = new CaseEmailAnswerGroqAsync(mails);
 		System.enqueueJob(queueable);
+
+		 */
 	}
 }
