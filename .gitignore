@@ -70,3 +70,5 @@ target/
 github/
 
 **/graphql.config.yml
+
+.proxyai

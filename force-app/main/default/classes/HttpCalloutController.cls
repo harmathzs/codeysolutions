@@ -34,6 +34,12 @@ global with sharing class HttpCalloutController {
 		public String errorMessage;
 	}
 
+	/**
+	 * Flow invocable method
+	 *
+	 * @param inputs List<InputParams>
+	 * @return List<OutputParams>
+	 */
 	@InvocableMethod
 	public static List<OutputParams> httpCallout(List<InputParams> inputs) {
 		if (inputs==null || inputs.isEmpty()) return null;
@@ -76,8 +82,27 @@ global with sharing class HttpCalloutController {
 		return new List<OutputParams>{result};
 	}
 
+	/**
+	 * Aura, LWC method
+	 *
+	 * @param inputs List<InputParams>
+	 * @return List<OutputParams>
+	 */
 	@AuraEnabled
 	public static List<OutputParams> httpCalloutAura(List<InputParams> inputs) {
 		return httpCallout(inputs);
+	}
+
+	/**
+	 * Visualforce properties
+	 *
+	 * @param inputsVF List<InputParams> - init before httpCalloutVF !
+	 * @return List<OutputParams>
+	 */
+	public List<InputParams> inputsVF { get; set; }
+	public List<OutputParams> httpCalloutVF {
+		get {
+			return httpCallout(inputsVF);
+		}
 	}
 }
