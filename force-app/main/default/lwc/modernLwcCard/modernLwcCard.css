@@ -1,0 +1,25 @@
+.modern-lwc-card-container {
+  padding: 0.75rem;
+  background: #f3f2f2;
+  border-radius: 0.375rem;
+  border-left: 4px solid #0176d3;
+}
+
+.modern-lwc-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-bottom: 0.5rem;
+}
+
+.modern-lwc-badge-light-dom {
+  margin-left: auto;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: #f0ad4e;
+  color: #333;
+  padding: 0.1rem 0.4rem;
+  border-radius: 2rem;
+}

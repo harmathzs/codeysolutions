@@ -1,0 +1,274 @@
+<template>
+  <lightning-card
+    title="Modern LWC Features (2023 – 2026)"
+    icon-name="utility:connected_apps"
+  >
+    <div class="slds-p-around_medium">
+      <!-- ================================================================ -->
+      <!-- FEATURE 1  ·  lwc:if / lwc:elseif / lwc:else  (Spring '23)      -->
+      <!-- Replaces the deprecated if:true / if:false with true conditionals-->
+      <!-- ================================================================ -->
+      <section class="feature-section">
+        <div class="feature-badge">Feature 1</div>
+        <h2 class="slds-text-heading_medium feature-title">
+          <code>lwc:if</code> / <code>lwc:elseif</code> / <code>lwc:else</code>
+          <span class="release-tag">Spring &#39;23 · API 57</span>
+        </h2>
+        <p class="slds-text-body_small slds-m-bottom_small">
+          True if / else-if / else chains replace the old single-condition
+          <code>if:true</code> / <code>if:false</code> pair. No extra wrapper
+          components or computed boolean getters needed.
+        </p>
+
+        <div class="slds-button-group slds-m-bottom_small" role="group">
+          <button
+            class="slds-button slds-button_neutral"
+            onclick={setStatusNew}
+          >
+            New
+          </button>
+          <button
+            class="slds-button slds-button_neutral"
+            onclick={setStatusActive}
+          >
+            Active
+          </button>
+          <button
+            class="slds-button slds-button_neutral"
+            onclick={setStatusClosed}
+          >
+            Closed
+          </button>
+        </div>
+
+        <template lwc:if={isNew}>
+          <span class="slds-badge slds-badge_lightest">&#x25CF;&nbsp;New</span>
+        </template>
+        <template lwc:elseif={isActive}>
+          <span class="slds-badge status-active">&#x25CF;&nbsp;Active</span>
+        </template>
+        <template lwc:else>
+          <span class="slds-badge status-closed">&#x25CF;&nbsp;Closed</span>
+        </template>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- ================================================================ -->
+      <!-- FEATURE 2  ·  lwc:ref  (Summer '23)                             -->
+      <!-- Direct reference to a DOM element via this.refs.name            -->
+      <!-- ================================================================ -->
+      <section class="feature-section">
+        <div class="feature-badge">Feature 2</div>
+        <h2 class="slds-text-heading_medium feature-title">
+          <code>lwc:ref</code> &#8212; Template Refs
+          <span class="release-tag">Summer &#39;23 · API 58</span>
+        </h2>
+        <p class="slds-text-body_small slds-m-bottom_small">
+          Name any DOM element with <code>lwc:ref="name"</code> and access it as
+          <code>this.refs.name</code> in JavaScript — no more
+          <code>this.template.querySelector()</code>.
+        </p>
+
+        <div class="slds-form-element slds-m-bottom_small">
+          <label class="slds-form-element__label" for="refInput">
+            Search field (targeted by <code>lwc:ref</code>)
+          </label>
+          <div class="slds-form-element__control">
+            <!-- lwc:ref assigns this element to this.refs.searchInput -->
+            <input
+              lwc:ref="searchInput"
+              id="refInput"
+              type="text"
+              placeholder="Click the button to focus me..."
+              class="slds-input"
+            />
+          </div>
+        </div>
+        <lightning-button
+          variant="brand"
+          label="Focus Input via lwc:ref"
+          onclick={focusInput}
+        ></lightning-button>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- ================================================================ -->
+      <!-- FEATURE 3  ·  lwc:spread  (Summer '23)                          -->
+      <!-- Spread a dynamic property object onto a component                -->
+      <!-- ================================================================ -->
+      <section class="feature-section">
+        <div class="feature-badge">Feature 3</div>
+        <h2 class="slds-text-heading_medium feature-title">
+          <code>lwc:spread</code> &#8212; Spread Properties
+          <span class="release-tag">Summer &#39;23 · API 58</span>
+        </h2>
+        <p class="slds-text-body_small slds-m-bottom_small">
+          Pass a whole plain object as props to any component or element. Ideal
+          when the set of properties is computed at runtime. Toggle the switch
+          to mutate the spread object live.
+        </p>
+
+        <div class="slds-m-bottom_small">
+          <lightning-input
+            type="toggle"
+            label="Disable the button below"
+            checked={isButtonDisabled}
+            onchange={handleToggleDisabled}
+          ></lightning-input>
+        </div>
+
+        <!-- label, variant, and disabled are all applied via lwc:spread -->
+        <lightning-button lwc:spread={spreadButtonProps}></lightning-button>
+
+        <p class="slds-text-body_small slds-m-top_x-small slds-text-color_weak">
+          Spread object: <code>{spreadButtonPropsJson}</code>
+        </p>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- ================================================================ -->
+      <!-- FEATURE 4  ·  lwc:is + Light DOM  (Winter '24)                  -->
+      <!-- Render a component from a constructor reference at runtime       -->
+      <!-- Child components also demonstrate static renderMode = 'light'    -->
+      <!-- ================================================================ -->
+      <section class="feature-section">
+        <div class="feature-badge">Feature 4</div>
+        <h2 class="slds-text-heading_medium feature-title">
+          <code>lwc:is</code> &#8212; Dynamic Components
+          <span class="release-tag">Winter &#39;24 · API 59</span>
+        </h2>
+        <p class="slds-text-body_small slds-m-bottom_small">
+          Swap the rendered component at runtime by assigning a different
+          constructor to <code>lwc:is</code>. Combined with
+          <code>lwc:spread</code> to forward the same props regardless of which
+          component is active.
+          <br />
+          Both child components use <strong>Light DOM</strong> (<code
+            >static renderMode = &#39;light&#39;</code
+          >) &#8212; they render without Shadow DOM so their styles merge into
+          the parent document.
+        </p>
+
+        <div class="slds-button-group slds-m-bottom_small" role="group">
+          <button
+            class="slds-button slds-button_neutral"
+            onclick={showCardView}
+          >
+            c/modernLwcCard (Card)
+          </button>
+          <button
+            class="slds-button slds-button_neutral"
+            onclick={showListView}
+          >
+            c/modernLwcList (List)
+          </button>
+          <button
+            class="slds-button slds-button_neutral"
+            onclick={clearDynamicView}
+          >
+            Clear
+          </button>
+        </div>
+
+        <template lwc:if={dynamicCtor}>
+          <!-- lwc:component + lwc:is renders the constructor stored in dynamicCtor -->
+          <!-- lwc:spread forwards the same sampleContactProps to either child     -->
+          <lwc:component
+            lwc:is={dynamicCtor}
+            lwc:spread={sampleContactProps}
+          ></lwc:component>
+        </template>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- ================================================================ -->
+      <!-- FEATURE 5  ·  lightning-record-picker + reactive @wire           -->
+      <!-- New search-as-you-type lookup component (Winter '24)             -->
+      <!-- The picked ID drives a @wire(getRecord) via the $ reactive prefix-->
+      <!-- ================================================================ -->
+      <section class="feature-section">
+        <div class="feature-badge">Feature 5</div>
+        <h2 class="slds-text-heading_medium feature-title">
+          <code>lightning-record-picker</code> + Reactive <code>@wire</code>
+          <span class="release-tag">Winter &#39;24 · API 59</span>
+        </h2>
+        <p class="slds-text-body_small slds-m-bottom_small">
+          <code>lightning-record-picker</code> replaces hand-rolled lookup
+          workarounds with a fully-accessible, search-as-you-type selector. The
+          selected Record ID is assigned to <code>selectedRecordId</code>, which
+          powers a reactive
+          <code
+            >@wire(getRecord, &#123; recordId: &#39;$selectedRecordId&#39;
+            &#125;)</code
+          >
+          — the <code>$</code> prefix means the wire re-executes automatically
+          on every change.
+        </p>
+
+        <lightning-record-picker
+          label="Search for a Contact"
+          placeholder="Type a name..."
+          object-api-name="Contact"
+          onchange={handleRecordPickerChange}
+        ></lightning-record-picker>
+
+        <template lwc:if={selectedRecordId}>
+          <template lwc:if={contactData}>
+            <div class="contact-result slds-m-top_small">
+              <div class="contact-result-header">
+                <lightning-icon
+                  icon-name="standard:contact"
+                  size="small"
+                ></lightning-icon>
+                <span class="slds-m-left_x-small slds-text-heading_small">
+                  Contact Details (via @wire)
+                </span>
+              </div>
+              <dl class="slds-dl_horizontal slds-m-top_x-small">
+                <dt class="slds-dl_horizontal__label slds-text-color_weak">
+                  Name
+                </dt>
+                <dd class="slds-dl_horizontal__detail">{contactName}</dd>
+                <dt class="slds-dl_horizontal__label slds-text-color_weak">
+                  Email
+                </dt>
+                <dd class="slds-dl_horizontal__detail">{contactEmail}</dd>
+                <dt class="slds-dl_horizontal__label slds-text-color_weak">
+                  Phone
+                </dt>
+                <dd class="slds-dl_horizontal__detail">{contactPhone}</dd>
+                <dt class="slds-dl_horizontal__label slds-text-color_weak">
+                  Account
+                </dt>
+                <dd class="slds-dl_horizontal__detail">{contactAccount}</dd>
+              </dl>
+            </div>
+          </template>
+          <template lwc:elseif={contactError}>
+            <div class="slds-m-top_small contact-error" role="alert">
+              <lightning-icon
+                icon-name="utility:error"
+                size="x-small"
+                variant="error"
+                class="slds-m-right_x-small"
+              ></lightning-icon>
+              {contactErrorMessage}
+            </div>
+          </template>
+          <template lwc:else>
+            <div class="slds-m-top_small">
+              <lightning-spinner
+                alternative-text="Loading contact record..."
+                size="small"
+              ></lightning-spinner>
+            </div>
+          </template>
+        </template>
+      </section>
+    </div>
+  </lightning-card>
+</template>
