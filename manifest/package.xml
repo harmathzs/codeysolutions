@@ -195,5 +195,13 @@
         <members>Send_out_activated_Order</members>
         <name>FlowDefinition</name>
     </types>
+    <types>
+        <members>unfiled$public/My_Hospital_Custom_Report_IcN</members>
+        <name>Report</name>
+    </types>
+    <types>
+        <members>Hospital_Custom_Report_Type</members>
+        <name>ReportType</name>
+    </types>
     <version>63.0</version>
 </Package>
