@@ -1,0 +1,71 @@
+ApologizeService Usage Examples
+================================
+
+The ApologizeService class automatically merges Contact fields into the email template when you use the Apologize_Email_Template_1 template.
+
+How Contact Field Merging Works:
+===============================
+
+1. When you call `ApologizeService.sendApologyEmail(contactId, whatId)`, the service:
+   - Queries the Contact record by ID
+   - Finds the email template by DeveloperName 'Apologize_Email_Template_1'
+   - Uses `setTargetObjectId(contact.Id)` which tells Salesforce to merge fields from this Contact
+   - Uses `setTemplateId(template.Id)` which specifies which template to use
+
+2. In your email template (Apologize_Email_Template_1), you can use merge fields like:
+   - {!Contact.FirstName}
+   - {!Contact.LastName} 
+   - {!Contact.Name}
+   - {!Contact.Email}
+   - Any other Contact fields you want to include
+
+3. Salesforce automatically replaces these merge fields with the actual values from the Contact record.
+
+Usage Examples:
+==============
+
+// Example 1: Send apology email to a single contact
+Id contactId = '003XXXXXXXXXXXXXXX'; // Replace with actual Contact ID
+Boolean success = ApologizeService.sendApologyEmail(contactId, null);
+
+// Example 2: Send apology email and associate with a Case
+Id contactId = '003XXXXXXXXXXXXXXX'; // Replace with actual Contact ID
+Id caseId = '500XXXXXXXXXXXXXXX';   // Replace with actual Case ID
+Boolean success = ApologizeService.sendApologyEmail(contactId, caseId);
+
+// Example 3: Send apology emails to multiple contacts
+List<Id> contactIds = new List<Id>{
+    '003XXXXXXXXXXXXXXX',
+    '003YYYYYYYYYYYYYYY',
+    '003ZZZZZZZZZZZZZZZ'
+};
+List<ApologizeService.EmailSendResult> results = ApologizeService.sendApologyEmails(contactIds, null);
+
+// Process results
+for (ApologizeService.EmailSendResult result : results) {
+    if (result.success) {
+        System.debug('Email sent successfully to contact: ' + result.contactId);
+    } else {
+        System.debug('Failed to send email to contact: ' + result.contactId + 
+                    ' Error: ' + result.errorMessage);
+    }
+}
+
+Template Setup:
+==============
+
+Make sure your Apologize_Email_Template_1 template includes Contact merge fields. For example:
+
+Subject: Apology for the inconvenience, {!Contact.FirstName}
+
+Body:
+Dear {!Contact.FirstName} {!Contact.LastName},
+
+We sincerely apologize for any inconvenience caused. We value you as a customer and appreciate your patience.
+
+If you have any questions, please don't hesitate to contact us.
+
+Best regards,
+Customer Support Team
+
+The service will automatically replace {!Contact.FirstName}, {!Contact.LastName}, etc. with the actual values from the Contact record.
